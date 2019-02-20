@@ -19,9 +19,11 @@ import {
   } from 'react-native'
 
 import { Button, Icon, Header, ListItem } from 'react-native-elements';
+import {OptimizedFlatList} from 'react-native-optimized-flatlist'
 import { connect } from 'react-redux'
 
 import axios from 'axios'
+import CardDetail from './CardDetail';
 
 const ROOT_URL = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/'
 
@@ -54,7 +56,7 @@ class HomeScreen extends Component {
 
   async componentDidMount() {
     this.setState({ loading: true });
-    this.makeRemoteRequest();
+    await this.makeRemoteRequest();
   }
 
   makeRemoteRequest = () => {
@@ -122,24 +124,16 @@ class HomeScreen extends Component {
 
   returnList = () => {
     return (
-        <FlatList
-          keyboardShouldPersistTaps='always'
+      <ScrollView style={{flex: 1}}>
+          <OptimizedFlatList 
+          style={{flex: 1}}
           data={this.state.data}
           renderItem={({ item }) => (
-            <ListItem
-            roundAvatar
-            title={item.createdOn}
-            titleStyle = {{fontWeight: "bold"}}
-            subtitle={item.status}
-            containerStyle={{ borderBottomWidth: 0 }}
-            chevronColor='#CED0CE'
-            chevron
-            //onPress={() => this.bookDetailModal(item)}
-            />
+            <CardDetail key={item.adviserId.toString()} item={item} />
           )}
           keyExtractor={item => item.adviserId.toString()}
-          ItemSeparatorComponent={this.renderSeparator}
         />
+        </ScrollView>
     );
   }
   
@@ -164,15 +158,10 @@ class HomeScreen extends Component {
         }
 
           return (
-              <KeyboardAvoidingView style={styles.container} behavior="padding">
-                  <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
-                  <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                      <View style={styles.container}>
-                      { this.renderHeader() }
-                      { this.returnList() }
-                      </View>
-                  </TouchableWithoutFeedback>
-              </KeyboardAvoidingView>
+            <View style={styles.container}>
+              { this.renderHeader() }
+              { this.returnList() }
+            </View>
           );
       }
   }
@@ -183,6 +172,11 @@ let styles = StyleSheet.create({
       flex: 1,
       backgroundColor: 'transparent'
     },
+     item: {
+       padding: 10,
+       fontSize: 18,
+       height: 44,
+     },
     bg: {
       position: 'absolute',
       left: 25,
