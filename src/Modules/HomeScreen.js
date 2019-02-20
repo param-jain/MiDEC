@@ -23,7 +23,7 @@ import {OptimizedFlatList} from 'react-native-optimized-flatlist'
 import { connect } from 'react-redux'
 
 import axios from 'axios'
-import CardDetail from './CardDetail';
+import CardDetail from '../Components/CardDetail';
 
 const ROOT_URL = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/'
 
@@ -136,6 +136,19 @@ class HomeScreen extends Component {
         </ScrollView>
     );
   }
+
+  renderRightIcons = () => {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <View style={{marginHorizontal: 7}}>
+          <Icon name="filter" type="font-awesome" color="#fff" size={20} style={{alignContent:'center', paddingHorizontal: 10}}></Icon>
+        </View>
+        <View style={{marginHorizontal: 7}}>
+          <Icon name="search" type="font-awesome" color="#fff" size={18} style={{paddingTop:40}}></Icon>
+        </View>
+      </View>
+    );
+  }
   
 
   renderHeader = () => {
@@ -143,7 +156,9 @@ class HomeScreen extends Component {
         <Header
           backgroundColor="#FF6D00"
           outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
-          centerComponent={{ text: 'Home' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+          centerComponent={{ text: 'M i D E C' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+          rightComponent={ this.renderRightIcons() }
+          leftComponent={{ icon: 'menu', color: '#fff'}}
         />
       );
     }

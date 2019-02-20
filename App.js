@@ -6,7 +6,7 @@ import ReduxThunk from 'redux-thunk';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
 import Reducers from './src/Reducers';
-import HomeScreen from './src/Components/HomeScreen';
+import HomeScreen from './src/Modules/HomeScreen';
 
 
 const MainNavigator = createBottomTabNavigator({
