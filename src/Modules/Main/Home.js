@@ -3,27 +3,16 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    Text,
-    TextInput,
     ScrollView,
-    Image,
     Dimensions,
-    FlatList,
-    Keyboard,
-    TouchableOpacity,
     ActivityIndicator,
-    KeyboardAvoidingView,
-    TouchableWithoutFeedback,
-    StatusBar,
-    Platform
   } from 'react-native'
 
-import { Button, Icon, Header, ListItem } from 'react-native-elements';
+import { Icon, Header } from 'react-native-elements';
 import {OptimizedFlatList} from 'react-native-optimized-flatlist'
 import { connect } from 'react-redux'
 
-import axios from 'axios'
-import CardDetail from '../Components/CardDetail';
+import CardDetail from '../../Components/CardDetail';
 
 const ROOT_URL = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/'
 
