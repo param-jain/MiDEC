@@ -34,13 +34,10 @@ class LoginScreen extends Component {
 
     async onLoginPress() {
         console.log("Password: " + this.props.password);
-        sha256("Test")
-            .then( hash => {
-            console.log("SHA: " + hash);
-        })
-        //const url = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/usrg/chk?email=testmidec1%40gmail.com&pwd=B6A730A04995EAEAB212EC02C4BA2CEE6371A459BBE96327FA2A47FF735E9A4A';
-          const url = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/usrg/chk?email='+`${this.props.email}`+'&pwd='+`${this.props.password}`
-        //const url = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/usrg/chk'
+        
+        // const url = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/usrg/chk?email=testmidec1%40gmail.com&pwd=B6A730A04995EAEAB212EC02C4BA2CEE6371A459BBE96327FA2A47FF735E9A4A';
+           const url = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/usrg/chk?email='+`${this.props.email}`+'&pwd='+`${this.props.password}`
+        // const url = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/usrg/chk'
         this.setState({ isAuthenticating: true });
 
         const postData = {
@@ -58,17 +55,17 @@ class LoginScreen extends Component {
             })
             //.then((response) => response.json())
             .then(res => {
-                 console.log("Login Screen Data: " + JSON.parse(res._bodyInit).status)
-                 this.setState({ data: JSON.parse(res._bodyInit), isAuthenticating: false });
-                 if (JSON.parse(res._bodyInit).status === 'APRV') {
-                     this.props.navigation.navigate('home');
-                 } else {
+                    console.log("Login Screen Data: " + JSON.parse(res._bodyInit).status)
+                    this.setState({ data: JSON.parse(res._bodyInit), isAuthenticating: false });
+                    if (JSON.parse(res._bodyInit).status === 'APRV') {
+                        this.props.navigation.navigate('home');
+                    } else {
                     this.setState({errorMessage: 'Invalid Credentials! Please Try Again'});
-                 }
+                    }
             })
             .catch(err => {
-              this.setState({ error: errorMessage, isAuthenticating: false });
-              console.log("Error: Login Screen Data: " + err)
+                this.setState({ error: errorMessage, isAuthenticating: false });
+                console.log("Error: Login Screen Data: " + err)
             });
 
     }
@@ -80,11 +77,11 @@ class LoginScreen extends Component {
 
     loginButtonDisabled = (email, password) => {
         if (
-                (password.length<8)||
-                (email.indexOf('.') === -1)||
-                (email.split('').filter(x => x === '@').length !== 1)||
-                (email.length < 5)
-            ) {
+            (password.length<8) ||
+            (email.indexOf('.') === -1) ||
+            (email.split('').filter(x => x === '@').length !== 1) ||
+            (email.length < 5)
+        ) {
             return true;
         } else {
             return false;

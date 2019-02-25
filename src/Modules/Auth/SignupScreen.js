@@ -5,7 +5,6 @@ import {
     View,
     Text,
     TextInput,
-    Image,
     Dimensions,
     Keyboard,
     TouchableOpacity,
@@ -14,7 +13,7 @@ import {
     StatusBar
   } from 'react-native'
 
-import { Button, Icon } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { connect } from 'react-redux'
 
@@ -22,11 +21,9 @@ const ROOT_URL = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec'
 
 import { signupEmailChanged, signupPasswordChanged, signupVerifyPasswordChanged} from '../../Actions/index'
 
-
-
 class SignupScreen extends Component {
 
-    state = { isAuthenticating: false }
+    state = { isAuthenticating: false, errorMessage: '', }
 
     backButtonNavigation() {
         this.props.navigation.navigate('login');
@@ -245,7 +242,43 @@ class SignupScreen extends Component {
     }
 
     navigateToSignUpDetails() {
-        const url = ROOT_URL+'/usrg/create';
+
+        console.log("Password: " + this.props.password);
+        
+        // const url = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/usrg/chk?email=testmidec1%40gmail.com&pwd=B6A730A04995EAEAB212EC02C4BA2CEE6371A459BBE96327FA2A47FF735E9A4A';
+           const url = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/usrg/create?userEmail='+`${this.props.email}`+'&password='+`${this.props.password}`+'&userType=advisee'
+        // const url = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/usrg/chk'
+        this.setState({ isAuthenticating: true });
+
+        const postData = {
+            email: "testmidec1@gmail.com",
+            pwd: "B6A730A04995EAEAB212EC02C4BA2CEE6371A459BBE96327FA2A47FF735E9A4A",
+        }
+
+          fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
+            },
+            //body: JSON.stringify(postData),
+            })
+            //.then((response) => response.json())
+            .then(res => {
+                    console.log("Login Screen Data: " + res._bodyInit)
+                    this.setState({ data: JSON.parse(res._bodyInit), isAuthenticating: false });
+                    if (JSON.parse(res._bodyInit).errorMsg === null) {
+                        this.props.navigation.navigate('home');
+                    } else {
+                    this.setState({errorMessage: JSON.parse(res._bodyInit).errorMsg});
+                    }
+            })
+            .catch(err => {
+                this.setState({ error: errorMessage, isAuthenticating: false });
+                console.log("Error: Login Screen Data: " + err)
+            });
+       
+       /* const url = ROOT_URL+'/usrg/create';
         this.setState({ isAuthenticating: true });
 
         fetch(url, {
@@ -285,7 +318,7 @@ class SignupScreen extends Component {
             .catch(error => {
               this.setState({ error, isAuthenticating: false });
               console.log("Error: Home Screen Data: " + JSON.stringify(error))
-            });
+            }); */
     }
 
     enableNextButton = (email, password, verifyPassword) => {
@@ -344,6 +377,7 @@ class SignupScreen extends Component {
                             {this.validateEmail(this.props.email)}
                             {this.validatePassword(this.props.password)}
                             {this.validateVerifyPassword(this.props.verifyPassword)}
+                            <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
                             {this.enableNextButton(this.props.email, this.props.password, this.props.verifyPassword)}
                         </View>
                     </View>
