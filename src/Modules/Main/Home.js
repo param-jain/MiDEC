@@ -4,28 +4,36 @@ import {
     StyleSheet,
     View,
     ScrollView,
+    TouchableOpacity,
     Dimensions,
     ActivityIndicator,
   } from 'react-native'
-
+  
 import { Icon, Header } from 'react-native-elements';
 import {OptimizedFlatList} from 'react-native-optimized-flatlist'
 import { connect } from 'react-redux'
 
 import CardDetail from '../../Components/CardDetail';
+import { DrawerActions } from 'react-navigation';
 
 const ROOT_URL = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/'
 
 class HomeScreen extends Component {
 
-  static navigationOptions = (props) => {
-    const { navigate } = props.navigation;
+static navigationOptions = (props) => {
     return {
         title: 'Home',
         tabBarIcon:({ tintColor }) => {
           return <Icon name="home" type="font-awesome" size={22} color={tintColor} />;
         },
-        headerTitle: 'Home',
+        headerRight: (
+          <View style={{marginLeft: 10, marginRight: 10, flexDirection:'row-reverse'}}>
+            <TouchableOpacity onPress={() => navigate('profile')} >
+              <Icon name='user' type='font-awesome' color = '#fff'/>
+            </TouchableOpacity>
+          </View>
+      ),
+        //headerTitle: 'Home',
         headerTitleStyle: { color: '#fff' },
         headerStyle: { backgroundColor: '#FD6D00' },
     };
@@ -147,7 +155,7 @@ class HomeScreen extends Component {
           outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
           centerComponent={{ text: 'M i D E C' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
           rightComponent={ this.renderRightIcons() }
-          leftComponent={{ icon: 'menu', color: '#fff'}}
+          leftComponent={{ icon: 'menu', color: '#fff', onPress: () => this.props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
         />
       );
     }
