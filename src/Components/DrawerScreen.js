@@ -39,8 +39,9 @@ class DrawerScreen extends Component {
               </Text>
             </View>
             <View style={styles.menuItem}>
-              <Text onPress={this.navigateToScreen('login')}>
-               About
+              <Icon name="user" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Text onPress={this.navigateToScreen('login')} style={{marginLeft: 10}}>
+               My Profile
               </Text>
             </View>
             <View style={styles.menuItem}>
