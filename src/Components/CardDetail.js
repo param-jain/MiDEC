@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Card, Avatar, Button, Icon} from 'react-native-elements';
 
 
-const CardDetail = ({item}) => {
+const CardDetail = ({item, navigation}) => {
         const { title, currCompany, totalWorkExpYears, totalWorkExpMonths, feePer30Mins, rating, currIndustry } = item;
         return(
             /*<Card titleStyle={{alignSelf: 'flex-start'}} title={((title).length > 45) ? (((title).substring(0, 42)) + ' ...') : title}> */
@@ -109,7 +109,7 @@ const CardDetail = ({item}) => {
       
             <View style={{paddingHorizontal:70, paddingLeft:85, paddingTop:0}}>
             {/* <Button type="outline" title="Book an Appointment" buttonStyle={{borderColor: '#FF9800', borderRadius: 10}} titleStyle={{color: '#000'}}></Button> */}
-              <TouchableOpacity style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
+              <TouchableOpacity onPress={() => navigation.navigate('adviseeDetails', {item: item})} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
                 <Text style={{alignSelf: 'center', padding: 5}}>Book an Appointment</Text> 
               </TouchableOpacity>
             </View>

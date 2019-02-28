@@ -126,7 +126,7 @@ static navigationOptions = (props) => {
           style={{flex: 1}}
           data={this.state.data}
           renderItem={({ item }) => (
-            <CardDetail key={item.adviserId.toString()} item={item} />
+            <CardDetail key={item.adviserId.toString()} navigation={this.props.navigation} item={item} />
           )}
           keyExtractor={item => item.adviserId.toString()}
         />

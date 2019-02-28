@@ -12,6 +12,7 @@ import LoginScreen from './src/Modules/Auth/LoginScreen';
 import SignupScreen from './src/Modules/Auth/SignupScreen';
 import DrawerScreen from './src/Components/DrawerScreen';
 import { Icon } from 'react-native-elements';
+import AdviseeDetailsScreen from './src/Modules/Main/AdviseeDetailsPage';
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -41,9 +42,10 @@ selectionStacker.navigationOptions = ({ navigation }) => {
 
 const TabsNavigator = createBottomTabNavigator({
   loginSignupSelection: { screen: selectionStacker, navigationOptions: { tabBarVisible: false }},
-    main: { screen: createBottomTabNavigator({
-    home: { screen: HomeScreen }
-  }, {navigationOptions: { tabBarVisible: false }})
+  adviseeDetails: { screen: AdviseeDetailsScreen, navigationOptions: { tabBarVisible: false } },
+  main: { screen: createBottomTabNavigator({
+      home: { screen: HomeScreen }
+    }, {navigationOptions: { tabBarVisible: false }})
   }
 });
 
