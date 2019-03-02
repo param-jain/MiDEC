@@ -35,7 +35,7 @@ class DrawerScreen extends Component {
             <View style={styles.menuItem}>
               <Icon name="home" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/>
               <Text onPress={this.navigateToScreen('home')} style={{marginLeft: 10}}>
-                Home
+                Adviser Selection
               </Text>
             </View>
             <View style={styles.menuItem}>
@@ -45,8 +45,15 @@ class DrawerScreen extends Component {
               </Text>
             </View>
             <View style={styles.menuItem}>
-              <Text onPress={this.navigateToScreen('signup')}>
-              Contact
+              <Icon name="bell" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Text onPress={this.navigateToScreen('notifications')} style={{marginLeft: 10}}>
+              Notifications
+              </Text>
+            </View>
+            <View style={styles.menuItem}>
+              <Icon name="group" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Text onPress={this.navigateToScreen('myAppointments')} style={{marginLeft: 10}}>
+                My Appointments
               </Text>
             </View>
           </View>
