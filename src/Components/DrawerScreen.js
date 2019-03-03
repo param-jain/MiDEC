@@ -40,7 +40,7 @@ class DrawerScreen extends Component {
             </View>
             <View style={styles.menuItem}>
               <Icon name="user" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
-              <Text onPress={this.navigateToScreen('login')} style={{marginLeft: 10}}>
+              <Text onPress={this.navigateToScreen('adviseeProfile')} style={{marginLeft: 10}}>
                My Profile
               </Text>
             </View>
@@ -54,6 +54,30 @@ class DrawerScreen extends Component {
               <Icon name="group" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
               <Text onPress={this.navigateToScreen('myAppointments')} style={{marginLeft: 10}}>
                 My Appointments
+              </Text>
+            </View>
+            <View style={styles.menuItem}>
+              <Icon name="bookmark" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Text onPress={this.navigateToScreen('bookmarks')} style={{marginLeft: 10}}>
+                Bookmarks
+              </Text>
+            </View>
+            <View style={styles.menuItem}>
+              <Icon name="info-circle" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Text onPress={this.navigateToScreen('about_us')} style={{marginLeft: 10}}>
+                About Us
+              </Text>
+            </View>
+            <View style={styles.menuItem}>
+              <Icon name="gear" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Text onPress={this.navigateToScreen('settings')} style={{marginLeft: 10}}>
+                Settings
+              </Text>
+            </View>
+            <View style={styles.menuItem}>
+              <Icon name="sign-out" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Text onPress={this.navigateToScreen('sign_out')} style={{marginLeft: 10}}>
+                Sign Out
               </Text>
             </View>
           </View>

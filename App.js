@@ -15,6 +15,10 @@ import { Icon } from 'react-native-elements';
 import AdviseeDetailsScreen from './src/Modules/Main/AdviseeDetailsPage';
 import Notifications from './src/Modules/Main/Notifications';
 import MyAppointments from './src/Modules/Main/MyAppointments';
+import AdviseeProfilePage from './src/Modules/Main/AdviseeProfilePage';
+import Bookmarks from './src/Modules/Main/Bookmarks';
+import Settings from './src/Modules/Main/Settings';
+import AboutUs from './src/Modules/Main/AboutUs';
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -58,7 +62,11 @@ const MainNavigator = createDrawerNavigator({
       screen: TabsNavigator
   },
   notifications: { screen: Notifications },
-  myAppointments: { screen: MyAppointments }
+  adviseeProfile: { screen: AdviseeProfilePage },
+  myAppointments: { screen: MyAppointments },
+  bookmarks: { screen: Bookmarks },
+  settings: { screen: Settings },
+  about_us: { screen: AboutUs }
 },{
   //initialRouteName: 'Home',
   contentComponent: DrawerScreen,
