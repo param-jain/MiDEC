@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, BackHandler, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Card, Avatar, Icon, Header } from 'react-native-elements';
 import { DrawerActions } from 'react-navigation';
 import DateTimePicker from 'react-native-modal-datetime-picker';
@@ -18,8 +18,30 @@ class AdviseeDetailsScreen extends Component {
   }
 
   componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     const today = new Date();
     this.setState({date: today, today});
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+}
+
+  handleBackButton = () => {
+    Alert.alert(
+      'Exit App',
+      'Exiting the application?', [{
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel'
+      }, {
+          text: 'OK',
+          onPress: () => BackHandler.exitApp()
+      }, ], {
+          cancelable: false
+      }
+   )
+   return true;
   }
 
     _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
