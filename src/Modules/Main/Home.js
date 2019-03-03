@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     Dimensions,
     ActivityIndicator,
+    StatusBar
   } from 'react-native'
   
 import { Icon, Header } from 'react-native-elements';
@@ -171,6 +172,7 @@ static navigationOptions = (props) => {
 
           return (
             <View style={styles.container}>
+            <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
               { this.renderHeader() }
               { this.returnList() }
             </View>
