@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@tradle/react-native-http": "^2.0.1",
+    "accordion-collapse-react-native": "^0.1.9",
     "assert": "^1.4.1",
     "axios": "^0.18.0",
     "browserify-zlib": "^0.1.4",
@@ -24,6 +25,7 @@
     "querystring-es3": "^0.2.1",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-checkbox-heaven": "^0.1.6",
     "react-native-crypto": "^2.1.2",
     "react-native-crypto-js": "^1.0.0",
     "react-native-date-picker": "^2.2.1",

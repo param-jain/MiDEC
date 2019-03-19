@@ -67,6 +67,10 @@ class MyAppointments extends React.Component {
         });*/
       }
 
+      focusTextInput() {
+        this.refs.searchBarInput.focus();
+      }
+
     searchIconFunctionality = () => {
         return (
           <View style={{marginLeft: 15, marginRight: 10, alignContent:'center'}}>
@@ -90,13 +94,17 @@ class MyAppointments extends React.Component {
             <View style={styles.container}>
                 { this.renderHeader() }
                 
-                <View style={styles.sectionStyle}>
-                    {this.searchIconFunctionality()}
-                    {this.renderSearchBar()}
+                <View style={{flexDirection: 'row'}}>
+                  <View style={[styles.sectionStyle, {flex: 11}]}>
+                      {this.searchIconFunctionality()}
+                      {this.renderSearchBar()}
+                  </View>
+                  <View style={[styles.section, {flex: 1}]}>
                     {this.rightIconFunctionality()}
+                  </View>
                 </View>
 
-                <View style={{justifyContent: 'center', alignContent: 'center', marginHorizontal: 20, marginVertical: 8}}>
+                <View style={{justifyContent: 'center', alignContent: 'center', marginHorizontal: 20, marginVertical: 50}}>
                     <Text style={{color: '#666'}}>On this page, you can view all your Appointments, request a cancellation or request a reschedule.</Text>
                 </View>
 
@@ -104,7 +112,7 @@ class MyAppointments extends React.Component {
                     <View style={{paddingHorizontal:70, paddingLeft:85, paddingTop:0, marginVertical: 20}}>
                         {/* <Button type="outline" title="Book an Appointment" buttonStyle={{borderColor: '#FF9800', borderRadius: 10}} titleStyle={{color: '#000'}}></Button> */}
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('home')} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
-                            <Text style={{alignSelf: 'center', padding: 5}}>Book an Appointment now.</Text> 
+                            <Text style={{alignSelf: 'center', padding: 5, fontWeight: '500', color: '#FF6D00'}}>Book an Appointment now.</Text> 
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -127,6 +135,16 @@ const styles = {
       backgroundColor: '#F5F5F5',
       borderWidth: 1,
       borderColor: '#F57C00',
+      height: 35,
+      borderRadius: 15,
+      margin: 5
+    },
+    section: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      //backgroundColor: '#F5F5F5',
+      borderWidth: 0,
+      //borderColor: '#F57C00',
       height: 35,
       borderRadius: 15,
       margin: 5

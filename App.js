@@ -19,6 +19,8 @@ import AdviseeProfilePage from './src/Modules/Main/AdviseeProfilePage';
 import Bookmarks from './src/Modules/Main/Bookmarks';
 import Settings from './src/Modules/Main/Settings';
 import AboutUs from './src/Modules/Main/AboutUs';
+import AdviseeEditContactDetails from './src/Modules/Main/AdviseeEditContactPage';
+import AdviseeEditPersonalDetails from './src/Modules/Main/AdviseeEditPersonalDetails';
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -63,6 +65,8 @@ const MainNavigator = createDrawerNavigator({
   },
   notifications: { screen: Notifications },
   adviseeProfile: { screen: AdviseeProfilePage },
+  adviseeEditContact: { screen: AdviseeEditContactDetails },
+  adviseeEditPersonalDetails: { screen: AdviseeEditPersonalDetails },
   myAppointments: { screen: MyAppointments },
   bookmarks: { screen: Bookmarks },
   settings: { screen: Settings },

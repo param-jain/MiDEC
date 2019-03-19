@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Header, Icon } from 'react-native-elements';
 import { DrawerActions } from 'react-navigation';
 
@@ -94,6 +94,20 @@ class Notifications extends React.Component {
                     {this.searchIconFunctionality()}
                     {this.renderSearchBar()}
                     {this.rightIconFunctionality()}
+                </View>
+
+
+                <View style={{justifyContent: 'center', alignContent: 'center', marginHorizontal: 20, marginVertical: 8}}>
+                    <Text style={{color: '#666'}}>Reach out and start a conversation. Great things might happen.</Text>
+                </View>
+
+                <View style={{justifyContent: 'center', alignContent: 'center', flex: 1}}>
+                    <View style={{paddingHorizontal:70, paddingLeft:85, paddingTop:0, marginVertical: 20}}>
+                        {/* <Button type="outline" title="Book an Appointment" buttonStyle={{borderColor: '#FF9800', borderRadius: 10}} titleStyle={{color: '#000'}}></Button> */}
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('home')} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
+                            <Text style={{alignSelf: 'center', padding: 5, fontWeight: '500', color: '#FF6D00'}}>Explore your Opportunities</Text> 
+                        </TouchableOpacity>
+                    </View>
                 </View>
 
             </View>

@@ -34,56 +34,56 @@ class DrawerScreen extends Component {
           <View>
             
             <View style={styles.menuItem}>
-              <Icon name="user" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Icon name="user" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/> 
               <Text onPress={this.navigateToScreen('adviseeProfile')} style={{marginLeft: 10}}>
                My Profile
               </Text>
             </View>
 
             <View style={styles.menuItem}>
-              <Icon name="group" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Icon name="group" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/> 
               <Text onPress={this.navigateToScreen('myAppointments')} style={{marginLeft: 10}}>
                 My Appointments
               </Text>
             </View>
 
             <View style={styles.menuItem}>
-              <Icon name="home" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/>
+              <Icon name="home" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/>
               <Text onPress={this.navigateToScreen('home')} style={{marginLeft: 10}}>
                 Adviser Selection
               </Text>
             </View>
 
             <View style={styles.menuItem}>
-              <Icon name="bookmark" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Icon name="bookmark" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/> 
               <Text onPress={this.navigateToScreen('bookmarks')} style={{marginLeft: 10}}>
                 Bookmarks
               </Text>
             </View>
 
             <View style={styles.menuItem}>
-              <Icon name="bell" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Icon name="bell" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/> 
               <Text onPress={this.navigateToScreen('notifications')} style={{marginLeft: 10}}>
               Notifications
               </Text>
             </View>
            
             <View style={styles.menuItem}>
-              <Icon name="info-circle" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Icon name="info-circle" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/> 
               <Text onPress={this.navigateToScreen('about_us')} style={{marginLeft: 10}}>
                 About Us
               </Text>
             </View>
 
             <View style={styles.menuItem}>
-              <Icon name="gear" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Icon name="gear" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/> 
               <Text onPress={this.navigateToScreen('settings')} style={{marginLeft: 10}}>
                 Settings
               </Text>
             </View>
 
             <View style={styles.menuItem}>
-              <Icon name="sign-out" type="font-awesome" size={16} color='#666' style={{marginRight: 10}}/> 
+              <Icon name="sign-out" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/> 
               <Text onPress={this.navigateToScreen('sign_out')} style={{marginLeft: 10}}>
                 Sign Out
               </Text>
@@ -99,7 +99,7 @@ class DrawerScreen extends Component {
 const styles = {
     menuItem:{
         padding: 10,
-        borderWidth: 0.5,
+        //borderWidth: 0.5,
         borderColor: '#d6d7da',
         flexDirection: 'row',
     }
