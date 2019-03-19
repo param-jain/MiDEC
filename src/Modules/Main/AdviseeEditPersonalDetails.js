@@ -31,13 +31,13 @@ class AdviseeEditPersonalDetails extends Component {
 
       <Card>
           <Text style={styles.heading}> First Name </Text>
-          <TextInput style={styles.textInput} underlineColorAndroid={'rgb(0,0,0)'} onChangeText={this.handleFirstName}/>
+          <TextInput style={styles.textInput} onChangeText={this.handleFirstName}/>
 
           <Text style={styles.heading}> Last Name </Text>
-          <TextInput style={styles.textInput} underlineColorAndroid={'rgb(0,0,0)'} onChangeText={this.handleLastName}/>
+          <TextInput style={styles.textInput} onChangeText={this.handleLastName}/>
 
           <Text style={styles.heading}> Mobile Number </Text>
-          <TextInput style={styles.textInput} underlineColorAndroid={'rgb(0,0,0)'} keyboardType='phone-pad' maxLength={10} onChangeText={this.handleMobileNumber}/>
+          <TextInput style={styles.textInput} keyboardType='phone-pad' maxLength={10} onChangeText={this.handleMobileNumber}/>
           
           <View style={{flexDirection: 'row', paddingTop:10,paddingBottom: 30, justifyContent:'space-evenly'}}>
             <TouchableOpacity style={styles.customBtnBG} onPress={() => {this.props.navigation.navigate('adviseeProfile')}} >

@@ -141,7 +141,9 @@ class AdviseeProfilePage extends Component {
           <Card>
               <View style={{flexDirection:'row'}}>
                   <Text>Professional Details</Text>
-                  <Text style={{color: "#FF9800", marginLeft:'auto'}}>ADD</Text>
+                  <TouchableOpacity style={{marginLeft: 'auto'}} onPress={() => {this.props.navigation.navigate('adviseeEditProfessionalDetails')}}>
+                    <Text style={{color: "#FF9800", marginLeft: 'auto'}}>ADD</Text>
+                  </TouchableOpacity>
               </View>
 
               <View style={{flexDirection:'row', paddingTop:20, paddingBottom: 10}}>
@@ -195,7 +197,7 @@ class AdviseeProfilePage extends Component {
 
               <View style={{flexDirection:'row', paddingTop: 15, paddingBottom: 10}}>
                   <Text style={{fontSize: 13}}>Target Industries:</Text>
-                  <Text style={{fontSize: 13, marginLeft:'auto'}}>FInance</Text>
+                  <Text style={{fontSize: 13, marginLeft:'auto'}}>Finance</Text>
               </View>
               <View style={styles.rule}/>
 
@@ -224,7 +226,9 @@ class AdviseeProfilePage extends Component {
           <Card>
               <View style={{flexDirection:'row'}}>
                   <Text>Education Details</Text>
-                  <Text style={{color: "#FF9800", marginLeft: 'auto'}}>ADD</Text>
+                  <TouchableOpacity style={{marginLeft: 'auto'}} onPress={() => {this.props.navigation.navigate('adviseeEditEducationDetails')}}>
+                    <Text style={{color: "#FF9800", marginLeft: 'auto'}}>ADD</Text>
+                  </TouchableOpacity>
               </View>
 
 
@@ -265,7 +269,7 @@ class AdviseeProfilePage extends Component {
 
 
           <View style={{flexDirection: 'row', paddingTop:10,paddingBottom: 30, justifyContent:'space-evenly'}}>
-            <TouchableOpacity style={styles.customBtnBG} onPress={() => {}} >
+            <TouchableOpacity style={styles.customBtnBG} onPress={() => {this.props.navigation.navigate('home')}} >
                 <Text style={styles.customBtnText}>Cancel</Text>
             </TouchableOpacity>
 
