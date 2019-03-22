@@ -7,7 +7,8 @@ import {
     TouchableOpacity,
     Dimensions,
     ActivityIndicator,
-    StatusBar
+    StatusBar,
+    TextInput
   } from 'react-native'
   
 import { Icon, Header } from 'react-native-elements';
@@ -46,7 +47,10 @@ static navigationOptions = (props) => {
         loading: false,
         data: [],
         originalData: [],
-        error: ''
+        error: '',
+        isSearchClicked: false,
+        searchBarText: ''
+
       }
   
     this.arrayHolder = [];
@@ -141,9 +145,9 @@ static navigationOptions = (props) => {
         <TouchableOpacity onPress={() => {this.props.navigation.navigate('homeFilter')}} style={{marginHorizontal: 7}}>
           <Icon name="filter" type="font-awesome" color="#fff" size={20} style={{alignContent:'center', paddingHorizontal: 10}}></Icon>
         </TouchableOpacity>
-        <View style={{marginHorizontal: 7}}>
+        <TouchableOpacity onPress={() => this.setState({ isSearchClicked: true })} style={{marginHorizontal: 7}}>
           <Icon name="search" type="font-awesome" color="#fff" size={18} style={{paddingTop:40}}></Icon>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -161,6 +165,33 @@ static navigationOptions = (props) => {
       );
     }
 
+    renderCenterSearchBar = () => {
+      return(
+        <TextInput
+            ref="searchBarInput"
+            autoCapitalize = 'none'
+            underlineColorAndroid="transparent" 
+            placeholder="Start Typing ..." 
+            placeholderTextColor="#fff" 
+            style={styles.searchBarTextInput}
+            onChangeText={(text) => this.setState({searchBarText: text})}
+            value={this.state.searchBarText}
+          />
+      );
+    }
+
+    renderSearchBarHeader = () => {
+      return(
+        <Header
+          backgroundColor="#FF6D00"
+          outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
+          centerComponent={this.renderCenterSearchBar()}
+          rightComponent={{ icon: 'close', color: '#fff', onPress: () => this.setState({ isSearchClicked: false }) }}
+          leftComponent={{ icon: 'search', type: 'font-awesome', color: '#fff', size:18 }}
+        />
+      );
+    }
+
       render() {
         if (this.state.loading) {
           return (
@@ -173,7 +204,7 @@ static navigationOptions = (props) => {
           return (
             <View style={styles.container}>
             <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
-              { this.renderHeader() }
+              { this.state.isSearchClicked ? this.renderSearchBarHeader() : this.renderHeader() }
               { this.returnList() }
             </View>
           );
