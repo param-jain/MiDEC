@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, Picker, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Picker, ScrollView, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-elements';
-import { ScrollView } from 'react-native-gesture-handler';
 import NumericInput from 'react-native-numeric-input';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
 

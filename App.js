@@ -93,10 +93,10 @@ class App extends React.Component {
       <Provider store={store}>
         <View style={styles.container}>
           <AppContainer
-          ref={nav => {
-            this.navigator = nav;
-          }}
-        />
+            ref={nav => {
+              this.navigator = nav;
+            }}
+          />
       </View>
       </Provider>
     );
