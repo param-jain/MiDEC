@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Share} from 'react-native';
 import {Card, Avatar, Button, Icon} from 'react-native-elements';
 
 const CardDetail = ({item, navigation}) => {
@@ -101,9 +101,9 @@ const CardDetail = ({item, navigation}) => {
                 <View style={{marginBottom: 30, marginLeft: 25}}>
                   {isBookmark ? <Icon onPress={isBookmark = true} name="bookmark" type="font-awesome" size={20} style={{alignContent:'center', paddingHorizontal: 10}}/> : <Icon onPress={isBookmark = false} name="bookmark-o" type="font-awesome" size={20} style={{alignContent:'center', paddingHorizontal: 10}}/> }
                 </View>
-                <View style={{marginBottom: 30, marginLeft: 25}}>
+                <TouchableOpacity onPress={() => {onShare(item)}} style={{marginBottom: 30, marginLeft: 25}}>
                  <Icon name="share" size={18} style={{paddingTop:40}}></Icon>
-                </View>
+                </TouchableOpacity>
              </View>
       
             </View>
@@ -119,6 +119,27 @@ const CardDetail = ({item, navigation}) => {
             </Card>
         )
     }
+
+    onShare = async (item) => {
+      try {
+        const result = await Share.share({
+          message:
+            `${item.title}` + " => " + `${item.currCompany}`,
+        });
+  
+        if (result.action === Share.sharedAction) {
+          if (result.activityType) {
+            // shared with activity type of result.activityType
+          } else {
+            // shared
+          }
+        } else if (result.action === Share.dismissedAction) {
+          // dismissed
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    };
 
 
 const mystyles = StyleSheet.create({
