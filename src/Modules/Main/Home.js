@@ -138,9 +138,9 @@ static navigationOptions = (props) => {
   renderRightIcons = () => {
     return (
       <View style={{flexDirection: 'row'}}>
-        <View style={{marginHorizontal: 7}}>
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('homeFilter')}} style={{marginHorizontal: 7}}>
           <Icon name="filter" type="font-awesome" color="#fff" size={20} style={{alignContent:'center', paddingHorizontal: 10}}></Icon>
-        </View>
+        </TouchableOpacity>
         <View style={{marginHorizontal: 7}}>
           <Icon name="search" type="font-awesome" color="#fff" size={18} style={{paddingTop:40}}></Icon>
         </View>
