@@ -7,6 +7,7 @@ const CardDetail = ({item, navigation}) => {
         let isBookmark = false;
 
         const { title, currCompany, totalWorkExpYears, totalWorkExpMonths, feePer30Mins, rating, currIndustry } = item;
+        
         return(
             /*<Card titleStyle={{alignSelf: 'flex-start'}} title={((title).length > 45) ? (((title).substring(0, 42)) + ' ...') : title}> */
 
@@ -99,13 +100,19 @@ const CardDetail = ({item, navigation}) => {
       
             <View style={{flexDirection: 'column'}}>
                 <View style={{marginBottom: 30, marginLeft: 25}}>
-                  {isBookmark ? <Icon onPress={isBookmark = true} name="bookmark" type="font-awesome" size={20} style={{alignContent:'center', paddingHorizontal: 10}}/> : <Icon onPress={isBookmark = false} name="bookmark-o" type="font-awesome" size={20} style={{alignContent:'center', paddingHorizontal: 10}}/> }
+                  {
+                    isBookmark 
+                    ? 
+                    <Icon onPress={() => {onBookmarkPressed(item, false)}} name="bookmark" type="font-awesome" size={20} style={{alignContent:'center', paddingHorizontal: 10}}/> 
+                    : 
+                    <Icon onPress={() => {onBookmarkPressed(item, true)}} name="bookmark-o" type="font-awesome" size={20} style={{alignContent:'center', paddingHorizontal: 10}}/> 
+                  }
                 </View>
                 <TouchableOpacity onPress={() => {onShare(item)}} style={{marginBottom: 30, marginLeft: 25}}>
                  <Icon name="share" size={18} style={{paddingTop:40}}></Icon>
                 </TouchableOpacity>
              </View>
-      
+
             </View>
       
       
@@ -118,6 +125,11 @@ const CardDetail = ({item, navigation}) => {
       
             </Card>
         )
+    }
+
+    onBookmarkPressed = async (item, flag) => {
+      isBookmark = flag;
+      console.log(isBookmark);
     }
 
     onShare = async (item) => {

@@ -162,10 +162,13 @@ class LoginScreen extends Component {
                     console.log("Login Screen Data: " + JSON.parse(res._bodyInit).status)
                     this.setState({ data: JSON.parse(res._bodyInit), isAuthenticating: false });
                     if (JSON.parse(res._bodyInit).status === 'APRV') {
+                        this.props.loginUser(this.state.data);
                         this.props.navigation.navigate('home');
                     } else {
                     this.setState({errorMessage: 'Invalid Credentials! Please Try Again'});
                     }
+                    this.setState({data: JSON.stringify(this.state.data)})
+                    console.log('LSASASASA: ' + this.state.data);
             })
             .catch(err => {
                 this.setState({ error: errorMessage, isAuthenticating: false });
@@ -176,7 +179,7 @@ class LoginScreen extends Component {
 
     onForgotPwdPress() {
         this.setState({ errorMessage: '' });
-        this.props.navigation.navigate('forgot_password');
+        this.props.navigation.navigate('forgotPassword');
     }
 
     loginButtonDisabled = (email, password) => {

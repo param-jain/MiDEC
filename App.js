@@ -24,6 +24,7 @@ import AdviseeEditPersonalDetails from './src/Modules/Main/AdviseeEditPersonalDe
 import AdviseeEditProfessionalDetails from './src/Modules/Main/AdviseeEditProfessionalDetails';
 import AdviseeEditEducationDetails from './src/Modules/Main/AdviseeEditEducationDetails';
 import HomeFilterPage from './src/Modules/Main/HomeFilterPage';
+import ForgotPasswordScreen from './src/Modules/Auth/ForgotPasswordScreen';
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -37,7 +38,8 @@ const selectionStacker = createStackNavigator({
   selection: { screen: LoginSignupSelectionScreen },
   login_signup: { screen: createBottomTabNavigator({
     login: { screen:  LoginScreen, navigationOptions: { tabBarVisible: false } },
-    signup: { screen:  SignupScreen, navigationOptions: { tabBarVisible: false } }
+    signup: { screen:  SignupScreen, navigationOptions: { tabBarVisible: false } },
+    forgotPassword: { screen: ForgotPasswordScreen, navigationOptions: { tabBarVisible: false }},
   }, { navigationOptions: { tabBarVisible: false } })}
 });
 

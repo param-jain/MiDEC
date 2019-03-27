@@ -1,10 +1,12 @@
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_ATTEMPTED } from '../Actions/types';
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_ATTEMPTED, LOGGED_IN_USER } from '../Actions/types';
+import {loggedInUser} from '../Actions/index'
 
 const INITIAL_STATE = { 
     email: '', 
     password: '', 
     emailTouched: false, 
-    passwordTouched: false
+    passwordTouched: false,
+    loggedInUser: 'bulla'
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -16,8 +18,8 @@ export default (state = INITIAL_STATE, action) => {
         case PASSWORD_CHANGED:
             return { ...state, password: action.payload, passwordTouched: true };
 
-        case LOGIN_ATTEMPTED:
-            return { ...state, password: '', email: '', emailTouched: false, passwordTouched: false };
+        case LOGGED_IN_USER:
+            return { ...state, password: '', email: '', emailTouched: false, passwordTouched: false, loggedInUser: action.payload };
 
         default: 
             return state;

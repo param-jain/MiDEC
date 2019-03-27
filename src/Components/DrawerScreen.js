@@ -21,7 +21,7 @@ class DrawerScreen extends Component {
           backgroundColor="#FF6D00"
           outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
           centerComponent={{ text: 'M i D E C' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
-          leftComponent={{ icon: 'chevron-left', type: 'font-awesome', color: '#fff', onPress: () => this.props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
+          //leftComponent={{ icon: 'chevron-left', style: { size: 8 }, type: 'font-awesome', color: '#fff', onPress: () => this.props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
         />
       );
     }
@@ -101,7 +101,7 @@ class DrawerScreen extends Component {
               <Icon name="sign-out" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/>
             </View>
               <View style={{flex: 9}}>
-                <Text onPress={this.navigateToScreen('sign_out')} style={{marginLeft: 10}}>Sign Out</Text>
+                <Text onPress={this.navigateToScreen('loginSignupSelection')} style={{marginLeft: 10}}>Sign Out</Text>
               </View>
             </View>
             
@@ -115,6 +115,8 @@ class DrawerScreen extends Component {
 const styles = {
     menuItem:{
         padding: 10,
+        marginLeft: 10,
+        marginTop: 10,
         //borderWidth: 0.5,
         borderColor: '#d6d7da',
         flexDirection: 'row',

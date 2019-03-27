@@ -1,4 +1,4 @@
-import { LOGIN_ATTEMPTED, PASSWORD_CHANGED, EMAIL_CHANGED, SIGNUP_EMAIL_CHANGED, SIGNUP_PASSWORD_CHANGED, SIGNUP_VERIFY_PASSWORD_CHANGED } from './types';
+import { LOGIN_ATTEMPTED, PASSWORD_CHANGED, EMAIL_CHANGED, SIGNUP_EMAIL_CHANGED, SIGNUP_PASSWORD_CHANGED, SIGNUP_VERIFY_PASSWORD_CHANGED, LOGGED_IN_USER } from './types';
 
 
 //Login Screen
@@ -14,9 +14,10 @@ export const passwordChanged = (text) => {
         payload: text
     };
 };
-export const loginUser = ({ email, password }) => {
+export const loginUser = ({ text }) => {
     return {
-        type: LOGIN_ATTEMPTED,
+        type: LOGGED_IN_USER,
+        payload: text
     }
 };
 
@@ -33,6 +34,7 @@ export const signupPasswordChanged = (text) => {
         payload: text
     };
 };
+
 export const signupVerifyPasswordChanged = (text) => {
     return {
         type: SIGNUP_VERIFY_PASSWORD_CHANGED,

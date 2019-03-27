@@ -49,7 +49,7 @@ static navigationOptions = (props) => {
         originalData: [],
         error: '',
         isSearchClicked: false,
-        searchBarText: ''
+        searchText: ''
 
       }
   
@@ -115,7 +115,7 @@ static navigationOptions = (props) => {
           originalData: JSON.stringify(res._bodyInit),
           refreshing: false,
         });
-        this.arrayHolder = res;
+        this.arrayHolder = this.state.data;
         console.log("Home Screen Data: " + this.state.data[0].status)
       })
       .catch(error => {
@@ -174,10 +174,23 @@ static navigationOptions = (props) => {
             placeholder="Start Typing ..." 
             placeholderTextColor="#fff" 
             style={styles.searchBarTextInput}
-            onChangeText={(text) => this.setState({searchBarText: text})}
-            value={this.state.searchBarText}
+            onChangeText={(text) => this.renderListAccordingToSearchBar(text)}
+            value={this.state.searchText}
           />
       );
+    }
+
+    renderListAccordingToSearchBar = (text) => {
+      this.setState({searchText: text});
+      console.log("All Books Array Holder: " + this.arrayHolder);
+      const newData = this.arrayHolder.filter(item => {
+        const itemData = `${item.title.toUpperCase()} ${item.currCompany.toUpperCase()} ${item.currIndustry.toUpperCase()}`;
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      this.setState({
+        data: newData,
+      });
     }
 
     renderSearchBarHeader = () => {
@@ -186,7 +199,11 @@ static navigationOptions = (props) => {
           backgroundColor="#FF6D00"
           outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
           centerComponent={this.renderCenterSearchBar()}
-          rightComponent={{ icon: 'close', color: '#fff', onPress: () => this.setState({ isSearchClicked: false }) }}
+          rightComponent={{ icon: 'close', color: '#fff', onPress: () => {
+            this.setState({ isSearchClicked: false });
+            this.renderListAccordingToSearchBar('');
+            } 
+          }}
           leftComponent={{ icon: 'search', type: 'font-awesome', color: '#fff', size:18 }}
         />
       );
