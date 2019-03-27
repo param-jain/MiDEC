@@ -17,6 +17,7 @@ import { connect } from 'react-redux'
 
 import CardDetail from '../../Components/CardDetail';
 import { DrawerActions } from 'react-navigation';
+import { loggedInUser } from '../../Actions/index';
 
 const ROOT_URL = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/'
 
@@ -49,15 +50,17 @@ static navigationOptions = (props) => {
         originalData: [],
         error: '',
         isSearchClicked: false,
-        searchText: ''
-
+        searchText: '',
+        currentLoggedInUser: []
       }
   
     this.arrayHolder = [];
   }
 
   async componentDidMount() {
-    this.setState({ loading: true });
+    const loggedInUser = this.props.navigation.getParam('loggedInUser', 'Oops!');
+    this.setState({ loading: true, currentLoggedInUser: loggedInUser});
+    console.log('HOME SCREEN RECIEVED IN USER: ' + loggedInUser);
     await this.makeRemoteRequest();
   }
 
@@ -116,7 +119,7 @@ static navigationOptions = (props) => {
           refreshing: false,
         });
         this.arrayHolder = this.state.data;
-        console.log("Home Screen Data: " + this.state.data[0].status)
+        console.log("Home Screen Data: " + JSON.stringify(this.state.data))
       })
       .catch(error => {
         this.setState({ error, loading: false });
@@ -322,6 +325,7 @@ let styles = StyleSheet.create({
   });
 
 const mapStateToProps = (state) => ({
+  loggedInUser: state.auth.loggedInUser
 });
 
 export default connect(mapStateToProps, {})(HomeScreen);

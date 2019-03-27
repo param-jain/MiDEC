@@ -4,7 +4,7 @@ import {Keyboard, Platform, Text, View, TextInput, Alert, TouchableWithoutFeedba
 import { Button, Icon } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import { emailChanged, passwordChanged, loginUser } from '../../Actions/index';
+import { emailChanged, passwordChanged, loginUser, loggedInUser } from '../../Actions/index';
 import axios from 'axios';
 
 const ROOT_URL = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec'
@@ -161,14 +161,13 @@ class LoginScreen extends Component {
             .then(res => {
                     console.log("Login Screen Data: " + JSON.parse(res._bodyInit).status)
                     this.setState({ data: JSON.parse(res._bodyInit), isAuthenticating: false });
+                    this.setState({data: JSON.stringify(this.state.data)})
+                    console.log('LSASASASA: ' + this.state.data);
                     if (JSON.parse(res._bodyInit).status === 'APRV') {
-                        this.props.loginUser(this.state.data);
-                        this.props.navigation.navigate('home');
+                        this.props.navigation.navigate('home', {loggedInUser: this.state.data});
                     } else {
                     this.setState({errorMessage: 'Invalid Credentials! Please Try Again'});
                     }
-                    this.setState({data: JSON.stringify(this.state.data)})
-                    console.log('LSASASASA: ' + this.state.data);
             })
             .catch(err => {
                 this.setState({ error: errorMessage, isAuthenticating: false });

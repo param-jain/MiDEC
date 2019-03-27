@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     password: '', 
     emailTouched: false, 
     passwordTouched: false,
-    loggedInUser: 'bulla'
+    loggedInUser: []
 };
 
 export default (state = INITIAL_STATE, action) => {
