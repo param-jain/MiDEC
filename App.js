@@ -80,7 +80,7 @@ const MainNavigator = createDrawerNavigator({
 },{
   //initialRouteName: 'Home',
   contentComponent: DrawerScreen,
-  drawerWidth: 300
+  drawerWidth: 250
 });
 
 
