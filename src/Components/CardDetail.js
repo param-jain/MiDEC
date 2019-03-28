@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, Share} from 'react-native';
 import {Card, Avatar, Button, Icon} from 'react-native-elements';
+import Toast from 'react-native-toast-native';
 
 const CardDetail = ({item, navigation}) => {
 
@@ -128,6 +129,7 @@ const CardDetail = ({item, navigation}) => {
     }
 
     onBookmarkPressed = async (item, flag) => {
+      Toast.show('This is a toast.');
       isBookmark = flag;
       console.log(isBookmark);
     }

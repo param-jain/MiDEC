@@ -7,6 +7,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@remobile/react-native-toast": "^1.0.7",
     "@tradle/react-native-http": "^2.0.1",
     "accordion-collapse-react-native": "^0.1.9",
     "assert": "^1.4.1",
@@ -44,6 +45,7 @@
     "react-native-sha256": "^1.2.3",
     "react-native-simple-toast": "0.0.8",
     "react-native-tcp": "^3.3.0",
+    "react-native-toast-native": "^1.2.1",
     "react-native-udp": "^2.5.0",
     "react-navigation": "^3.3.0",
     "react-redux": "^6.0.0",
