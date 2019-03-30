@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { Card } from 'react-native-elements';
+import { View, StatusBar, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Card, Header } from 'react-native-elements';
 
 class AdviseeEditEducationDetails extends Component {
     constructor(props) {
@@ -20,9 +20,22 @@ class AdviseeEditEducationDetails extends Component {
       }
 
 
+      renderHeader = () => {
+        return(
+            <Header
+              backgroundColor="#FF6D00"
+              outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
+              centerComponent={{ text: 'Edit Contact Details' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+              leftComponent={{ icon: 'arrow-left', type:'font-awesome', color: '#fff', onPress: () => this.props.navigation.navigate('adviseeProfile') }}
+            />
+          );
+        }
+
   render() {
     return (
       <View style={styles.container}>
+      <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
+        {this.renderHeader()}
         <Card>
             <Text style={styles.heading}> University/College Name</Text>
             <TextInput style={styles.textInput} onChangeText={this.handleCollegeName}/>
@@ -35,7 +48,7 @@ class AdviseeEditEducationDetails extends Component {
                     <Text style={styles.customBtnText}>Cancel</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.customBtnBG} onPress={() => {}} >
+                <TouchableOpacity style={styles.customBtnBG} onPress={() => {this.props.navigation.navigate('adviseeProfile')}} >
                     <Text style={styles.customBtnText}>Save</Text>
                 </TouchableOpacity>
             </View>
@@ -47,8 +60,9 @@ class AdviseeEditEducationDetails extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'column',
         flex: 1,
-        marginTop: 50
+        backgroundColor: 'transparent'
     },
     heading:{
         fontSize: 15,

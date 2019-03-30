@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, Picker, ScrollView, TouchableOpacity } from 'react-native';
-import { Card } from 'react-native-elements';
+import { View, StatusBar, Text, StyleSheet, TextInput, Picker, ScrollView, TouchableOpacity } from 'react-native';
+import { Card, Header } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select'
 
@@ -221,12 +221,26 @@ class AdviseeEditProfessionalDetails extends Component {
      this.setState({ lastcompany: lastcompany })
   }
 
+  renderHeader = () => {
+    return(
+        <Header
+          backgroundColor="#FF6D00"
+          outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
+          centerComponent={{ text: 'Edit Contact Details' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+          leftComponent={{ icon: 'arrow-left', type:'font-awesome', color: '#fff', onPress: () => this.props.navigation.navigate('adviseeProfile') }}
+        />
+      );
+    }
+
 
   render() {
+
     
     return (
       <ScrollView style={styles.container}>
 
+<StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
+        {this.renderHeader()}
 
           <Card>
 
@@ -452,7 +466,7 @@ class AdviseeEditProfessionalDetails extends Component {
                 <Text style={styles.customBtnText}>Cancel</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.customBtnBG} onPress={() => {}} >
+            <TouchableOpacity style={styles.customBtnBG} onPress={() => {this.props.navigation.navigate('adviseeProfile')}} >
                 <Text style={styles.customBtnText}>Save</Text>
             </TouchableOpacity>
           </View>
@@ -465,8 +479,9 @@ class AdviseeEditProfessionalDetails extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'column',
         flex: 1,
-        marginTop: 50
+        backgroundColor: 'transparent'
     },
     heading:{
         fontSize: 15,

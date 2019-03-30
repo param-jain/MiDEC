@@ -11,6 +11,10 @@ class LoginSignupSelectionScreen extends Component {
         tabBarVisible: false,
       };
 
+    componentDidMount() {
+        global.isCurrentLoggedInUser = 'FOOFOO';
+        global.isLoggedIn = false;
+    }
 
     goToHomeScreen = () => {
         this.props.navigation.navigate('home');

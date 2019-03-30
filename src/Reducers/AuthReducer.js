@@ -1,5 +1,4 @@
 import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_ATTEMPTED, LOGGED_IN_USER } from '../Actions/types';
-import {loggedInUser} from '../Actions/index'
 
 const INITIAL_STATE = { 
     email: '', 

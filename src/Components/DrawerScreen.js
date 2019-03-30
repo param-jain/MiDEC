@@ -8,6 +8,12 @@ import { Header, Icon } from 'react-native-elements';
 class DrawerScreen extends Component {
 
   navigateToScreen = (route) => () => {
+
+    if (route === 'loginSignupSelection') {
+      global.isLoggedIn = false;
+      global.currentLoggedInUser = 'FOOFOO';
+    }
+
     const navigateAction = NavigationActions.navigate({
       routeName: route
     });

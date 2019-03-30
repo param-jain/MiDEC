@@ -163,7 +163,12 @@ class LoginScreen extends Component {
                     this.setState({ data: JSON.parse(res._bodyInit), isAuthenticating: false });
                     this.setState({data: JSON.stringify(this.state.data)})
                     console.log('LSASASASA: ' + this.state.data);
+                    global.isCurrentLoggedInUser = this.state.data;
+                    global.isLoggedIn = true;
                     if (JSON.parse(res._bodyInit).status === 'APRV') {
+                        this.props.loginUser(this.state.data);
+                        global.isCurrentLoggedInUser = this.state.data;
+                        global.isLoggedIn = true;
                         this.props.navigation.navigate('home', {loggedInUser: this.state.data});
                     } else {
                     this.setState({errorMessage: 'Invalid Credentials! Please Try Again'});
