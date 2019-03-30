@@ -129,6 +129,7 @@ class LoginScreen extends Component {
 
     onPasswordChange(text) {
         text=text.trim();
+        global.currentLoggedUserPassword = text;
         this.props.passwordChanged(text);
     }
 
@@ -169,6 +170,7 @@ class LoginScreen extends Component {
                         this.props.loginUser(this.state.data);
                         global.isCurrentLoggedInUser = this.state.data;
                         global.isLoggedIn = true;
+                        global.currentLoggedUserPassword = this.props.password; 
                         this.props.navigation.navigate('home', {loggedInUser: this.state.data});
                     } else {
                     this.setState({errorMessage: 'Invalid Credentials! Please Try Again'});

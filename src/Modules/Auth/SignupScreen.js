@@ -243,7 +243,7 @@ class SignupScreen extends Component {
                     <View>
                          <TextInput
                             underlineColorAndroid="transparent" 
-                            placeholder="Password" 
+                            placeholder="New Password" 
                             placeholderColor="#c4c3cb" 
                             style={[styles.loginFormTextInput, {borderColor: '#DD2C00'}]} 
                             secureTextEntry={true}
