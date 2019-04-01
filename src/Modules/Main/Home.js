@@ -4,6 +4,7 @@ import {
     StyleSheet,
     View,
     ScrollView,
+    FlatList,
     TouchableOpacity,
     Dimensions,
     ActivityIndicator,
@@ -66,6 +67,9 @@ static navigationOptions = (props) => {
     //await this.renderListAccordingToFilters();
   }
 
+  componentWillReceiveProps() {
+    this.makeRemoteRequest();
+  }
   makeRemoteRequest = () => {
 
     let defaultFilters = {
@@ -99,21 +103,33 @@ static navigationOptions = (props) => {
           'Content-Type': 'application/json',
           'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
       },
-      body: JSON.parse(filters),
+      body: JSON.stringify({
+        "slotDate":"",
+        "slotTimes":[],
+        "pastCompanies": [],
+        "currCompanies": [],  
+        "currIndustry": [], 
+        "languagesKnown":[],
+        "totalExp": 0,
+        "expAreas": [],
+        "currFnclArea": [],
+        "currFnclAreaExp": 0,
+        "pastIndustry": [],
+        "pastFnclArea": []
+      }),
       })
       .then((response) => response.json())
-      console.log('BLSDLSDVS: '+ response)
-      /*.then(res => {
+      .then(res => {
+        console.log("shdsad: "+ JSON.stringify(res));
         this.setState({
-          error: res.error || null,
           loading: false,
-          data: JSON.parse(res._bodyInit),
-          originalData: JSON.stringify(res._bodyInit),
+          data: res,
+          originalData: res,
           refreshing: false,
         });
         this.arrayHolder = this.state.data;
         console.log("Home Screen Data: " + JSON.stringify(this.state.data))
-      })*/
+      })
       .catch(error => {
         this.setState({ error, loading: false });
         console.log("Error: Home Screen Data: " + JSON.stringify(error))
@@ -121,9 +137,10 @@ static navigationOptions = (props) => {
   };
 
   returnList = () => {
-    return (
+    console.log("sdasdadda: "+ this.state.data)
+   return (
       <ScrollView style={{flex: 1}}>
-          <OptimizedFlatList 
+          <FlatList 
           style={{flex: 1}}
           data={this.state.data}
           renderItem={({ item }) => (

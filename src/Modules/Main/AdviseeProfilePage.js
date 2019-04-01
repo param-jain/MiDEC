@@ -6,8 +6,9 @@ import {
      Image, 
      ProgressBarAndroid,
      TouchableOpacity } from 'react-native';
-import {Card, Icon} from 'react-native-elements';
+import {Card, Icon, Header} from 'react-native-elements';
 import Checkbox from 'react-native-checkbox-heaven';
+import { DrawerActions } from 'react-navigation';
 import {Collapse, CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 
 
@@ -31,15 +32,29 @@ class AdviseeProfilePage extends Component {
         this.forceUpdate();
     }
 
+    renderHeader = () => {
+        return(
+            <Header
+              backgroundColor="#FF6D00"
+              outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
+              centerComponent={{ text: 'My Profile' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+              leftComponent={{ icon: 'menu', color: '#fff', onPress: () => this.props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
+            />
+          );
+        }
+
 
   render() {
     if (global.isLoggedIn === false) {
         return(
-            <View style={[styles.container, {alignContent: 'center', justifyContent: 'center'}]}>
-                <Text style={{justifyContent: 'center', alignSelf: 'center'}}>Please Login First!!!</Text>
-                <TouchableOpacity style={[styles.customBtnBG, {margin: 20}]} onPress={() => {this.props.navigation.navigate('loginSignupSelection')}} >
-                    <Text style={[styles.customBtnText, {alignSelf: 'center'}]}>Go To Login Screen!</Text>
-                </TouchableOpacity>
+            <View style={styles.Hcontainer}>
+                {this.renderHeader()}
+                <View style={[styles.container, {alignContent: 'center', justifyContent: 'center'}]}>
+                    <Text style={{justifyContent: 'center', alignSelf: 'center'}}>Please Login First!!!</Text>
+                    <TouchableOpacity style={[styles.customBtnBG, {margin: 20}]} onPress={() => {this.props.navigation.navigate('loginSignupSelection')}} >
+                        <Text style={[styles.customBtnText, {alignSelf: 'center'}]}>Go To Login Screen!</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     } else {
@@ -313,6 +328,11 @@ class AdviseeProfilePage extends Component {
 }
 
 const styles = StyleSheet.create({
+    Hcontainer: {
+        flexDirection: 'column',
+      flex: 1,
+      backgroundColor: 'transparent'
+    },
     container: {
         flex: 1,
         marginTop: 50

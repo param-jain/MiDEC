@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Header, Icon } from 'react-native-elements';
 import { DrawerActions } from 'react-navigation';
+import { DatePicker } from 'native-base';
 
 class MyAppointments extends React.Component {
 
@@ -78,12 +79,25 @@ class MyAppointments extends React.Component {
           </View>
         );
       }
+
+      returnDatePicker = () => {
+          return (
+            <View style={{flexDirection: 'row', marginHorizontal: 5, alignSelf:'center', justifyContent:'center'}}>
+              <Icon name='calendar' type='font-awesome' color='#FF8F00' size={18} underlayColor={'#64b5f6'} />
+              <DatePicker
+              date={this.state.date}
+              onDateChange={date => this.setState({date})}
+              placeHolderTextStyle={{fontSize:14}}
+              />
+            </View>
+      )
+      }
     
     rightIconFunctionality = () => {
        // if (this.state.searchBarTextTouched) {
           return (
-            <View style={{marginRight: 15, alignContent:'center'}}>
-              <Icon name='calendar' type='font-awesome' color='#FF8F00' size={16} underlayColor={'#64b5f6'}/>
+            <View style={{justifyContent:'center', alignContent:'center'}}>
+              {this.returnDatePicker()}
             </View>
           );
         }
@@ -95,14 +109,15 @@ class MyAppointments extends React.Component {
                 { this.renderHeader() }
                 
                 <View style={{flexDirection: 'row'}}>
-                  <View style={[styles.sectionStyle, {flex: 11}]}>
+                  <View style={[styles.sectionStyle, {flex: 1}]}>
                       {this.searchIconFunctionality()}
                       {this.renderSearchBar()}
                   </View>
-                  <View style={[styles.section, {flex: 1}]}>
+                </View>
+                <View style={[styles.sectionStyle,{flexDirection: 'row'}]}>
                     {this.rightIconFunctionality()}
                   </View>
-                </View>
+                  
 
                 <View style={{justifyContent: 'center', alignContent: 'center', marginHorizontal: 20, marginVertical: 50}}>
                     <Text style={{color: '#666'}}>On this page, you can view all your Appointments, request a cancellation or request a reschedule.</Text>

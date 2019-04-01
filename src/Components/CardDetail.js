@@ -7,14 +7,13 @@ const CardDetail = ({item, navigation}) => {
 
         let isBookmark = false;
 
-        const { title, currCompany, totalWorkExpYears, totalWorkExpMonths, feePer30Mins, rating, currIndustry } = item;
+        const { adviserTitle, currCompany, totalWorkExpYears, totalWorkExpMonths, feePer30Mins, rating, currIndustry } = item;
         
         return(
-            /*<Card titleStyle={{alignSelf: 'flex-start'}} title={((title).length > 45) ? (((title).substring(0, 42)) + ' ...') : title}> */
 
             <Card>
 
-            <Text style={{fontWeight: '600', marginBottom: 10}}>{((title).length > 45) ? (((title).substring(0, 42)) + ' ...') : title}</Text>
+            <Text style={{fontWeight: '600', marginBottom: 10}}>{((adviserTitle).length > 45) ? (((adviserTitle).substring(0, 42)) + ' ...') : adviserTitle}</Text>
       
 
             <View style={{flexDirection:'row',justifyContent: 'space-around'}}>
@@ -52,7 +51,7 @@ const CardDetail = ({item, navigation}) => {
                     <Icon name="industry" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
                     <Text style={{fontSize: 12}}>  Industry </Text>
                     <Text style={{fontSize: 12, paddingLeft:54, paddingRight:10}}>:</Text>                
-                    <Text style={{fontSize: 12}} >{((currIndustry).length > 10) ? (((currIndustry).substring(0, 7)) + ' ...') : currIndustry}</Text>
+                    <Text style={{fontSize: 12}} >{((JSON.stringify(currIndustry)).length > 14) ? ((JSON.stringify(currIndustry).substring(2, 9)) + ' ...') : currIndustry}</Text>
                     </View>
       
       
