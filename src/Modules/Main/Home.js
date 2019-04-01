@@ -63,38 +63,35 @@ static navigationOptions = (props) => {
     //this.setState({ loading: true, currentLoggedInUser: loggedInUser});
     //console.log('HOME SCREEN RECIEVED IN USER: ' + loggedInUser);
     await this.makeRemoteRequest();
+    //await this.renderListAccordingToFilters();
   }
 
   makeRemoteRequest = () => {
+
+    let defaultFilters = {
+      "slotDate":"",
+      "slotTimes":[],
+      "pastCompanies": [],
+      "currCompanies": [],  
+      "currIndustry": [], 
+      "languagesKnown":[],
+      "totalExp": 0,
+      "expAreas": [],
+      "currFnclArea": [],
+      "currFnclAreaExp": 0,
+      "pastIndustry": [],
+      "pastFnclArea": []
+  }
+
+    const filters = this.props.navigation.getParam('filters', defaultFilters);
+    console.log('FILTERS: ' + JSON.stringify(filters));
+
+
     console.log('Hollla');
-    const url = `http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/adm/ar`;
+    const url = `http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/prfl/filter`;
     //const url = ROOT_URL+`adm/ar`;
     this.setState({ loading: true });
   
-    
-    const postData = {
-      "pageNum": 0,
-      "searchColumn": "string",
-      "searchText": "string",
-      "sortColumn": "string",
-      "sortOrder": "string"
-    }
-
-    //var basicAuth = 'Basic ' + btoa('services-midec-ui:midec-services-ui2018');
-  /*
-    const config = {
-      Headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
-      }
-    }
-
-    axios.post( url, postData, {
-      auth: {
-        username: 'services-midec-ui',
-        password: 'midec-services-ui2018'
-      }})
-*/
     fetch(url, {
       method: 'POST',
       headers: {
@@ -102,16 +99,11 @@ static navigationOptions = (props) => {
           'Content-Type': 'application/json',
           'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
       },
-      body: JSON.stringify({
-        "pageNum": 0,
-        "searchColumn": "string",
-        "searchText": "string",
-        "sortColumn": "string",
-        "sortOrder": "string"
-      }),
+      body: JSON.parse(filters),
       })
-      //.then((response) => response.json())
-      .then(res => {
+      .then((response) => response.json())
+      console.log('BLSDLSDVS: '+ response)
+      /*.then(res => {
         this.setState({
           error: res.error || null,
           loading: false,
@@ -121,7 +113,7 @@ static navigationOptions = (props) => {
         });
         this.arrayHolder = this.state.data;
         console.log("Home Screen Data: " + JSON.stringify(this.state.data))
-      })
+      })*/
       .catch(error => {
         this.setState({ error, loading: false });
         console.log("Error: Home Screen Data: " + JSON.stringify(error))
@@ -195,6 +187,83 @@ static navigationOptions = (props) => {
       this.setState({
         data: newData,
       });
+    }
+
+    renderListAccordingToFilters = () => {
+
+      let defaultFilters = {
+        "slotDate":"",
+        "slotTimes":[],
+        "pastCompanies": [],
+        "currCompanies": [],  
+        "currIndustry": [], 
+        "languagesKnown":[],
+        "totalExp": 0,
+        "expAreas": [],
+        "currFnclArea": [],
+        "currFnclAreaExp": 0,
+        "pastIndustry": [],
+        "pastFnclArea": []
+    }
+
+      const filters = this.props.navigation.getParam('filters', defaultFilters);
+      console.log('FILTERS: ' + JSON.stringify(filters));
+      
+      console.log('Hollla');
+    const url = `http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/prfl/filter`;
+    //const url = ROOT_URL+`adm/ar`;
+    this.setState({ loading: true });
+  
+    
+    const postData = {
+      "pageNum": 0,
+      "searchColumn": "string",
+      "searchText": "string",
+      "sortColumn": "string",
+      "sortOrder": "string"
+    }
+
+    //var basicAuth = 'Basic ' + btoa('services-midec-ui:midec-services-ui2018');
+  /*
+    const config = {
+      Headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
+      }
+    }
+
+    axios.post( url, postData, {
+      auth: {
+        username: 'services-midec-ui',
+        password: 'midec-services-ui2018'
+      }})
+*/
+    fetch(url, {
+      method: 'POST',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
+      },
+      body: JSON.stringify(filters),
+      })
+      //.then((response) => response.json())
+      .then(res => {
+        this.setState({
+          error: res.error || null,
+          loading: false,
+          data: JSON.parse(res._bodyInit),
+          originalData: JSON.stringify(res._bodyInit),
+          refreshing: false,
+        });
+        this.arrayHolder = this.state.data;
+        console.log("Home Screen Data: " + JSON.stringify(this.state.data))
+      })
+      .catch(error => {
+        this.setState({ error, loading: false });
+        console.log("Error: Home Screen Data: " + JSON.stringify(error))
+      });
+
     }
 
     renderSearchBarHeader = () => {
