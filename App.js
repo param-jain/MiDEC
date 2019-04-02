@@ -25,6 +25,7 @@ import AdviseeEditProfessionalDetails from './src/Modules/Main/AdviseeEditProfes
 import AdviseeEditEducationDetails from './src/Modules/Main/AdviseeEditEducationDetails';
 import HomeFilterPage from './src/Modules/Main/HomeFilterPage';
 import ForgotPasswordScreen from './src/Modules/Auth/ForgotPasswordScreen';
+import ConfirmPaymentScreen from './src/Modules/Main/ConfirmPaymentScreen';
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -78,7 +79,8 @@ const MainNavigator = createDrawerNavigator({
   bookmarks: { screen: Bookmarks },
   settings: { screen: Settings },
   homeFilter: { screen: HomeFilterPage },
-  about_us: { screen: AboutUs }
+  about_us: { screen: AboutUs },
+  confirmPayment: { screen: ConfirmPaymentScreen }
 },{
   //initialRouteName: 'Home',
   contentComponent: DrawerScreen,

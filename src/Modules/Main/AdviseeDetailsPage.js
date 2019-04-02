@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, BackHandler, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Dimensions, Modal, TouchableHighlight, Text, Picker, BackHandler, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Card, Avatar, Icon, Header } from 'react-native-elements';
 import { DrawerActions } from 'react-navigation';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import axios from 'axios';
 
 class AdviseeDetailsScreen extends Component {
 
@@ -11,7 +12,11 @@ class AdviseeDetailsScreen extends Component {
     this.state = {
         isDateTimePickerVisible: false,
         date: '',
-        today: ''
+        slot: '',
+        availableDates: [],
+        availableSlots: [],
+        dateModalVisible: false,
+        slotModalVisible: false
       }
   
     this.arrayHolder = [];
@@ -19,8 +24,17 @@ class AdviseeDetailsScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-    const today = new Date();
-    this.setState({date: today, today});
+
+    const { navigation } = this.props;
+    const item = navigation.getParam('item', 'Oops');
+
+    const { adviserTitle, currCompany, totalWorkExpYears, totalWorkExpMonths, feePer30Mins, rating, currIndustry } = item;
+    if (item.slotDates !== null) {
+      console.log('Slot Dates: '+ item.slotDates[0])
+      this.setState({date: item.slotDates[0], availableDates: item.slotDates});
+    }
+
+    this.getAvailableDateSlots();
   }
 
   componentWillUnmount() {
@@ -44,27 +58,17 @@ class AdviseeDetailsScreen extends Component {
    return true;
   }
 
-    _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
- 
-    _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
-   
-    _handleDatePicked = (date) => {
-      console.log('A date has been picked: ', date);
-      this.setState({ date });
-      this._hideDateTimePicker();
-    };
-
     renderCardDetail = () => {
 
       const { navigation } = this.props;
       const item = navigation.getParam('item', 'Oops');
 
-      const { title, currCompany, totalWorkExpYears, totalWorkExpMonths, feePer30Mins, rating, currIndustry } = item;
+      const { adviserTitle, currCompany, totalWorkExpYears, totalWorkExpMonths, feePer30Mins, rating, currIndustry } = item;
 
       return(
         <Card>
 
-            <Text style={{fontWeight: '600', marginBottom: 10}}>{title}</Text>
+            <Text style={{fontWeight: '600', marginBottom: 10}}>{adviserTitle}</Text>
       
 
             <View style={{flexDirection:'row',justifyContent: 'space-around'}}>
@@ -73,7 +77,7 @@ class AdviseeDetailsScreen extends Component {
               <Avatar
               size="large"
               activeOpacity={0.7}/>
-              <Text style={mystyles.avatarText}>{currCompany}</Text>
+              <Text style={styles.avatarText}>{currCompany}</Text>
             </View>
       
       
@@ -115,7 +119,7 @@ class AdviseeDetailsScreen extends Component {
                     
                 </View>
             </View>
-      
+      {/*
             <View style={{flexDirection: 'column'}}>
                 <View style={{marginBottom: 30, marginLeft: 25}}>
                   <Icon name="bookmark-o" type="font-awesome" size={20} style={{alignContent:'center', paddingHorizontal: 10}}></Icon>
@@ -124,7 +128,7 @@ class AdviseeDetailsScreen extends Component {
                  <Icon name="share" size={18} style={{paddingTop:40}}></Icon>
                 </View>
              </View>
-      
+      */}
             </View>
             </Card>
       );
@@ -156,25 +160,133 @@ class AdviseeDetailsScreen extends Component {
       );
     }
 
+    getAvailableDateSlots = () => {
+      const { navigation } = this.props;
+      const item = navigation.getParam('item', 'Oops');
+
+      const { adviserTitle, currCompany, totalWorkExpYears, totalWorkExpMonths, feePer30Mins, rating, currIndustry } = item;
+      
+      let url = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/slots/get/'+`${item.adviserId}`+'?slotDate='+`${this.state.date}`
+      fetch(url, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
+        },
+        })
+        .then((response) => response.json())
+        .then(res => {
+          console.log("Slots Duh: "+ JSON.stringify(res));
+          this.setState({
+            availableSlots: res.slotTimes,
+            slot: res.slotTimes[0]
+          });
+          //this.arrayHolder = this.state.data;
+          console.log("Home Screen Data: " + JSON.stringify(this.state.data))
+        })
+        .catch(error => {
+          this.setState({ error, loading: false });
+          console.log("Error: Home Screen Data: " + JSON.stringify(error))
+        });
+
+}
+
     renderPickers = () => {
       return(
-        <Card>
-           <TouchableOpacity onPress={this._showDateTimePicker}>
-            <View style={{flexDirection: 'row', marginBottom: 5}}>
-              <Icon name="calendar" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
-              <Text style={{marginHorizontal: 10, fontWeight: '600'}}>Select Your Slot: </Text>
-            </View>
-            <Text>{this.state.date.toString()}</Text>
-          </TouchableOpacity>
-          <DateTimePicker
-            isVisible={this.state.isDateTimePickerVisible}
-            onConfirm={this._handleDatePicked}
-            onCancel={this._hideDateTimePicker}
-            mode='datetime'
-            minimumDate={this.state.today}
-            minuteInterval={30}
-        />
-        </Card>
+            <View style={{flexDirection: 'row'}}>
+              <View style={{flex:1}}>
+                <Card>
+                  <TouchableOpacity onPress={() => {this.setState({ dateModalVisible: true})}}>
+                    <View style={{flexDirection: 'row', marginBottom: 5}}>
+                      <Icon name="calendar" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
+                      <Text style={{marginHorizontal: 10, fontWeight: '600'}}>Select Date: </Text>
+                    </View>
+                    <Text>{this.state.date.toString()}</Text>
+                  </TouchableOpacity>
+                </Card>
+
+                <Modal
+                    animationType={'fade'}
+                    transparent={true}
+                    onRequestClose={() => this.setState({dateModalVisible: false})}
+                    visible={this.state.dateModalVisible}
+                >
+                    <View style={styles.popupOverlay } onPress={() => this.setState({dateModalVisible: false})}>
+                        <View style={styles.popup}>
+                            <View style={styles.popupContent}>
+                            <TouchableOpacity style={{marginTop: 50}} onPress={() => this.setState({dateModalVisible: false})} >
+                                <Icon name='cross' type='entypo' raised color='#FF3D00'/>
+                            </TouchableOpacity>
+                            <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                <Text style={styles.modalTitle}>Select your Date</Text>
+                            </View>
+                            <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                <Picker
+                                    selectedValue={this.state.date}
+                                    style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                    onValueChange={(itemValue) => {
+                                        this.setState({dateModalVisible: false, date: this.state.availableDates[itemValue]});
+                                        this.getAvailableDateSlots();
+                                    }}
+                                    mode="dropdown">
+                                    {this.state.availableDates.map((item, index) => {
+                                      return (<Picker.Item label={item} value={index} key={item}/>) 
+                                  })}
+                                </Picker>
+                            </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+              </View>
+
+
+              <View style={{flex:1}}>
+                <Card>
+                  <TouchableOpacity onPress={() => this.setState({slotModalVisible: true})}>
+                    <View style={{flexDirection: 'row', marginBottom: 5}}>
+                      <Icon name="calendar" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
+                      <Text style={{marginHorizontal: 10, fontWeight: '600'}}>Select Slot: </Text>
+                    </View>
+                    <Text>{this.state.slot.toString()}</Text>
+                  </TouchableOpacity>
+                </Card>
+
+                <Modal
+                    animationType={'fade'}
+                    transparent={true}
+                    onRequestClose={() => this.setState({slotModalVisible: true})}
+                    visible={this.state.slotModalVisible}
+                >
+                    <View style={styles.popupOverlay } onPress={() => this.setState({slotModalVisible: false})}>
+                        <View style={styles.popup}>
+                            <View style={styles.popupContent}>
+                            <TouchableOpacity style={{marginTop: 50}} onPress={() => this.setState({slotModalVisible: false})} >
+                                <Icon name='cross' type='entypo' raised color='#FF3D00'/>
+                            </TouchableOpacity>
+                            <View style={{borderBottomWidth: 2, borderBottomColor:'#eeeeee', marginHorizontal:20}}>
+                                <Text style={styles.modalTitle}>Select your Slot</Text>
+                            </View>
+                            <View style={{marginLeft: 15, marginRight:15, marginTop: 7}}>
+                                <Picker
+                                    selectedValue={this.state.slot}
+                                    style={{height: 50, width: 2*Dimensions.get('window').width/3}}
+                                    onValueChange={(itemValue) => {
+                                        this.setState({slotModalVisible: false, slot: this.state.availableSlots[itemValue]});
+                                    }}
+                                    mode="dropdown">
+                                    {this.state.availableSlots.map((item, index) => {
+                                      return (<Picker.Item label={item} value={index} key={item}/>) 
+                                  })}
+                                </Picker>
+                            </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+              </View>
+          </View>
       );
     }
 
@@ -274,11 +386,10 @@ class AdviseeDetailsScreen extends Component {
 
             <View style={{paddingHorizontal:70, paddingLeft:85, paddingTop:0, marginVertical: 20}}>
             {/* <Button type="outline" title="Book an Appointment" buttonStyle={{borderColor: '#FF9800', borderRadius: 10}} titleStyle={{color: '#000'}}></Button> */}
-              <TouchableOpacity onPress={() => navigation.navigate('adviseeDetails', {item: item})} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
+              <TouchableOpacity onPress={() => {navigation.navigate('confirmPayment', {slotSelected: this.state.slot, dateSelected: this.state.date})}} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
                 <Text style={{alignSelf: 'center', padding: 5}}>Proceed</Text> 
               </TouchableOpacity>
             </View>
-
           </ScrollView>
         </View>
       );
@@ -286,13 +397,42 @@ class AdviseeDetailsScreen extends Component {
   }
 
 
-const mystyles = StyleSheet.create({
+const styles = StyleSheet.create({
   avatarText: {
       textAlign: 'left',
       paddingLeft: 5,
       paddingTop: 5,
       color: '#000',
       fontWeight: 'bold',
+    },
+    popup: {
+      backgroundColor: 'white',
+      marginTop: 80,
+      marginHorizontal: 20,
+      borderRadius: 15,
+      borderWidth: 1,
+      borderColor: '#666'
+    },
+    popupOverlay: {
+      backgroundColor: "#00000057",
+      flex: 1,
+      marginTop: 30
+    },
+    popupContent: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 5,
+      height:"80%",
+    },
+    modalTitle:{
+      fontSize:22,
+      marginBottom: 4,
+      alignSelf:'center',
+      textAlign: 'center',
+      justifyContent: 'center',
+      color:"#FF3D00",
+      fontWeight:'bold',
+      paddingTop: 50,
     },
   
 })
