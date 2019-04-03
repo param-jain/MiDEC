@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { View, TextInput, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, Alert } from 'react-native';
 import { DrawerActions } from 'react-navigation';
 import { Header } from 'react-native-elements';
+
+const RAZORPAY_KEY = "rzp_live_nqbZ3Kcsswj6ul"
 
 export default class ConfirmPaymentScreen extends Component {
 
@@ -10,7 +12,10 @@ export default class ConfirmPaymentScreen extends Component {
         this.state = {
             dateSelected: '',
             slotSelected: '',
-            agenda: ''
+            adviserSelected: [],
+            advisee: '',
+            agenda: '',
+            currentLoggedInUser: ''
           }
       
         this.arrayHolder = [];
@@ -20,10 +25,42 @@ export default class ConfirmPaymentScreen extends Component {
         const { navigation } = this.props;
         const dateSelected = navigation.getParam('dateSelected', 'Oops');
         const slotSelected = navigation.getParam('slotSelected', 'Duh');
+        const adviserSelected = navigation.getParam('adviserSelected', 'Hola');
 
-       this.setState({dateSelected, slotSelected});
-       console.log(this.state.dateSelected + " " + this.state.slotSelected);
+       this.setState({dateSelected, slotSelected, adviserSelected, currentLoggedInUser: global.isCurrentLoggedInUser,});
+       console.log("Payment Screen: " + this.state.dateSelected + " " + this.state.slotSelected + " " + this.state.adviserSelected + " " + this.state.currentLoggedInUser);
+
+       this.setState({ currentLoggedInUser: global.isCurrentLoggedInUser });
+        this.forceUpdate();
         
+    }
+
+    componentWillMount() {
+        this.setState({ currentLoggedInUser: global.isCurrentLoggedInUser });
+        this.forceUpdate();
+    }
+
+    openPaymentPage = () => {
+        if (global.isLoggedIn === false) {
+            Alert.alert(
+                'Please Login First!!!',
+                '',
+                [
+                    {text: 'Go to Login', onPress: () => this.props.navigation.navigate('loginSignupSelection')},
+                    {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                    },
+                    {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false},
+            )
+        } else {
+            if (this.state.adviserSelected.feePer30Mins > 0) {
+                
+            }
+        }
     }
 
     renderAgendaInput = () => {
@@ -67,7 +104,7 @@ export default class ConfirmPaymentScreen extends Component {
                 </View>
 
                 <View style={{paddingHorizontal:70, paddingLeft:85, paddingTop:0, marginVertical: 20}}>
-                    <TouchableOpacity onPress={() => {navigation.navigate('confirmPayment', {slotSelected: this.state.slot, dateSelected: this.state.date})}} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
+                    <TouchableOpacity onPress={() => {this.openPaymentPage()}} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
                         <Text style={{alignSelf: 'center', padding: 5}}>Confirm Booking!</Text> 
                     </TouchableOpacity>
                     </View>

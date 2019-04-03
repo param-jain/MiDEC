@@ -167,6 +167,7 @@ const items_current_functional_areas = [
       }]
   },
 ]
+
 class AdviseeEditProfessionalDetails extends Component {
   constructor(props) {
     state = { selectedTargetJobRoles: [],

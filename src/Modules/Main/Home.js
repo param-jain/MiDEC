@@ -138,13 +138,14 @@ static navigationOptions = (props) => {
 
   returnList = () => {
     console.log("sdasdadda: "+ this.state.data)
+    let user = this.state.currentLoggedInUser;
    return (
       <ScrollView style={{flex: 1}}>
           <FlatList 
           style={{flex: 1}}
           data={this.state.data}
           renderItem={({ item }) => (
-            <CardDetail key={item.adviserId.toString()} navigation={this.props.navigation} item={item} />
+            <CardDetail key={item.adviserId.toString()} item={item} />
           )}
           keyExtractor={item => item.adviserId.toString()}
         />

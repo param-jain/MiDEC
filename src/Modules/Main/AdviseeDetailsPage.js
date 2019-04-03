@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, Modal, TouchableHighlight, Text, Picker, BackHandler, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Dimensions, Modal, Alert, TouchableHighlight, Text, Picker, BackHandler, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Card, Avatar, Icon, Header } from 'react-native-elements';
 import { DrawerActions } from 'react-navigation';
 import DateTimePicker from 'react-native-modal-datetime-picker';
@@ -155,7 +155,7 @@ class AdviseeDetailsScreen extends Component {
               <Icon name="cubes" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
               <Text style={{marginHorizontal: 10, fontWeight: '600'}}>Brief Background: </Text>
             </View>
-          <Text>{item.briefBackground}</Text>
+          <Text>{item.background}</Text>
         </Card>
       );
     }
@@ -386,7 +386,7 @@ class AdviseeDetailsScreen extends Component {
 
             <View style={{paddingHorizontal:70, paddingLeft:85, paddingTop:0, marginVertical: 20}}>
             {/* <Button type="outline" title="Book an Appointment" buttonStyle={{borderColor: '#FF9800', borderRadius: 10}} titleStyle={{color: '#000'}}></Button> */}
-              <TouchableOpacity onPress={() => {navigation.navigate('confirmPayment', {slotSelected: this.state.slot, dateSelected: this.state.date})}} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
+              <TouchableOpacity onPress={() => {navigation.navigate('confirmPayment', {slotSelected: this.state.slot, dateSelected: this.state.date, adviserSelected: item})}} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
                 <Text style={{alignSelf: 'center', padding: 5}}>Proceed</Text> 
               </TouchableOpacity>
             </View>
