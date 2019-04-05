@@ -83,7 +83,9 @@ class MyAppointments extends React.Component {
       returnDatePicker = () => {
           return (
             <View style={{flexDirection: 'row', marginHorizontal: 5, alignSelf:'center', justifyContent:'center'}}>
-              <Icon name='calendar' type='font-awesome' color='#FF8F00' size={18} underlayColor={'#64b5f6'} />
+              <View style={{padding: 5}}>
+                <Icon name='calendar' type='font-awesome' color='#FF8F00' size={18} underlayColor={'#64b5f6'} />
+              </View>
               <DatePicker
               date={this.state.date}
               onDateChange={date => this.setState({date})}
@@ -96,13 +98,13 @@ class MyAppointments extends React.Component {
     rightIconFunctionality = () => {
        // if (this.state.searchBarTextTouched) {
           return (
-            <View style={{justifyContent:'center', alignContent:'center'}}>
+              <View style={{flex: 1, justifyContent:'center', alignContent:'center'}}>
               {this.returnDatePicker()}
             </View>
           );
         }
       //}
-    
+  
     render() {
         return(
             <View style={styles.container}>
@@ -114,10 +116,17 @@ class MyAppointments extends React.Component {
                       {this.renderSearchBar()}
                   </View>
                 </View>
-                <View style={[styles.sectionStyle,{flexDirection: 'row'}]}>
-                    {this.rightIconFunctionality()}
+                
+                <View style={{flexDirection: 'row'}}>
+                  <View style={[styles.sectionStyle,{flex: 1, flexDirection: 'row'}]}>
+                      {this.rightIconFunctionality()}
+                    </View>
+                  <View style={[styles.sectionStyle,{flex: 1, flexDirection: 'row'}]}>
+                    <TouchableOpacity style={{flex: 1, justifyContent:'center', alignContent:'center'}}>
+                      <Text style={{padding: 5, alignSelf:'center', justifyContent: 'center'}}>All Appointments</Text>
+                    </TouchableOpacity>
                   </View>
-                  
+                </View>
 
                 <View style={{justifyContent: 'center', alignContent: 'center', marginHorizontal: 20, marginVertical: 50}}>
                     <Text style={{color: '#666'}}>On this page, you can view all your Appointments, request a cancellation or request a reschedule.</Text>

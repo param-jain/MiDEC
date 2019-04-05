@@ -208,13 +208,7 @@ class ForgotPasswordScreen extends Component {
                         onPress={this.navigateToSignUpDetails.bind(this)}
                         disabled
                         >
-                        <Icon
-                            raised
-                            name='arrow-right'
-                            type='entypo'
-                            color='#777777'
-                            style={styles.nextButtonLayout} 
-                        />
+                        <Text style={{padding: 5, color: 'white'}}>Send Link</Text>
                     </TouchableOpacity>
                 );
         } else {
@@ -223,13 +217,8 @@ class ForgotPasswordScreen extends Component {
                     style={styles.nextButton}
                     onPress={this.navigateToSignUpDetails.bind(this)}
                     >
-                    <Icon
-                        raised
-                        name='arrow-right'
-                        type='entypo'
-                        color='#E65100'
-                        style={styles.nextButtonLayout} />
-                </TouchableOpacity>
+                    <Text style={{padding: 5, color: 'white'}}>Send Link</Text>
+                    </TouchableOpacity>
             );
         }
     }
@@ -245,7 +234,7 @@ class ForgotPasswordScreen extends Component {
 
                         <View style={styles.loginFormView}>
 
-                            <Text style={styles.logoText}>Forgot Password</Text>
+                            <Text style={{padding: 15}}>Please enter your email id. We will send you a link to reset the password.</Text>                            
                             {this.validateEmail(this.props.email)}
                             <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
                             {this.enableNextButton(this.props.email, this.props.password, this.props.verifyPassword)}
@@ -304,7 +293,7 @@ let styles = StyleSheet.create({
     loginFormView: {
         marginTop: 40,
         flex: 1,
-        justifyContent: 'center'
+        //justifyContent: 'center'
     },
     loginFormTextInput: {
         height: 43,
@@ -338,6 +327,9 @@ let styles = StyleSheet.create({
     nextButton: {
         flexDirection: 'row', 
         justifyContent: 'space-around',
+        backgroundColor: '#9e9e9e',
+        padding: 10,
+        marginHorizontal: 5,
         marginTop: 30
     }
   });

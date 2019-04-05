@@ -196,7 +196,7 @@ class AdviseeDetailsScreen extends Component {
       return(
             <View style={{flexDirection: 'row'}}>
               <View style={{flex:1}}>
-                <Card style={{height: 200}}>
+                <Card containerStyle={{height: 70}}>
                   <TouchableOpacity onPress={() => {this.setState({ dateModalVisible: true})}}>
                     <View style={{flexDirection: 'row', marginBottom: 5}}>
                       <Icon name="calendar" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
@@ -243,7 +243,7 @@ class AdviseeDetailsScreen extends Component {
 
 
               <View style={{flex:1}}>
-                <Card style={{height: 200}}>
+                <Card containerStyle={{height: 70}}>
                   <TouchableOpacity onPress={() => this.setState({slotModalVisible: true})}>
                     <View style={{flexDirection: 'row', marginBottom: 5}}>
                       <Icon name="calendar" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
