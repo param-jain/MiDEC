@@ -62,7 +62,6 @@ class AdviseeProfilePage extends Component {
             <View style={styles.container}>
             {this.renderHeader()}
             <ScrollView>
-                <Icon name="arrow-left" type="font-awesome" size={15} color="black" style={{paddingLeft: 15}} onPress={() => {this.props.navigation.navigate('home')}}/>
                 <Image style={styles.CircleShapeView}/>
                 <Text style={styles.AvatarText}>{JSON.parse(this.state.currentLoggedInUser).firstName} {JSON.parse(this.state.currentLoggedInUser).lastName}</Text>
     
