@@ -149,6 +149,10 @@ export default class CardDetail extends Component{
     }
 
     onBookmarkPressed = (item, flag) => {
+
+      Alert.alert(
+        'BookMarked!!!'
+      );
       
       if (item.bookMarked === true) {
         //remove bookmark
