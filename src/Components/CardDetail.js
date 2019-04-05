@@ -24,7 +24,7 @@ export default class CardDetail extends Component{
 
   render() {
 
-      //const { navigation } = this.props;
+      const { navigation } = this.props;
       //const item = navigation.getParam('item', 'Oops');  
       const item = this.props.item;
       const { adviserTitle, currCompany, totalWorkExpYears, totalWorkExpMonths, feePer30Mins, rating, currIndustry, bookMarked } = item;
@@ -138,7 +138,7 @@ export default class CardDetail extends Component{
     
           <View style={{paddingHorizontal:70, paddingLeft:85, paddingTop:0}}>
           {/* <Button type="outline" title="Book an Appointment" buttonStyle={{borderColor: '#FF9800', borderRadius: 10}} titleStyle={{color: '#000'}}></Button> */}
-            <TouchableOpacity onPress={() => navigation.navigate('adviseeDetails', {item: item})} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
+            <TouchableOpacity onPress={() => {this.props.navigation.navigate('adviseeDetails', {item: item})}} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
               <Text style={{alignSelf: 'center', padding: 5}}>Book an Appointment</Text> 
             </TouchableOpacity>
           </View>
