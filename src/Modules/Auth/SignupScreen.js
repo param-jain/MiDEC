@@ -122,7 +122,7 @@ class SignupScreen extends Component {
         return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
        }
 
-    state = { isAuthenticating: false, errorMessage: '', }
+    state = { isAuthenticating: false, errorMessage: '', mobile: '', fName:'', lName: ''}
 
     backButtonNavigation() {
         this.props.navigation.navigate('login');
@@ -380,7 +380,6 @@ class SignupScreen extends Component {
        
        /* const url = ROOT_URL+'/usrg/create';
         this.setState({ isAuthenticating: true });
-
         fetch(url, {
             method: 'POST',
             headers: {
@@ -474,6 +473,40 @@ class SignupScreen extends Component {
                         <View style={styles.loginFormView}>
 
                             <Text style={styles.logoText}>Sign Up</Text>
+
+                            <View>
+                                <TextInput
+                                        underlineColorAndroid="transparent" 
+                                        placeholder="Mobile Number" 
+                                        placeholderColor="#c4c3cb" 
+                                        style={styles.loginFormTextInput} 
+                                        onChangeText={(text) => {this.setState({mobile: text})}}
+                                        value={this.state.mobile}
+                                    />
+                            </View>       
+
+                            <View>
+                                <TextInput
+                                        underlineColorAndroid="transparent" 
+                                        placeholder="First Name" 
+                                        placeholderColor="#c4c3cb" 
+                                        style={styles.loginFormTextInput} 
+                                        onChangeText={(text) => {this.setState({fName: text})}}
+                                        value={this.state.fName}
+                                    />
+                            </View>       
+
+                            <View>
+                                <TextInput
+                                        underlineColorAndroid="transparent" 
+                                        placeholder="Last Name" 
+                                        placeholderColor="#c4c3cb" 
+                                        style={styles.loginFormTextInput} 
+                                        onChangeText={(text) => {this.setState({lName: text})}}
+                                        value={this.state.lName}
+                                    />
+                            </View>    
+
                             {this.validateEmail(this.props.email)}
                             {this.validatePassword(this.props.password)}
                             {this.validateVerifyPassword(this.props.verifyPassword)}
