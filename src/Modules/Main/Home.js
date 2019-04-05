@@ -198,7 +198,7 @@ static navigationOptions = (props) => {
       this.setState({searchText: text});
       console.log("All Books Array Holder: " + this.arrayHolder);
       const newData = this.arrayHolder.filter(item => {
-        const itemData = `${item.title.toUpperCase()} ${item.currCompany.toUpperCase()} ${item.currIndustry.toUpperCase()}`;
+        const itemData = `${item.adviserTitle.toUpperCase()} ${item.currCompany.toUpperCase()}}`;
         const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
       });
