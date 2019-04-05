@@ -26,6 +26,8 @@ import AdviseeEditEducationDetails from './src/Modules/Main/AdviseeEditEducation
 import HomeFilterPage from './src/Modules/Main/HomeFilterPage';
 import ForgotPasswordScreen from './src/Modules/Auth/ForgotPasswordScreen';
 import ConfirmPaymentScreen from './src/Modules/Main/ConfirmPaymentScreen';
+import FeeAndBankDetails from './src/Modules/Main/FeeAndBankDetails';
+import TimeSlots from './src/Modules/Main/TimeSlots';
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -80,6 +82,8 @@ const MainNavigator = createDrawerNavigator({
   settings: { screen: Settings },
   homeFilter: { screen: HomeFilterPage },
   about_us: { screen: AboutUs },
+  feeAndBankDetails: {screen: FeeAndBankDetails},
+  timeSlots: {screen: TimeSlots},
   confirmPayment: { screen: ConfirmPaymentScreen }
 },{
   //initialRouteName: 'Home',

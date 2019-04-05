@@ -60,6 +60,7 @@ class AdviseeProfilePage extends Component {
     } else {
         return (
             <View style={styles.container}>
+            {this.renderHeader()}
             <ScrollView>
                 <Icon name="arrow-left" type="font-awesome" size={15} color="black" style={{paddingLeft: 15}} onPress={() => {this.props.navigation.navigate('home')}}/>
                 <Image style={styles.CircleShapeView}/>
@@ -335,7 +336,6 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        marginTop: 50
       },
     CircleShapeView: {
         width: 70,

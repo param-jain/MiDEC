@@ -160,13 +160,19 @@ class LoginScreen extends Component {
             })
             //.then((response) => response.json())
             .then(res => {
-                    console.log("Login Screen Data: " + JSON.parse(res._bodyInit).status)
+                    console.log("Login Screen Data: " + JSON.stringify(JSON.parse(res._bodyInit)))
                     this.setState({ data: JSON.parse(res._bodyInit), isAuthenticating: false });
                     this.setState({data: JSON.stringify(this.state.data)})
                     console.log('LSASASASA: ' + this.state.data);
                     global.isCurrentLoggedInUser = this.state.data;
                     global.isLoggedIn = true;
-                    if (JSON.parse(res._bodyInit).status === 'APRV') {
+                    if (JSON.parse(res._bodyInit).status === 'APRV' && JSON.parse(res._bodyInit).userType === 'adviser') {
+                        this.props.loginUser(this.state.data);
+                        global.isCurrentLoggedInUser = this.state.data;
+                        global.isLoggedIn = true;
+                        global.currentLoggedUserPassword = this.props.password; 
+                        this.props.navigation.navigate('adviseeProfile', {loggedInUser: this.state.data});
+                    } else if (JSON.parse(res._bodyInit).status === 'APRV' && JSON.parse(res._bodyInit).userType === 'advisee') {
                         this.props.loginUser(this.state.data);
                         global.isCurrentLoggedInUser = this.state.data;
                         global.isLoggedIn = true;

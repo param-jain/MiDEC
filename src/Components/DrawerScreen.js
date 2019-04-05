@@ -32,6 +32,84 @@ class DrawerScreen extends Component {
       );
     }
 
+  render2Icon = () => {
+    if (global.isLoggedIn === true) {
+      if (JSON.parse(global.isCurrentLoggedInUser).firstName === 'advisee') {
+        return(
+          <View style={styles.menuItem}>
+            <View style={{flex: 1}}>
+              <Icon name="bookmark" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/>
+            </View>
+            <View style={{flex: 9}}>
+              <Text onPress={this.navigateToScreen('bookmarks')} style={{marginLeft: 10}}>Bookmarks</Text>
+            </View> 
+          </View>
+        );
+      } else {
+        return(
+          <View style={styles.menuItem}>
+            <View style={{flex: 1}}>
+              <Icon name="money" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/>
+            </View>
+            <View style={{flex: 9}}>
+              <Text onPress={this.navigateToScreen('feeAndBankDetails')} style={{marginLeft: 10}}>Payment & Fees</Text>
+            </View> 
+          </View>
+        );
+      }
+    } else {
+      return(
+        <View style={styles.menuItem}>
+          <View style={{flex: 1}}>
+            <Icon name="bookmark" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/>
+          </View>
+          <View style={{flex: 9}}>
+            <Text onPress={this.navigateToScreen('bookmarks')} style={{marginLeft: 10}}>Bookmarks</Text>
+          </View> 
+        </View>
+      );
+    }
+  }
+
+  render1Icon = () => {
+    if (global.isLoggedIn === true) {
+      if (JSON.parse(global.isCurrentLoggedInUser).firstName === 'advisee') {
+        return(
+          <View style={styles.menuItem}>
+              <View style={{flex: 1}}>
+                <Icon name="home" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/>
+              </View>
+              <View style={{flex: 9}}>
+                <Text onPress={this.navigateToScreen('home')} style={{marginLeft: 10}}>Adviser Selection</Text>
+              </View>
+            </View>
+        );
+      } else {
+        return(
+          <View style={styles.menuItem}>
+            <View style={{flex: 1}}>
+              <Icon name="calendar-times-o" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/>
+            </View>
+            <View style={{flex: 9}}>
+              <Text onPress={this.navigateToScreen('timeSlots')} style={{marginLeft: 10}}>Time Slots</Text>
+            </View> 
+          </View>
+        );
+      }
+    } else {
+      return(
+        <View style={styles.menuItem}>
+              <View style={{flex: 1}}>
+                <Icon name="home" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/>
+              </View>
+              <View style={{flex: 9}}>
+                <Text onPress={this.navigateToScreen('home')} style={{marginLeft: 10}}>Adviser Selection</Text>
+              </View>
+            </View>
+      );
+    }
+  }
+
   render () {
     return (
       <View>
@@ -57,23 +135,9 @@ class DrawerScreen extends Component {
             </View>
             </View>
 
-            <View style={styles.menuItem}>
-              <View style={{flex: 1}}>
-                <Icon name="home" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/>
-              </View>
-              <View style={{flex: 9}}>
-                <Text onPress={this.navigateToScreen('home')} style={{marginLeft: 10}}>Adviser Selection</Text>
-              </View>
-            </View>
+            {this.render1Icon()}
 
-            <View style={styles.menuItem}>
-            <View style={{flex: 1}}>
-              <Icon name="bookmark" type="font-awesome" size={16} color='#FF6D00' style={{marginRight: 10}}/>
-            </View>
-            <View style={{flex: 9}}>
-              <Text onPress={this.navigateToScreen('bookmarks')} style={{marginLeft: 10}}>Bookmarks</Text>
-            </View> 
-              </View>
+            {this.render2Icon()}
 
             <View style={styles.menuItem}>
             <View style={{flex: 1}}>
