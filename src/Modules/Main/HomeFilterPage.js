@@ -584,11 +584,23 @@ class HomeFilterPage extends Component {
       pastFunctionalArea: [],
       tabSelected: 'sort_by',
       date: new Date(),
+      "adviseeId": 0, 
+      "userType": "advisee",
+    }
+  }
+
+  componentDidMount() {
+    if (global.isLoggedIn === false) {
+      this.setState({adviseeId: 0})
+    } else {
+      this.setState({adviseeId: JSON.parse(global.isCurrentLoggedInUser).userId})
     }
   }
 
   getFilterObject(){
     return {
+      "adviseeId": this.state.adviseeId, 
+        "userType": "advisee",
         "slotDate":"",
         "slotTimes":[],
         "pastCompanies": [],
@@ -606,6 +618,8 @@ class HomeFilterPage extends Component {
 
 resetFilters = () => {
     this.setState({
+      "adviseeId": this.state.adviseeId, 
+        "userType": "advisee",
         sortBy: 'ratings_high_to_low',
         selectedTimeslots: [],
         pastCompanies: [],
@@ -623,6 +637,8 @@ resetFilters = () => {
     });
 
     let filters = {
+      "adviseeId": this.state.adviseeId, 
+        "userType": "advisee",
         "slotDate": this.state.date,
         "slotTimes": this.state.selectedTimeslots,
         "pastCompanies": this.state.pastCompanies,
@@ -643,6 +659,8 @@ resetFilters = () => {
 applyFilters = () => {
 
     let filters = {
+      "adviseeId": this.state.adviseeId,
+        "userType": "advisee",
         "slotDate": this.state.date,
         "slotTimes": this.state.selectedTimeslots,
         "pastCompanies": this.state.pastCompanies,
@@ -743,6 +761,8 @@ applyFilters = () => {
         <View>
           <DatePicker
           date={this.state.date}
+          textStyle={{ color: "#ff6600" }}
+          androidMode={"calendar"}
           onDateChange={date => this.setState({date})}
           />
       </View>

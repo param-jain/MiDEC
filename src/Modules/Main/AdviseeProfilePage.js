@@ -211,7 +211,7 @@ class AdviseeProfilePage extends Component {
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Target job roles</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).prspJobRole}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).prspJobRole[0]).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).prspJobRole[0]).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).prspJobRole[0]}</Text>
                   </View>
                   <View style={styles.rule}/>
     
@@ -223,7 +223,7 @@ class AdviseeProfilePage extends Component {
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Target functional area:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).prspFnclArea}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).prspFnclArea[0]).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).prspFnclArea[0]).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).prspFnclArea[0]}</Text>
                   </View>
                   <View style={styles.rule}/>
     
@@ -235,14 +235,14 @@ class AdviseeProfilePage extends Component {
     
                   <View style={{flexDirection:'row', paddingTop: 15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Target Industries:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).prspFnclArea}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).prspFnclArea[0]).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).prspFnclArea[0]).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).prspFnclArea[0]}</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Area(s) of expertise:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).expertAreas).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).expertAreas).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).expertAreas}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).expertAreas[0]).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).expertAreas[0]).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).expertAreas[0]}</Text>
                   </View>
                   <View style={styles.rule}/>
     
@@ -254,7 +254,7 @@ class AdviseeProfilePage extends Component {
     
                   <View style={{flexDirection:'row', paddingTop: 15}}>
                       <Text style={{fontSize: 13}}>Target companies:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).prspCompanies}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).prspCompanies[0]).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).prspCompanies[0]).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).prspCompanies[0]}</Text>
                   </View>
                   
     

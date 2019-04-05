@@ -148,9 +148,9 @@ export default class CardDetail extends Component{
       }        
     }
 
-    onBookmarkPressed = async (item, flag) => {
-
-      if (flag === false) {
+    onBookmarkPressed = (item, flag) => {
+      
+      if (item.bookMarked === true) {
         //remove bookmark
         console.log('REMOVE BM! ');
         const url = `http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/prfl/removeBM`;

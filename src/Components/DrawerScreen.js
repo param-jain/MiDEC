@@ -34,7 +34,7 @@ class DrawerScreen extends Component {
 
   render2Icon = () => {
     if (global.isLoggedIn === true) {
-      if (JSON.parse(global.isCurrentLoggedInUser).firstName === 'advisee') {
+      if (JSON.parse(global.isCurrentLoggedInUser).userType === 'advisee') {
         return(
           <View style={styles.menuItem}>
             <View style={{flex: 1}}>
@@ -73,7 +73,7 @@ class DrawerScreen extends Component {
 
   render1Icon = () => {
     if (global.isLoggedIn === true) {
-      if (JSON.parse(global.isCurrentLoggedInUser).firstName === 'advisee') {
+      if (JSON.parse(global.isCurrentLoggedInUser).userType === 'advisee') {
         return(
           <View style={styles.menuItem}>
               <View style={{flex: 1}}>

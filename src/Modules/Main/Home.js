@@ -210,6 +210,8 @@ static navigationOptions = (props) => {
     renderListAccordingToFilters = () => {
 
       let defaultFilters = {
+        "adviseeId": this.state.currentLoggedInUser.userId, 
+        "userType": "advisee",
         "slotDate":"",
         "slotTimes":[],
         "pastCompanies": [],
@@ -228,9 +230,9 @@ static navigationOptions = (props) => {
       console.log('FILTERS: ' + JSON.stringify(filters));
       
       console.log('Hollla');
-    const url = `http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/prfl/filter`;
-    //const url = ROOT_URL+`adm/ar`;
-    this.setState({ loading: true });
+      const url = `http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/prfl/filter`;
+      //const url = ROOT_URL+`adm/ar`;
+      this.setState({ loading: true });
   
     
     const postData = {

@@ -106,7 +106,7 @@ class AdviseeDetailsScreen extends Component {
                     <Icon name="industry" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
                     <Text style={{fontSize: 12}}>  Industry </Text>
                     <Text style={{fontSize: 12, paddingLeft:54, paddingRight:10}}>:</Text>                
-                    <Text style={{fontSize: 12}} >{((currIndustry).length > 10) ? (((currIndustry).substring(0, 7)) + ' ...') : currIndustry}</Text>
+                    <Text style={{fontSize: 12}} >{((currIndustry[0]).length > 10) ? (((currIndustry[0]).substring(0, 7)) + ' ...') : currIndustry[0]}</Text>
                     </View>
       
       
@@ -196,7 +196,7 @@ class AdviseeDetailsScreen extends Component {
       return(
             <View style={{flexDirection: 'row'}}>
               <View style={{flex:1}}>
-                <Card>
+                <Card style={{height: 200}}>
                   <TouchableOpacity onPress={() => {this.setState({ dateModalVisible: true})}}>
                     <View style={{flexDirection: 'row', marginBottom: 5}}>
                       <Icon name="calendar" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
@@ -243,7 +243,7 @@ class AdviseeDetailsScreen extends Component {
 
 
               <View style={{flex:1}}>
-                <Card>
+                <Card style={{height: 200}}>
                   <TouchableOpacity onPress={() => this.setState({slotModalVisible: true})}>
                     <View style={{flexDirection: 'row', marginBottom: 5}}>
                       <Icon name="calendar" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
@@ -314,7 +314,7 @@ class AdviseeDetailsScreen extends Component {
             <View style={{flexDirection: 'row', marginBottom: 5}}>
               <Icon name="industry" type="font-awesome" size={16} color="#FF6D00" style={{paddingRight: 5}}/>
               <Text style={{marginHorizontal: 10, fontWeight: '600'}}>Current Industry:  </Text>
-              <Text style={{marginHorizontal: 0}}>{item.currIndustry}</Text>
+              <Text style={{marginHorizontal: 0}}>{((item.currIndustry[0]).length > 10) ? (((item.currIndustry[0]).substring(0, 12)) + ' ...') : item.currIndustry[0]}</Text>
             </View>
           </Card>
 
