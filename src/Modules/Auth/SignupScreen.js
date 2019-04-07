@@ -16,6 +16,7 @@ import {
 import { Icon } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { connect } from 'react-redux'
+import * as Animatable from 'react-native-animatable';
 
 const ROOT_URL = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec'
 
@@ -471,7 +472,7 @@ class SignupScreen extends Component {
                         <Spinner visible={this.state.isAuthenticating} />
 
                         <View style={styles.loginFormView}>
-
+                        <Animatable.View animation="slideInUp" iterationCount={1}>
                             <Text style={styles.logoText}>Sign Up</Text>
 
                             <View>
@@ -512,6 +513,7 @@ class SignupScreen extends Component {
                             {this.validateVerifyPassword(this.props.verifyPassword)}
                             <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
                             {this.enableNextButton(this.props.email, this.props.password, this.props.verifyPassword)}
+                            </Animatable.View>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>

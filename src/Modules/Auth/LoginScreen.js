@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Keyboard, Platform, Text, View, TextInput, Alert, TouchableWithoutFeedback, Image, KeyboardAvoidingView, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
@@ -6,6 +7,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import { emailChanged, passwordChanged, loginUser, loggedInUser } from '../../Actions/index';
 import axios from 'axios';
+import * as Animatable from 'react-native-animatable';
 
 const ROOT_URL = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec'
 
@@ -347,6 +349,7 @@ class LoginScreen extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.containerView}>
                     <View style={styles.loginFormView}>
+                    <Animatable.View animation="slideInUp" iterationCount={1}>
                         {/*
                         <View style={styles.logoImageView}>
                             <Image 
@@ -391,6 +394,7 @@ class LoginScreen extends Component {
                             }} 
                         /> 
                         */}
+                        </Animatable.View>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

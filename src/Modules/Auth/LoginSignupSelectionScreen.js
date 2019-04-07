@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-
-import { View, KeyboardAvoidingView, TouchableWithoutFeedback, Dimensions, StatusBar, Keyboard, TouchableOpacity, Text } from 'react-native';
-
+import {
+    View, 
+    KeyboardAvoidingView, 
+    TouchableWithoutFeedback,
+    Dimensions,
+    StatusBar, 
+    Keyboard, 
+    TouchableOpacity, 
+    Text } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import * as Animatable from 'react-native-animatable';
+
 
 
 class LoginSignupSelectionScreen extends Component {
@@ -35,6 +43,7 @@ class LoginSignupSelectionScreen extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.containerView}>
                     <View style={styles.loginFormView}>
+                    <Animatable.View animation="slideInUp" iterationCount={1}>
                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                             <View style={{flex: 1, marginHorizontal: 15,}}>
                                 <Button
@@ -65,6 +74,7 @@ class LoginSignupSelectionScreen extends Component {
                                 /> 
                             </View>
                        </View>
+                       </Animatable.View>
                         <TouchableOpacity 
                             style={{flexDirection:'row', justifyContent: 'space-around', marginTop: 30 }} 
                             onPress={() => this.goToHomeScreen()}

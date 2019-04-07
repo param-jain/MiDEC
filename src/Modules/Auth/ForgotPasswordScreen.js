@@ -12,6 +12,7 @@ import {
     TouchableWithoutFeedback,
     StatusBar
   } from 'react-native'
+  import * as Animatable from 'react-native-animatable';
 
 import { Icon } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -233,11 +234,12 @@ class ForgotPasswordScreen extends Component {
                         <Spinner visible={this.state.isAuthenticating} />
 
                         <View style={styles.loginFormView}>
-
+                        <Animatable.View animation="slideInUp" iterationCount={1}>
                             <Text style={{padding: 15}}>Please enter your email id. We will send you a link to reset the password.</Text>                            
                             {this.validateEmail(this.props.email)}
                             <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
                             {this.enableNextButton(this.props.email, this.props.password, this.props.verifyPassword)}
+                            </Animatable.View>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>

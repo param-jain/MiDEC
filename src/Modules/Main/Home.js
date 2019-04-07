@@ -9,9 +9,12 @@ import {
     Dimensions,
     ActivityIndicator,
     StatusBar,
-    TextInput
+    TextInput,
+    Animated
   } from 'react-native'
-  
+ 
+
+import * as Animatable from 'react-native-animatable';
 import { Icon, Header } from 'react-native-elements';
 import {OptimizedFlatList} from 'react-native-optimized-flatlist'
 import { connect } from 'react-redux'
@@ -141,6 +144,7 @@ static navigationOptions = (props) => {
     let user = this.state.currentLoggedInUser;
    return (
       <ScrollView style={{flex: 1}}>
+      <Animatable.View animation="slideInUp" iterationCount={1}>
           <FlatList 
           style={{flex: 1}}
           data={this.state.data}
@@ -149,7 +153,9 @@ static navigationOptions = (props) => {
           )}
           keyExtractor={item => item.adviserId.toString()}
         />
+        </Animatable.View>
         </ScrollView>
+      
     );
   }
 
