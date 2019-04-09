@@ -57,9 +57,7 @@ export default class ConfirmPaymentScreen extends Component {
                 {cancelable: false},
             )
         } else {
-            if (this.state.adviserSelected.feePer30Mins > 0) {
-                
-            }
+            this.props.navigation.navigate('payment', {navigation: this.props.navigation});
         }
     }
 

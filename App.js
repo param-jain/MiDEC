@@ -28,6 +28,7 @@ import ForgotPasswordScreen from './src/Modules/Auth/ForgotPasswordScreen';
 import ConfirmPaymentScreen from './src/Modules/Main/ConfirmPaymentScreen';
 import FeeAndBankDetails from './src/Modules/Main/FeeAndBankDetails';
 import TimeSlots from './src/Modules/Main/TimeSlots';
+import PaymentScreen from './src/Modules/Main/Payment';
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -84,7 +85,8 @@ const MainNavigator = createDrawerNavigator({
   about_us: { screen: AboutUs },
   feeAndBankDetails: {screen: FeeAndBankDetails},
   timeSlots: {screen: TimeSlots},
-  confirmPayment: { screen: ConfirmPaymentScreen }
+  confirmPayment: { screen: ConfirmPaymentScreen },
+  payment: {screen: PaymentScreen }
 },{
   //initialRouteName: 'Home',
   contentComponent: DrawerScreen,
