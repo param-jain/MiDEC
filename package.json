@@ -41,6 +41,7 @@
     "react-native-level-fs": "^3.0.1",
     "react-native-loading-spinner-overlay": "^1.0.1",
     "react-native-modal-datetime-picker": "^6.1.0",
+    "react-native-motion": "^1.0.2",
     "react-native-numeric-input": "^1.6.5",
     "react-native-optimized-flatlist": "^1.0.4",
     "react-native-os": "^1.2.2",
