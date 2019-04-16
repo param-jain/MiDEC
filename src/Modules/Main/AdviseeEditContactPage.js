@@ -47,10 +47,6 @@ class AdviseeEditContactDetails extends Component {
             
             <View style={{flexDirection: 'row', paddingTop:10,paddingBottom: 30, justifyContent:'space-evenly'}}>
                 <TouchableOpacity style={styles.customBtnBG} onPress={() => {this.props.navigation.navigate('adviseeProfile')}} >
-                    <Text style={styles.customBtnText}>Cancel</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.customBtnBG} onPress={() => {this.props.navigation.navigate('adviseeProfile')}} >
                     <Text style={styles.customBtnText}>Save</Text>
                 </TouchableOpacity>
             </View>
@@ -82,13 +78,13 @@ const styles = StyleSheet.create({
     },
     customBtnBG: {
         backgroundColor: "#FF9800",
-        paddingHorizontal: 30,
+        paddingHorizontal: 100,
         paddingVertical: 15,
-        margin: 30,
+        marginTop: 20,
         borderRadius: 5
     },
     customBtnText: {
-        fontSize: 15,
+        fontSize: 18,
         alignSelf: 'center',
         color: "#fff",
     }

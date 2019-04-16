@@ -476,12 +476,25 @@ class SignupScreen extends Component {
                             <Spinner visible={this.state.isAuthenticating} />
 
                             <View style={styles.loginFormView}>
-
+                                <Text style={styles.logoText}>Password Reset</Text>
                                 {this.validateOldPassword(this.state.oldPassword)}
                                 {this.validatePassword(this.props.password)}
                                 {this.validateVerifyPassword(this.props.verifyPassword)}
                                 <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
                                 {this.enableNextButton(this.props.email, this.props.password, this.props.verifyPassword)}
+
+                                <View style={{flexDirection: 'column', alignSelf: 'center', marginTop: 10}}>
+                                <Text style={{textAlign: 'center'}}>Password should</Text>
+                                <View style={{alignItems: 'center', marginLeft: 20}}>
+                                <View style={{alignContent: 'center'}}>
+                                <Text>{'\u2022'} have at least 8 characters</Text>
+                                <Text>{'\u2022'} be alphanumeric</Text>
+                                <Text>{'\u2022'} contain upper and lower case letters</Text>
+                                <Text>{'\u2022'} have at least 1 special character</Text>
+                                </View>
+                                </View>
+                                </View>
+                            
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -537,6 +550,7 @@ let styles = StyleSheet.create({
     },
     loginFormView: {
         marginTop: 40,
+        paddingTop: 50,
         flex: 1,
         justifyContent: 'center'
     },
@@ -580,6 +594,12 @@ let styles = StyleSheet.create({
         paddingHorizontal: 30,
         paddingVertical: 5,
         borderRadius: 5
+    },
+    logoText: {
+        fontSize: 27,
+        fontWeight: "800",
+        marginBottom: 30,
+        textAlign: 'center',
     },
     customBtnText: {
         fontSize: 15,

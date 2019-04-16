@@ -30,7 +30,7 @@ class AdviseeEditPersonalDetails extends Component {
         <Header
           backgroundColor="#FF6D00"
           outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
-          centerComponent={{ text: 'Edit Contact Details' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+          centerComponent={{ text: 'Edit Personal Details' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
           leftComponent={{ icon: 'arrow-left', type:'font-awesome', color: '#fff', onPress: () => this.props.navigation.navigate('adviseeProfile') }}
         />
       );
@@ -53,10 +53,6 @@ class AdviseeEditPersonalDetails extends Component {
           <TextInput style={styles.textInput} keyboardType='phone-pad' maxLength={10} onChangeText={this.handleMobileNumber}/>
           
           <View style={{flexDirection: 'row', paddingTop:10,paddingBottom: 30, justifyContent:'space-evenly'}}>
-            <TouchableOpacity style={styles.customBtnBG} onPress={() => {this.props.navigation.navigate('adviseeProfile')}} >
-                <Text style={styles.customBtnText}>Cancel</Text>
-            </TouchableOpacity>
-
             <TouchableOpacity style={styles.customBtnBG} onPress={() => {this.props.navigation.navigate('adviseeProfile')}} >
                 <Text style={styles.customBtnText}>Save</Text>
             </TouchableOpacity>
@@ -87,17 +83,17 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgb(0,0,0)',
     },
     customBtnBG: {
-        backgroundColor: "#FF9800",
-        paddingHorizontal: 30,
-        paddingVertical: 15,
-        margin: 30,
-        borderRadius: 5
-    },
-    customBtnText: {
-        fontSize: 15,
-        alignSelf: 'center',
-        color: "#fff",
-    }
+      backgroundColor: "#FF9800",
+      paddingHorizontal: 100,
+      paddingVertical: 15,
+      marginTop: 20,
+      borderRadius: 5
+  },
+  customBtnText: {
+      fontSize: 18,
+      alignSelf: 'center',
+      color: "#fff",
+  }
 })
 
 export default AdviseeEditPersonalDetails

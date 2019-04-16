@@ -127,7 +127,7 @@ class AdviseeProfilePage extends Component {
                         <Icon name="email" size={18} color="orange" style={{paddingRight: 5}}/> 
                         <View style={{flexDirection:'column'}}> 
                         <Text style={{fontSize: 13}}>Email</Text>
-                        <Text style={{fontSize: 13}}>{JSON.parse(this.state.currentLoggedInUser).userEmail}</Text>
+                        <Text style={{fontSize: 13, color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).userEmail}</Text>
                         </View>
                         <Text style={{fontSize: 13, marginLeft: 'auto'}}>VERIFY</Text>
                   </View>
@@ -137,7 +137,7 @@ class AdviseeProfilePage extends Component {
                       <Icon name="phone" size={18} color="orange" style={{paddingRight: 5}}/> 
                       <View style={{flexDirection:'column'}}> 
                         <Text style={{fontSize: 13}}>Phone number</Text>
-                        <Text style={{fontSize: 13}}>{JSON.parse(this.state.currentLoggedInUser).phoneNumber}</Text>
+                        <Text style={{fontSize: 13, color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).phoneNumber}</Text>
                         </View>
                       <Text style={{fontSize: 13, color: "#FF9800", marginLeft:'auto'}}>VERIFIED</Text>
                   </View>
@@ -156,20 +156,20 @@ class AdviseeProfilePage extends Component {
     
                   <View style={{flexDirection:'row', paddingTop:20, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>First Name:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).firstName}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).firstName}</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Last Name:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).lastName}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).lastName}</Text>
                   </View>
     
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop: 15}}>
                       <Text style={{fontSize: 13}}>Mobile Number:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).phoneNumber}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).phoneNumber}</Text>
                   </View>
     
               </Card>
@@ -186,75 +186,75 @@ class AdviseeProfilePage extends Component {
     
                   <View style={{flexDirection:'row', paddingTop:20, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Total Work Experience:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).totalExpYears} Yrs {JSON.parse(this.state.currentLoggedInUser).totalExpMonths} Mnts</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).totalExpYears} Yrs {JSON.parse(this.state.currentLoggedInUser).totalExpMonths} Mnts</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Work experience in current functional area:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).currExpYears} Yrs {JSON.parse(this.state.currentLoggedInUser).currExpMonths} Mnts</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).currExpYears} Yrs {JSON.parse(this.state.currentLoggedInUser).currExpMonths} Mnts</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>LinkedIn Profile:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).lnkdInProfile}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).lnkdInProfile}</Text>
                   </View>
                   <View style={styles.rule}/>
     
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Current job role:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).currJobRole).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).currJobRole).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).currJobRole}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{((JSON.parse(this.state.currentLoggedInUser).currJobRole).length > 20) ? (((JSON.parse(this.state.currentLoggedInUser).currJobRole).substring(0, 20)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).currJobRole}</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Target job roles</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).currJobRole[0]).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).currJobRole[0]).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).currJobRole[0]}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{((JSON.parse(this.state.currentLoggedInUser).currJobRole[0]).length > 20) ? (((JSON.parse(this.state.currentLoggedInUser).currJobRole[0]).substring(0, 20)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).currJobRole[0]}</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Current functional area:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).length > 20) ? (((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).substring(0, 20)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]}</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Target functional area:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).length > 20) ? (((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).substring(0, 20)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]}</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Current Industry:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).currIndustry}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).currIndustry}</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop: 15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Target Industries:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).length > 20) ? (((JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]).substring(0, 20)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).currFnclArea[0]}</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Area(s) of expertise:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{((JSON.parse(this.state.currentLoggedInUser).expertAreas[0]).length > 10) ? (((JSON.parse(this.state.currentLoggedInUser).expertAreas[0]).substring(0, 7)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).expertAreas[0]}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{((JSON.parse(this.state.currentLoggedInUser).expertAreas[0]).length > 20) ? (((JSON.parse(this.state.currentLoggedInUser).expertAreas[0]).substring(0, 20)) + ' ...') : JSON.parse(this.state.currentLoggedInUser).expertAreas[0]}</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop:15, paddingBottom: 10}}>
                       <Text style={{fontSize: 13}}>Last company you worked with:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).pastCompanies}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).pastCompanies}</Text>
                   </View>
                   <View style={styles.rule}/>
     
                   <View style={{flexDirection:'row', paddingTop: 15}}>
                       <Text style={{fontSize: 13}}>Target companies:</Text>
-                      <Text style={{fontSize: 13, marginLeft:'auto'}}>{JSON.parse(this.state.currentLoggedInUser).currCompanies}</Text>
+                      <Text style={{fontSize: 13, marginLeft:'auto', color: '#626f78'}}>{JSON.parse(this.state.currentLoggedInUser).currCompanies}</Text>
                   </View>
                   
     
@@ -271,7 +271,7 @@ class AdviseeProfilePage extends Component {
     
     
                   <View style={{flexDirection:'row', paddingTop:20}}>
-                      <Text style={{fontSize: 13}}>Most relevant education qualification:</Text>
+                      <Text style={{fontSize: 13, color: '#626f78'}}>Most relevant education qualification:</Text>
                   </View>
                
     
@@ -286,23 +286,30 @@ class AdviseeProfilePage extends Component {
     
     
                   <View style={{flexDirection:'row', paddingTop:20}}>
-                      <Text style={{fontSize: 14}}>Resume.pdf</Text>
+                      <Text style={{fontSize: 14, color: '#626f78'}}>Resume.pdf</Text>
                   </View>
                  
                   <View style={{flexDirection:'row', paddingTop:5, paddingBottom: 10}}>
-                      <Text style={{fontSize: 12}}>Last Updated on:</Text>
-                      <Text style={{fontSize: 12}}>31 Dec, 2018</Text>
+                      <Text style={{fontSize: 12, color: '#626f78'}}>Last Updated on:</Text>
+                      <Text style={{fontSize: 12, color: '#626f78'}}>31 Dec, 2018</Text>
                   </View>
               
               </Card>
     
     
-              <View style={{flexDirection: 'row', padding:30, alignItems: 'center', justifyContent:'center'}}>
+                
+            <View style={{flexDirection: 'column'}}>
+
+              <View style={{flexDirection: 'row', paddingTop:30, paddingLeft:30, paddingRight: 30, alignItems: 'center', justifyContent:'center'}}>
               <Checkbox iconName='matMix' 
                         checkedColor='#FF9800'
                         uncheckedColor='#FF9800' 
                         onChange={(val) => (val)} />
-              <Text style={{alignSelf:'center', paddingLeft: 5}}>Share my CV with my advisor for referral.</Text>
+             
+                    <Text style={{alignSelf:'center', paddingLeft: 5}}>Share my CV with my advisor for referral.</Text>
+              </View>
+
+              <Text style={{alignSelf:'center', paddingLeft: 10, fontSize: 10, textAlign: 'left'}}>(Please note that if you have revealed your identity in your CV, you will no longer be anonymous, as your CV will be shared in its original, unedited form with your adviser post appointment confirmation.)</Text>
               </View>
     
     

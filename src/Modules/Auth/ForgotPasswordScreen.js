@@ -35,84 +35,100 @@ class ForgotPasswordScreen extends Component {
         this.props.signupEmailChanged(text);
     }
 
+
     validateEmail = (email) => {
         if (!this.props.emailTouched) {
             return (  
                 <View>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                    <View style={{paddingLeft: 15, paddingTop: 15}}><Icon type='material-community' name='email-outline' color='#D4D4D4'/></View>
                     <TextInput
                         keyboardType={'email-address'}
                         autoCapitalize = 'none'
-                        underlineColorAndroid="transparent" 
-                        placeholder="Email" 
+                        underlineColorAndroid="#CDCDCD" 
+                        placeholder="Enter Email Address" 
                         placeholderColor="#c4c3cb" 
                         style={styles.loginFormTextInput}
                         onChangeText={this.onEmailChange.bind(this)}
                         value={this.props.email}
                     />
+                    </View>
                 </View>        
             );
         } else {
             if (email.length < 5) {
                 return (  
                     <View>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                        <View style={{paddingLeft: 15, paddingTop: 15}}><Icon type='material-community' name='email-outline' color='#D4D4D4'/></View>
                         <TextInput
                             keyboardType={'email-address'}
                             autoCapitalize = 'none'
-                            underlineColorAndroid="transparent" 
-                            placeholder="Email" 
+                            underlineColorAndroid="#CDCDCD" 
+                            placeholder="Enter Email Address" 
                             placeholderColor="#c4c3cb" 
                             style={[styles.loginFormTextInput, {borderColor: '#DD2C00'}]} 
                             onChangeText={this.onEmailChange.bind(this)}
                             value={this.props.email}
                         />
+                        </View>
                         <Text style={styles.errorMessage}>Email should be at least 5 characters long!</Text>
                     </View>        
                 );
             } else if (email.split('').filter(x => x === '@').length !== 1) {
                 return (  
                     <View>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                        <View style={{paddingLeft: 15, paddingTop: 15}}><Icon type='material-community' name='email-outline' color='#D4D4D4'/></View>
                         <TextInput
                             keyboardType={'email-address'}
                             autoCapitalize = 'none'
-                            underlineColorAndroid="transparent" 
-                            placeholder="Email" 
+                            underlineColorAndroid="#CDCDCD" 
+                            placeholder="Enter Email Address" 
                             placeholderColor="#c4c3cb"
                             style={[styles.loginFormTextInput, {borderColor: '#DD2C00'}]} 
                             onChangeText={this.onEmailChange.bind(this)}
                             value={this.props.email}
                         />
+                        </View>
                         <Text style={styles.errorMessage}>Email should contain '@'</Text>
                     </View>        
                 );
             } else if (email.indexOf('.') === -1) {
                 return (  
                     <View>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                        <View style={{paddingLeft: 15, paddingTop: 15}}><Icon type='material-community' name='email-outline' color='#D4D4D4'/></View>
                         <TextInput
                             keyboardType={'email-address'}
                             autoCapitalize = 'none'
-                            underlineColorAndroid="transparent" 
-                            placeholder="Email" 
+                            underlineColorAndroid="#CDCDCD" 
+                            placeholder="Enter Email Address" 
                             placeholderColor="#c4c3cb"
                             style={[styles.loginFormTextInput, {borderColor: '#DD2C00'}]} 
                             onChangeText={this.onEmailChange.bind(this)}
                             value={this.props.email}
                         />
+                        </View>
                         <Text style={styles.errorMessage}>Email should contain at least one dot (.)</Text>
                     </View>        
                 );
             } else {
                 return (  
                     <View>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                        <View style={{paddingLeft: 15, paddingTop: 15}}><Icon type='material-community' name='email-outline' color='#D4D4D4'/></View>
                         <TextInput
                             keyboardType={'email-address'}
                             autoCapitalize = 'none'
-                            underlineColorAndroid="transparent" 
-                            placeholder="Email" 
+                            underlineColorAndroid="#CDCDCD" 
+                            placeholder="Enter Email Address" 
                             placeholderColor="#c4c3cb" 
                             style={[styles.loginFormTextInput, {borderColor: '#1B5E20'}]} 
                             onChangeText={this.onEmailChange.bind(this)}
                             value={this.props.email}
                         />
+                        </View>
                     </View>        
                 );
             }
@@ -227,12 +243,10 @@ class ForgotPasswordScreen extends Component {
     render() {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
-                <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
+                <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
-
                         <Spinner visible={this.state.isAuthenticating} />
-
                         <View style={styles.loginFormView}>
                         <Animatable.View animation="slideInUp" iterationCount={1}>
                             <Text style={{padding: 15}}>Please enter your email id. We will send you a link to reset the password.</Text>                            
@@ -298,12 +312,11 @@ let styles = StyleSheet.create({
         //justifyContent: 'center'
     },
     loginFormTextInput: {
+        flex: 1,
         height: 43,
         fontSize: 14,
         borderRadius: 5,
-        borderWidth: 1,
         borderColor: '#777777',
-        backgroundColor: '#fafafa',
         paddingLeft: 10,
         marginLeft: 15,
         marginRight: 15,
@@ -329,7 +342,7 @@ let styles = StyleSheet.create({
     nextButton: {
         flexDirection: 'row', 
         justifyContent: 'space-around',
-        backgroundColor: '#9e9e9e',
+        backgroundColor: '#464646',
         padding: 10,
         marginHorizontal: 5,
         marginTop: 30

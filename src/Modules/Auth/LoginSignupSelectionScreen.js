@@ -50,7 +50,7 @@ class LoginSignupSelectionScreen extends Component {
                                     style={{ width: '100%'}}
                                     buttonStyle={{ borderRadius: 200 }}
                                     onPress={() => this.goToLoginScreen()}
-                                    title="Login"
+                                    title="Sign In"
                                     ViewComponent={require('expo').LinearGradient}
                                     linearGradientProps={{
                                         colors: ['#FF6F00', '#FFA000'],
