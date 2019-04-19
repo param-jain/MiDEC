@@ -7,6 +7,7 @@ import {
     StatusBar, 
     Keyboard, 
     TouchableOpacity, 
+    ImageBackground,
     Text } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
@@ -40,51 +41,53 @@ class LoginSignupSelectionScreen extends Component {
         return(
             <KeyboardAvoidingView style={styles.containerView} behavior="padding">
             <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.containerView}>
-                    <View style={styles.loginFormView}>
-                    <Animatable.View animation="slideInUp" iterationCount={1}>
-                       <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                            <View style={{flex: 1, marginHorizontal: 15,}}>
-                                <Button
-                                    style={{ width: '100%'}}
-                                    buttonStyle={{ borderRadius: 200 }}
-                                    onPress={() => this.goToLoginScreen()}
-                                    title="Sign In"
-                                    ViewComponent={require('expo').LinearGradient}
-                                    linearGradientProps={{
-                                        colors: ['#FF6F00', '#FFA000'],
-                                        start: [1, 0],
-                                        end: [0.2, 0],
-                                    }}
-                                />
-                            </View>
-                            <View style={{flex: 1, marginRight: 15,}}>
-                                <Button
-                                    style={{ width: '100%' }}
-                                    buttonStyle={{ borderRadius: 200 }}
-                                    onPress={() => this.goToSignupScreen()}
-                                    title="Sign Up"
-                                    ViewComponent={require('expo').LinearGradient}
-                                    linearGradientProps={{
-                                        colors: ['#FFA000', '#FFC110'],
-                                        start: [1, 0],
-                                        end: [0.2, 0],
-                                    }} 
-                                /> 
-                            </View>
-                       </View>
-                       </Animatable.View>
-                        <TouchableOpacity 
-                            style={{flexDirection:'row', justifyContent: 'space-around', marginTop: 30 }} 
-                            onPress={() => this.goToHomeScreen()}
-                            >
-                            <Text style={{color: '#424242'}} >Or Else</Text>
-                        </TouchableOpacity>
-                        <Icon name="chevron-down" type="font-awesome" color='#666' onPress={() => this.goToHomeScreen()}/>
+            <ImageBackground source={require('../../../assets/bg-main.png')} style={{width: '100%', height: '100%'}}>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View style={styles.containerView}>
+                        <View style={styles.loginFormView}>
+                        <Animatable.View animation="slideInUp" iterationCount={1}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                                <View style={{flex: 1, marginHorizontal: 15,}}>
+                                    <Button
+                                        style={{ width: '100%'}}
+                                        buttonStyle={{ borderRadius: 200 }}
+                                        onPress={() => this.goToLoginScreen()}
+                                        title="Sign In"
+                                        ViewComponent={require('expo').LinearGradient}
+                                        linearGradientProps={{
+                                            colors: ['#FF6F00', '#FFA000'],
+                                            start: [1, 0],
+                                            end: [0.2, 0],
+                                        }}
+                                    />
+                                </View>
+                                <View style={{flex: 1, marginRight: 15,}}>
+                                    <Button
+                                        style={{ width: '100%' }}
+                                        buttonStyle={{ borderRadius: 200 }}
+                                        onPress={() => this.goToSignupScreen()}
+                                        title="Sign Up"
+                                        ViewComponent={require('expo').LinearGradient}
+                                        linearGradientProps={{
+                                            colors: ['#FFA000', '#FFC110'],
+                                            start: [1, 0],
+                                            end: [0.2, 0],
+                                        }} 
+                                    /> 
+                                </View>
+                        </View>
+                        </Animatable.View>
+                            <TouchableOpacity 
+                                style={{flexDirection:'row', justifyContent: 'space-around', marginTop: 30 }} 
+                                onPress={() => this.goToHomeScreen()}
+                                >
+                                <Text style={{color: '#424242'}} >Or Else</Text>
+                            </TouchableOpacity>
+                            <Icon name="chevron-down" type="font-awesome" color='#666' onPress={() => this.goToHomeScreen()}/>
+                        </View>
                     </View>
-                </View>
-            </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            </ImageBackground>
           </KeyboardAvoidingView>
         )
     }

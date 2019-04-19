@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Keyboard, Platform, Text, View, TextInput, Alert, TouchableWithoutFeedback, Image, KeyboardAvoidingView, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
+import {Keyboard, Platform, Text, View, TextInput, Alert, TouchableWithoutFeedback, Image, KeyboardAvoidingView, StatusBar, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
 
@@ -346,6 +346,7 @@ class LoginScreen extends Component {
         return (
           <KeyboardAvoidingView style={styles.containerView} behavior="padding">
             <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
+            <ImageBackground source={require('../../../assets/bg-sign_in.png')} style={{width: '100%', height: '100%'}}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.containerView}>
                     <View style={styles.loginFormView}>
@@ -398,6 +399,7 @@ class LoginScreen extends Component {
                     </View>
                 </View>
             </TouchableWithoutFeedback>
+            </ImageBackground>
           </KeyboardAvoidingView>
         );
     }
