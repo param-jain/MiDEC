@@ -10,7 +10,8 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
-    StatusBar
+    StatusBar,
+    ImageBackground
   } from 'react-native'
   import * as Animatable from 'react-native-animatable';
 
@@ -244,6 +245,7 @@ class ForgotPasswordScreen extends Component {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
+                <ImageBackground source={require('../../../assets/forget-password-link.png')} style={{width: '100%', height: '100%'}}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
                         <Spinner visible={this.state.isAuthenticating} />
@@ -257,6 +259,7 @@ class ForgotPasswordScreen extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
+                </ImageBackground>
             </KeyboardAvoidingView>
         );
     }

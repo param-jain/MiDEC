@@ -10,7 +10,8 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
-    StatusBar
+    StatusBar,
+    ImageBackground
   } from 'react-native'
 
 import { Icon, Header } from 'react-native-elements';
@@ -468,6 +469,7 @@ class SignupScreen extends Component {
             return (
                 <KeyboardAvoidingView style={styles.container} behavior="padding">
                     <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
+                    <ImageBackground source={require('../../../assets/password-changes.png')} style={{width: '100%', height: '100%'}}>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <View style={styles.container}>
 
@@ -498,6 +500,7 @@ class SignupScreen extends Component {
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
+                    </ImageBackground>
                 </KeyboardAvoidingView>
             );
         }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {NavigationActions} from 'react-navigation';
 import PropTypes from 'prop-types';
-import {ScrollView, Text, View, TouchableOpacity, ImageBackground} from 'react-native';
+import {ScrollView, Text, View, TouchableOpacity, Image, ImageBackground} from 'react-native';
 import { DrawerActions } from 'react-navigation';
 import { Header, Icon } from 'react-native-elements';
 
@@ -24,7 +24,7 @@ class DrawerScreen extends Component {
   renderHeader = () => {
     return(
         <Header
-          backgroundColor="#FF6D00"
+          backgroundColor="transparent"
           outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
           centerComponent={{ text: 'M i D E C' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
           //leftComponent={{ icon: 'chevron-left', style: { size: 8 }, type: 'font-awesome', color: '#fff', onPress: () => this.props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
@@ -113,8 +113,8 @@ class DrawerScreen extends Component {
   render () {
     return (
       <View>
-       { this.renderHeader() }
         <ImageBackground source={require('../../assets/bg-menu.png')} style={{width: '100%', height: '100%'}}>
+        { this.renderHeader() }
         <ScrollView>
           <View>
             
