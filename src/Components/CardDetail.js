@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Share, Alert } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Share, Alert, ToastAndroid } from 'react-native';
 import {Card, Avatar, Button, Icon} from 'react-native-elements';
 
 export default class CardDetail extends Component{
@@ -9,6 +9,7 @@ export default class CardDetail extends Component{
 
     this.state = {
       currentLoggedInUser: '',
+      isBookmarked: false
     }
   }
     
@@ -36,7 +37,6 @@ export default class CardDetail extends Component{
               <Card>
 
               <Text style={{fontWeight: '600', marginBottom: 10}}>{((adviserTitle).length > 45) ? (((adviserTitle).substring(0, 42)) + ' ...') : adviserTitle}</Text>
-        
 
               <View style={{flexDirection:'row',justifyContent: 'space-around'}}>
 
@@ -91,7 +91,7 @@ export default class CardDetail extends Component{
               <View style={{flexDirection: 'column'}}>
                   <View style={{marginBottom: 30, marginLeft: 25}}>
                     {
-                      (bookMarked||global.isBookmarked)
+                      (this.state.isBookmarked)
                       ? 
                       <Icon onPress={() => {onBookmarkPressed(item, false)}} name="bookmark" type="font-awesome" size={20} style={{alignContent:'center', paddingHorizontal: 10}}/> 
                       : 
@@ -119,12 +119,13 @@ export default class CardDetail extends Component{
       }        
 
     onBookmarkPressed = (item, flag) => {
-
+/*
       Alert.alert(
         'Bookmarked!!!'
-      );
-      
-      if (item.bookMarked || global.isBookmarked === true) {
+      );*/
+      ToastAndroid.show('Bookmarked!', ToastAndroid.SHORT);
+
+      if (flag === false) {
         //remove bookmark
         global.isBookmarked = false;
         console.log('REMOVE BM! ' + global.isBookmarked);
