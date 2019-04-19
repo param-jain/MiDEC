@@ -26,7 +26,7 @@ export default class ConfirmPaymentScreen extends Component {
         const dateSelected = navigation.getParam('dateSelected', 'Oops');
         const slotSelected = navigation.getParam('slotSelected', 'Duh');
         const adviserSelected = navigation.getParam('adviserSelected', 'Hola');
-
+        console.log("Confirm Paymennt? Slot: " + slotSelected);
        this.setState({dateSelected, slotSelected, adviserSelected, currentLoggedInUser: global.isCurrentLoggedInUser,});
        console.log("Payment Screen: " + this.state.dateSelected + " " + this.state.slotSelected + " " + this.state.adviserSelected + " " + this.state.currentLoggedInUser);
 

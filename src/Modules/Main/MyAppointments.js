@@ -14,40 +14,52 @@ class MyAppointments extends React.Component {
           data:[],
           isSearchClicked: false,
           searchText: '',
+          currentLoggedInUser: global.isCurrentLoggedInUser
           }
 
         this.arrayHolder = [];
     }
 
     componentDidMount() {
-      console.log('LoggedUser RefTX: ' + JSON.parse(global.isCurrentLoggedInUser).referenceTx);
-      const url = `http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/apts/aeNotifications/`+`${JSON.parse(global.isCurrentLoggedInUser).referenceTx}`;
-      
-      fetch(url, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
-        },
-        })
-        .then((response) => response.json())
-        .then(res => {
-          console.log("MYAPOINTMENTSRESPONSE: "+ JSON.stringify(res));
-          this.setState({
-            loading: false,
-            data: res,
-            originalData: res,
-            refreshing: false,
+      this._onFocusListener = this.props.navigation.addListener('didFocus', (payload) => {
+        this.setState({ currentLoggedInUser: global.isCurrentLoggedInUser });
+        this.forceUpdate();
+    });
+      if (global.isLoggedIn === true) {
+        console.log('LoggedUser RefTX: ' + JSON.parse(global.isCurrentLoggedInUser).referenceTx);
+        const url = `http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/apts/aeNotifications/`+`${JSON.parse(global.isCurrentLoggedInUser).referenceTx}`;
+        
+        fetch(url, {
+          method: 'GET',
+          headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
+          },
+          })
+          .then((response) => response.json())
+          .then(res => {
+            console.log("MYAPOINTMENTSRESPONSE: "+ JSON.stringify(res));
+            this.setState({
+              loading: false,
+              data: res,
+              originalData: res,
+              refreshing: false,
+            });
+            this.arrayHolder = this.state.data;
+            console.log("MY APPOINTMENTS Data: " + JSON.stringify(this.state.data))
+          })
+          .catch(error => {
+            this.setState({ error, loading: false });
+            console.log("My APPOINTMENTS Error: " + JSON.stringify(error))
           });
-          this.arrayHolder = this.state.data;
-          console.log("MY APPOINTMENTS Data: " + JSON.stringify(this.state.data))
-        })
-        .catch(error => {
-          this.setState({ error, loading: false });
-          console.log("My APPOINTMENTS Error: " + JSON.stringify(error))
-        });
+      }
     }
+
+    componentWillMount() {
+      this.setState({ currentLoggedInUser: global.isCurrentLoggedInUser });
+      this.forceUpdate();
+  }
 
     renderHeader = () => {
         return(
@@ -161,33 +173,52 @@ class MyAppointments extends React.Component {
       }
   
     render() {
+      if (global.isLoggedIn === false) {
         return(
-            <View style={styles.container}>
-                { this.state.isSearchClicked ? this.renderSearchBarHeader() : this.renderHeader() }
-
-                
-                <View style={{flexDirection: 'row', marginTop: 5}}>
-                  <View style={[styles.sectionStyle,{flex: 1, flexDirection: 'row'}]}>
-                      {this.rightIconFunctionality()}
-                    </View>
-                  <View style={[styles.sectionStyle,{flex: 1, flexDirection: 'row'}]}>
-                    <TouchableOpacity style={{flex: 1, justifyContent:'center', alignContent:'center'}}>
-                      <Text style={{padding: 5, alignSelf:'center', justifyContent: 'center'}}>All Appointments</Text>
+            <View style={styles.Hcontainer}>
+                {this.renderHeader()}
+                <View style={[styles.container, {alignContent: 'center', justifyContent: 'center'}]}>
+                    <Text style={{justifyContent: 'center', alignSelf: 'center'}}>Please Login First!!!</Text>
+                    <TouchableOpacity style={[styles.customBtnBG, {margin: 20}]} onPress={() => {this.props.navigation.navigate('loginSignupSelection')}} >
+                        <Text style={[styles.customBtnText, {alignSelf: 'center'}]}>Go To Login Screen!</Text>
                     </TouchableOpacity>
-                  </View>
                 </View>
-
-                { this.returnList() }
-
             </View>
-        )
+        );
+    } else {
+      return(
+        <View style={styles.container}>
+            { this.state.isSearchClicked ? this.renderSearchBarHeader() : this.renderHeader() }
+
+            
+            <View style={{flexDirection: 'row', marginTop: 5}}>
+              <View style={[styles.sectionStyle,{flex: 1, flexDirection: 'row'}]}>
+                  {this.rightIconFunctionality()}
+                </View>
+              <View style={[styles.sectionStyle,{flex: 1, flexDirection: 'row'}]}>
+                <TouchableOpacity style={{flex: 1, justifyContent:'center', alignContent:'center'}}>
+                  <Text style={{padding: 5, alignSelf:'center', justifyContent: 'center'}}>All Appointments</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            { this.returnList() }
+
+        </View>
+    )
     }
+  }
 }
 
 const styles = {
     container: {
         flex: 1
     },
+    Hcontainer: {
+      flexDirection: 'column',
+    flex: 1,
+    backgroundColor: 'transparent'
+  },
     searchBarTextInput: {
         flex: 1
     },
@@ -211,6 +242,16 @@ const styles = {
       borderRadius: 15,
       margin: 5
     },
+    customBtnBG: {
+      backgroundColor: "#FF9800",
+      paddingHorizontal: 30,
+      paddingVertical: 5,
+      borderRadius: 5
+  },
+  customBtnText: {
+      fontSize: 15,
+      color: "#fff",
+  },
 }
 
 export default MyAppointments;
