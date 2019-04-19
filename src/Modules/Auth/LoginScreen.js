@@ -378,7 +378,7 @@ class LoginScreen extends Component {
                             style={{flexDirection:'row', justifyContent: 'space-around', marginTop: 10 }} 
                             onPress={() => this.onForgotPwdPress()}
                             >
-                            <Text style={{color: '#424242'}} >Forgotten Password?</Text>
+                            <Text style={{color: '#424242'}} >Forgot Password?</Text>
                         </TouchableOpacity>
                         {/*
                         <View style={styles.rectangle} />
@@ -429,7 +429,7 @@ const styles = {
     loginFormTextInput: {
         height: 43,
         fontSize: 14,
-        borderRadius: 5,
+        borderRadius: 20,
         borderWidth: 1,
         borderColor: '#777777',
         backgroundColor: '#fafafa',
@@ -448,7 +448,7 @@ const styles = {
     },
     loginButton: {
         backgroundColor: '#FF6D00',
-        borderRadius: 5,
+        borderRadius: 20,
         height: 45,
         marginTop: 10,
         marginLeft: 15,

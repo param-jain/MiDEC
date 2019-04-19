@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView,  FlatList, Animatable } from 'react-native';
 import { Header, Icon } from 'react-native-elements';
 import { DrawerActions } from 'react-navigation';
 import { DatePicker } from 'native-base';
+import AppointmentsCard from '../../Components/AppointmentsCard';
 
 class MyAppointments extends React.Component {
 
@@ -14,12 +15,241 @@ class MyAppointments extends React.Component {
           searchLoad: false,
           searchBarText: '',
           searchBarTextTouched: false,
-          data:[],
+          data:[
+            {
+              "appointmentId": 5,
+              "displayId": null,
+              "adviserId": 36,
+              "adviseeId": 35,
+              "referenceTx": "MTLNQ1YD9RW1GP8FISCYJY",
+              "slotDate": "2019-04-30",
+              "slotTime": "09:30 hrs to 10:00 hrs",
+              "preferredSlotDate": null,
+              "preferredSlotTimes": null,
+              "status": "INIT",
+              "comments": "New Appointment by Advisee",
+              "agenda": null,
+              "offerCode": null,
+              "amount": 0,
+              "paymentId": null,
+              "refund": 0,
+              "durationMins": 15,
+              "rating": 0,
+              "errorMsg": null,
+              "lastModifiedBy": 35,
+              "lastModifiedDate": "2019-01-30 07:45:52.0",
+              "userType": null,
+              "userId": 0,
+              "aeFirstName": "Siddharth",
+              "aeLastName": "Mantripragada",
+              "aeEmail": "capelsid@gmail.com"
+            },
+            {
+              "appointmentId": 6,
+              "displayId": null,
+              "adviserId": 36,
+              "adviseeId": 35,
+              "referenceTx": "KKI0UMMT509EE856KHB2GL",
+              "slotDate": "2019-04-30",
+              "slotTime": "09:30 hrs to 10:00 hrs",
+              "preferredSlotDate": null,
+              "preferredSlotTimes": null,
+              "status": "INIT",
+              "comments": "New Appointment by Advisee",
+              "agenda": null,
+              "offerCode": null,
+              "amount": 0,
+              "paymentId": null,
+              "refund": 0,
+              "durationMins": 15,
+              "rating": 0,
+              "errorMsg": null,
+              "lastModifiedBy": 35,
+              "lastModifiedDate": "2019-01-30 07:45:58.0",
+              "userType": null,
+              "userId": 0,
+              "aeFirstName": "Siddharth",
+              "aeLastName": "Mantripragada",
+              "aeEmail": "capelsid@gmail.com"
+            },
+            {
+              "appointmentId": 7,
+              "displayId": null,
+              "adviserId": 36,
+              "adviseeId": 35,
+              "referenceTx": "DANJTF6Z5BCD5RYDFR8LWO",
+              "slotDate": "2019-04-30",
+              "slotTime": "09:30 hrs to 10:00 hrs",
+              "preferredSlotDate": null,
+              "preferredSlotTimes": null,
+              "status": "INIT",
+              "comments": "New Appointment by Advisee",
+              "agenda": null,
+              "offerCode": null,
+              "amount": 0,
+              "paymentId": null,
+              "refund": 0,
+              "durationMins": 15,
+              "rating": 0,
+              "errorMsg": null,
+              "lastModifiedBy": 35,
+              "lastModifiedDate": "2019-01-30 07:45:59.0",
+              "userType": null,
+              "userId": 0,
+              "aeFirstName": "Siddharth",
+              "aeLastName": "Mantripragada",
+              "aeEmail": "capelsid@gmail.com"
+            },
+            {
+              "appointmentId": 8,
+              "displayId": null,
+              "adviserId": 36,
+              "adviseeId": 35,
+              "referenceTx": "H0UY9NQ3LK6BMEBI5325Z9",
+              "slotDate": "2019-04-30",
+              "slotTime": "09:30 hrs to 10:00 hrs",
+              "preferredSlotDate": null,
+              "preferredSlotTimes": null,
+              "status": "INIT",
+              "comments": "New Appointment by Advisee",
+              "agenda": null,
+              "offerCode": null,
+              "amount": 0,
+              "paymentId": null,
+              "refund": 0,
+              "durationMins": 15,
+              "rating": 0,
+              "errorMsg": null,
+              "lastModifiedBy": 35,
+              "lastModifiedDate": "2019-01-30 07:45:59.0",
+              "userType": null,
+              "userId": 0,
+              "aeFirstName": "Siddharth",
+              "aeLastName": "Mantripragada",
+              "aeEmail": "capelsid@gmail.com"
+            },
+            {
+              "appointmentId": 9,
+              "displayId": null,
+              "adviserId": 36,
+              "adviseeId": 35,
+              "referenceTx": "U5DFE7S75NAZUH735PUVN8",
+              "slotDate": "2019-04-30",
+              "slotTime": "09:30 hrs to 10:00 hrs",
+              "preferredSlotDate": null,
+              "preferredSlotTimes": null,
+              "status": "INIT",
+              "comments": "New Appointment by Advisee",
+              "agenda": null,
+              "offerCode": null,
+              "amount": 0,
+              "paymentId": null,
+              "refund": 0,
+              "durationMins": 15,
+              "rating": 0,
+              "errorMsg": null,
+              "lastModifiedBy": 35,
+              "lastModifiedDate": "2019-01-30 07:45:59.0",
+              "userType": null,
+              "userId": 0,
+              "aeFirstName": "Siddharth",
+              "aeLastName": "Mantripragada",
+              "aeEmail": "capelsid@gmail.com"
+            },
+            {
+              "appointmentId": 10,
+              "displayId": null,
+              "adviserId": 36,
+              "adviseeId": 35,
+              "referenceTx": "GJIZPSDJR6BZKGN4M8JN11",
+              "slotDate": "2019-04-30",
+              "slotTime": "09:30 hrs to 10:00 hrs",
+              "preferredSlotDate": null,
+              "preferredSlotTimes": null,
+              "status": "INIT",
+              "comments": "New Appointment by Advisee",
+              "agenda": null,
+              "offerCode": null,
+              "amount": 0,
+              "paymentId": null,
+              "refund": 0,
+              "durationMins": 15,
+              "rating": 0,
+              "errorMsg": null,
+              "lastModifiedBy": 35,
+              "lastModifiedDate": "2019-01-30 07:45:59.0",
+              "userType": null,
+              "userId": 0,
+              "aeFirstName": "Siddharth",
+              "aeLastName": "Mantripragada",
+              "aeEmail": "capelsid@gmail.com"
+            },
+            {
+              "appointmentId": 11,
+              "displayId": null,
+              "adviserId": 36,
+              "adviseeId": 35,
+              "referenceTx": "3Q5U3PX8J1RPRGA9QTRIQN",
+              "slotDate": "2019-05-01",
+              "slotTime": "10:00 hrs to 10:30 hrs",
+              "preferredSlotDate": null,
+              "preferredSlotTimes": null,
+              "status": "INIT",
+              "comments": "New Appointment by Advisee",
+              "agenda": null,
+              "offerCode": null,
+              "amount": 0,
+              "paymentId": null,
+              "refund": 0,
+              "durationMins": 30,
+              "rating": 0,
+              "errorMsg": null,
+              "lastModifiedBy": 35,
+              "lastModifiedDate": "2019-01-30 07:46:43.0",
+              "userType": null,
+              "userId": 0,
+              "aeFirstName": "Siddharth",
+              "aeLastName": "Mantripragada",
+              "aeEmail": "capelsid@gmail.com"
+            },
+            {
+              "appointmentId": 29,
+              "displayId": null,
+              "adviserId": 36,
+              "adviseeId": 35,
+              "referenceTx": "5XT4CELEHZOIR3UZDA4LIY",
+              "slotDate": "2019-05-06",
+              "slotTime": "11:00 hrs to 11:30 hrs",
+              "preferredSlotDate": null,
+              "preferredSlotTimes": null,
+              "status": "INIT",
+              "comments": "New Appointment by Advisee",
+              "agenda": null,
+              "offerCode": null,
+              "amount": 0,
+              "paymentId": null,
+              "refund": 0,
+              "durationMins": 15,
+              "rating": 0,
+              "errorMsg": null,
+              "lastModifiedBy": 35,
+              "lastModifiedDate": "2019-02-04 12:05:50.0",
+              "userType": null,
+              "userId": 0,
+              "aeFirstName": "Siddharth",
+              "aeLastName": "Mantripragada",
+              "aeEmail": "capelsid@gmail.com"
+            }
+          ],
           error: '',
           bookSelected:[],
         }
 
         this.arrayHolder = [];
+    }
+
+    componentDidMount() {
+      
     }
 
     renderHeader = () => {
@@ -104,6 +334,26 @@ class MyAppointments extends React.Component {
           );
         }
       //}
+
+      returnList = () => {
+        console.log("sdasdadda: "+ this.state.data)
+        let user = this.state.currentLoggedInUser;
+       return (
+          <ScrollView style={{flex: 1}}>
+          <View animation="slideInUp" iterationCount={1}>
+              <FlatList 
+              style={{flex: 1}}
+              data={this.state.data}
+              renderItem={({ item }) => (
+                <AppointmentsCard key={item.appointmentId.toString()} navigation={this.props.navigation} item={item} />
+              )}
+              keyExtractor={item => item.appointmentId.toString()}
+            />
+            </View>
+            </ScrollView>
+          
+        );
+      }
   
     render() {
         return(
@@ -128,18 +378,7 @@ class MyAppointments extends React.Component {
                   </View>
                 </View>
 
-                <View style={{justifyContent: 'center', alignContent: 'center', marginHorizontal: 20, marginVertical: 50}}>
-                    <Text style={{color: '#666'}}>On this page, you can view all your Appointments, request a cancellation or request a reschedule.</Text>
-                </View>
-
-                <View style={{justifyContent: 'center', alignContent: 'center', flex: 1}}>
-                    <View style={{paddingHorizontal:70, paddingLeft:85, paddingTop:0, marginVertical: 20}}>
-                        {/* <Button type="outline" title="Book an Appointment" buttonStyle={{borderColor: '#FF9800', borderRadius: 10}} titleStyle={{color: '#000'}}></Button> */}
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('home')} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
-                            <Text style={{alignSelf: 'center', padding: 5, fontWeight: '500', color: '#FF6D00'}}>Book an Appointment now.</Text> 
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                { this.returnList() }
 
             </View>
         )

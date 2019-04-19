@@ -574,7 +574,7 @@ let styles = StyleSheet.create({
     loginFormTextInput: {
         height: 43,
         fontSize: 14,
-        borderRadius: 5,
+        borderRadius: 20,
         borderWidth: 1,
         borderColor: '#777777',
         backgroundColor: '#fafafa',
