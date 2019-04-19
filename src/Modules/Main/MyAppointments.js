@@ -11,245 +11,42 @@ class MyAppointments extends React.Component {
         super(props);
 
         this.state = {
-          loading: false,
-          searchLoad: false,
-          searchBarText: '',
-          searchBarTextTouched: false,
-          data:[
-            {
-              "appointmentId": 5,
-              "displayId": null,
-              "adviserId": 36,
-              "adviseeId": 35,
-              "referenceTx": "MTLNQ1YD9RW1GP8FISCYJY",
-              "slotDate": "2019-04-30",
-              "slotTime": "09:30 hrs to 10:00 hrs",
-              "preferredSlotDate": null,
-              "preferredSlotTimes": null,
-              "status": "INIT",
-              "comments": "New Appointment by Advisee",
-              "agenda": null,
-              "offerCode": null,
-              "amount": 0,
-              "paymentId": null,
-              "refund": 0,
-              "durationMins": 15,
-              "rating": 0,
-              "errorMsg": null,
-              "lastModifiedBy": 35,
-              "lastModifiedDate": "2019-01-30 07:45:52.0",
-              "userType": null,
-              "userId": 0,
-              "aeFirstName": "Siddharth",
-              "aeLastName": "Mantripragada",
-              "aeEmail": "capelsid@gmail.com"
-            },
-            {
-              "appointmentId": 6,
-              "displayId": null,
-              "adviserId": 36,
-              "adviseeId": 35,
-              "referenceTx": "KKI0UMMT509EE856KHB2GL",
-              "slotDate": "2019-04-30",
-              "slotTime": "09:30 hrs to 10:00 hrs",
-              "preferredSlotDate": null,
-              "preferredSlotTimes": null,
-              "status": "INIT",
-              "comments": "New Appointment by Advisee",
-              "agenda": null,
-              "offerCode": null,
-              "amount": 0,
-              "paymentId": null,
-              "refund": 0,
-              "durationMins": 15,
-              "rating": 0,
-              "errorMsg": null,
-              "lastModifiedBy": 35,
-              "lastModifiedDate": "2019-01-30 07:45:58.0",
-              "userType": null,
-              "userId": 0,
-              "aeFirstName": "Siddharth",
-              "aeLastName": "Mantripragada",
-              "aeEmail": "capelsid@gmail.com"
-            },
-            {
-              "appointmentId": 7,
-              "displayId": null,
-              "adviserId": 36,
-              "adviseeId": 35,
-              "referenceTx": "DANJTF6Z5BCD5RYDFR8LWO",
-              "slotDate": "2019-04-30",
-              "slotTime": "09:30 hrs to 10:00 hrs",
-              "preferredSlotDate": null,
-              "preferredSlotTimes": null,
-              "status": "INIT",
-              "comments": "New Appointment by Advisee",
-              "agenda": null,
-              "offerCode": null,
-              "amount": 0,
-              "paymentId": null,
-              "refund": 0,
-              "durationMins": 15,
-              "rating": 0,
-              "errorMsg": null,
-              "lastModifiedBy": 35,
-              "lastModifiedDate": "2019-01-30 07:45:59.0",
-              "userType": null,
-              "userId": 0,
-              "aeFirstName": "Siddharth",
-              "aeLastName": "Mantripragada",
-              "aeEmail": "capelsid@gmail.com"
-            },
-            {
-              "appointmentId": 8,
-              "displayId": null,
-              "adviserId": 36,
-              "adviseeId": 35,
-              "referenceTx": "H0UY9NQ3LK6BMEBI5325Z9",
-              "slotDate": "2019-04-30",
-              "slotTime": "09:30 hrs to 10:00 hrs",
-              "preferredSlotDate": null,
-              "preferredSlotTimes": null,
-              "status": "INIT",
-              "comments": "New Appointment by Advisee",
-              "agenda": null,
-              "offerCode": null,
-              "amount": 0,
-              "paymentId": null,
-              "refund": 0,
-              "durationMins": 15,
-              "rating": 0,
-              "errorMsg": null,
-              "lastModifiedBy": 35,
-              "lastModifiedDate": "2019-01-30 07:45:59.0",
-              "userType": null,
-              "userId": 0,
-              "aeFirstName": "Siddharth",
-              "aeLastName": "Mantripragada",
-              "aeEmail": "capelsid@gmail.com"
-            },
-            {
-              "appointmentId": 9,
-              "displayId": null,
-              "adviserId": 36,
-              "adviseeId": 35,
-              "referenceTx": "U5DFE7S75NAZUH735PUVN8",
-              "slotDate": "2019-04-30",
-              "slotTime": "09:30 hrs to 10:00 hrs",
-              "preferredSlotDate": null,
-              "preferredSlotTimes": null,
-              "status": "INIT",
-              "comments": "New Appointment by Advisee",
-              "agenda": null,
-              "offerCode": null,
-              "amount": 0,
-              "paymentId": null,
-              "refund": 0,
-              "durationMins": 15,
-              "rating": 0,
-              "errorMsg": null,
-              "lastModifiedBy": 35,
-              "lastModifiedDate": "2019-01-30 07:45:59.0",
-              "userType": null,
-              "userId": 0,
-              "aeFirstName": "Siddharth",
-              "aeLastName": "Mantripragada",
-              "aeEmail": "capelsid@gmail.com"
-            },
-            {
-              "appointmentId": 10,
-              "displayId": null,
-              "adviserId": 36,
-              "adviseeId": 35,
-              "referenceTx": "GJIZPSDJR6BZKGN4M8JN11",
-              "slotDate": "2019-04-30",
-              "slotTime": "09:30 hrs to 10:00 hrs",
-              "preferredSlotDate": null,
-              "preferredSlotTimes": null,
-              "status": "INIT",
-              "comments": "New Appointment by Advisee",
-              "agenda": null,
-              "offerCode": null,
-              "amount": 0,
-              "paymentId": null,
-              "refund": 0,
-              "durationMins": 15,
-              "rating": 0,
-              "errorMsg": null,
-              "lastModifiedBy": 35,
-              "lastModifiedDate": "2019-01-30 07:45:59.0",
-              "userType": null,
-              "userId": 0,
-              "aeFirstName": "Siddharth",
-              "aeLastName": "Mantripragada",
-              "aeEmail": "capelsid@gmail.com"
-            },
-            {
-              "appointmentId": 11,
-              "displayId": null,
-              "adviserId": 36,
-              "adviseeId": 35,
-              "referenceTx": "3Q5U3PX8J1RPRGA9QTRIQN",
-              "slotDate": "2019-05-01",
-              "slotTime": "10:00 hrs to 10:30 hrs",
-              "preferredSlotDate": null,
-              "preferredSlotTimes": null,
-              "status": "INIT",
-              "comments": "New Appointment by Advisee",
-              "agenda": null,
-              "offerCode": null,
-              "amount": 0,
-              "paymentId": null,
-              "refund": 0,
-              "durationMins": 30,
-              "rating": 0,
-              "errorMsg": null,
-              "lastModifiedBy": 35,
-              "lastModifiedDate": "2019-01-30 07:46:43.0",
-              "userType": null,
-              "userId": 0,
-              "aeFirstName": "Siddharth",
-              "aeLastName": "Mantripragada",
-              "aeEmail": "capelsid@gmail.com"
-            },
-            {
-              "appointmentId": 29,
-              "displayId": null,
-              "adviserId": 36,
-              "adviseeId": 35,
-              "referenceTx": "5XT4CELEHZOIR3UZDA4LIY",
-              "slotDate": "2019-05-06",
-              "slotTime": "11:00 hrs to 11:30 hrs",
-              "preferredSlotDate": null,
-              "preferredSlotTimes": null,
-              "status": "INIT",
-              "comments": "New Appointment by Advisee",
-              "agenda": null,
-              "offerCode": null,
-              "amount": 0,
-              "paymentId": null,
-              "refund": 0,
-              "durationMins": 15,
-              "rating": 0,
-              "errorMsg": null,
-              "lastModifiedBy": 35,
-              "lastModifiedDate": "2019-02-04 12:05:50.0",
-              "userType": null,
-              "userId": 0,
-              "aeFirstName": "Siddharth",
-              "aeLastName": "Mantripragada",
-              "aeEmail": "capelsid@gmail.com"
-            }
-          ],
-          error: '',
-          bookSelected:[],
-        }
+          data:[],
+          isSearchClicked: false,
+          searchText: '',
+          }
 
         this.arrayHolder = [];
     }
 
     componentDidMount() {
+      console.log('LoggedUser RefTX: ' + JSON.parse(global.isCurrentLoggedInUser).referenceTx);
+      const url = `http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/apts/aeNotifications/`+`${JSON.parse(global.isCurrentLoggedInUser).referenceTx}`;
       
+      fetch(url, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
+        },
+        })
+        .then((response) => response.json())
+        .then(res => {
+          console.log("MYAPOINTMENTSRESPONSE: "+ JSON.stringify(res));
+          this.setState({
+            loading: false,
+            data: res,
+            originalData: res,
+            refreshing: false,
+          });
+          this.arrayHolder = this.state.data;
+          console.log("MY APPOINTMENTS Data: " + JSON.stringify(this.state.data))
+        })
+        .catch(error => {
+          this.setState({ error, loading: false });
+          console.log("My APPOINTMENTS Error: " + JSON.stringify(error))
+        });
     }
 
     renderHeader = () => {
@@ -259,56 +56,64 @@ class MyAppointments extends React.Component {
               outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
               centerComponent={{ text: 'My Appointments' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
               leftComponent={{ icon: 'menu', color: '#fff', onPress: () => this.props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
+              rightComponent={ this.renderRightIcons() }
             />
           );
         }
 
-
-    renderSearchBar = () => {
-        return (
-            <TextInput
-                ref="searchBarInput"
-                autoCapitalize = 'none'
-                underlineColorAndroid="transparent" 
-                placeholder="Find an Appointment ..." 
-                placeholderTextColor="#616161" 
-                style={styles.searchBarTextInput}
-                onChangeText={(text) => this.onSearchTextChange(text)}
-                value={this.state.searchBarText}
-                />
-        );
+    renderRightIcons = () => {
+      return (
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity onPress={() => this.setState({ isSearchClicked: true })} style={{marginHorizontal: 7}}>
+            <Icon name="search" type="font-awesome" color="#fff" size={18} style={{paddingTop:40}}></Icon>
+          </TouchableOpacity>
+        </View>
+      );
     }
 
-    onSearchTextChange(text) {
-        //text=text.trim();
-        this.setState({
-          searchBarText: text,
-          searchBarTextTouched: true,
-          searchLoad: true
-        });
-        //console.log("All Books Array Holder: " + this.arrayHolder);
-        /*const newData = this.arrayHolder.filter(item => {
-          const itemData = `${item.Author.toUpperCase()} ${item.Publisher.toUpperCase()} ${item.Title.toUpperCase()}`;
-          const textData = text.toUpperCase();
-          return itemData.indexOf(textData) > -1;
-        });
-        this.setState({
-          data: newData,
-          searchLoad: false
-        });*/
-      }
+    renderSearchBarHeader = () => {
+      return(
+        <Header
+          backgroundColor="#FF6D00"
+          outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
+          centerComponent={this.renderCenterSearchBar()}
+          rightComponent={{ icon: 'close', color: '#fff', onPress: () => {
+            this.setState({ isSearchClicked: false });
+            this.renderListAccordingToSearchBar('');
+            } 
+          }}
+          leftComponent={{ icon: 'search', type: 'font-awesome', color: '#fff', size:18 }}
+        />
+      );
+    }
 
-      focusTextInput() {
-        this.refs.searchBarInput.focus();
-      }
+    renderCenterSearchBar = () => {
+      return(
+        <TextInput
+            ref="searchBarInput"
+            autoCapitalize = 'none'
+            underlineColorAndroid="transparent" 
+            placeholder="Search an Appointment ..." 
+            placeholderTextColor="#fff" 
+            style={styles.searchBarTextInput}
+            onChangeText={(text) => this.renderListAccordingToSearchBar(text)}
+            value={this.state.searchText}
+          />
+      );
+    }
 
-    searchIconFunctionality = () => {
-        return (
-          <View style={{marginLeft: 15, marginRight: 10, alignContent:'center'}}>
-            <Icon name='magnifying-glass' type='entypo' color='#FF8F00' onPress={() => this.focusTextInput()} />
-          </View>
-        );
-      }
+    renderListAccordingToSearchBar = (text) => {
+      this.setState({searchText: text});
+      console.log("All Books Array Holder: " + this.arrayHolder);
+      const newData = this.arrayHolder.filter(item => {
+        const itemData = `${item.appointmentId} ${item.slotDate.toUpperCase()}}`;
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      this.setState({
+        data: newData,
+      });
+    }
 
       returnDatePicker = () => {
           return (
@@ -358,16 +163,10 @@ class MyAppointments extends React.Component {
     render() {
         return(
             <View style={styles.container}>
-                { this.renderHeader() }
+                { this.state.isSearchClicked ? this.renderSearchBarHeader() : this.renderHeader() }
+
                 
-                <View style={{flexDirection: 'row'}}>
-                  <View style={[styles.sectionStyle, {flex: 1}]}>
-                      {this.searchIconFunctionality()}
-                      {this.renderSearchBar()}
-                  </View>
-                </View>
-                
-                <View style={{flexDirection: 'row'}}>
+                <View style={{flexDirection: 'row', marginTop: 5}}>
                   <View style={[styles.sectionStyle,{flex: 1, flexDirection: 'row'}]}>
                       {this.rightIconFunctionality()}
                     </View>

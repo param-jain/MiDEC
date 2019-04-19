@@ -63,11 +63,7 @@ static navigationOptions = (props) => {
 
   async componentDidMount() {
     console.log("LOGGED IN STATUS: " + global.isLoggedIn);
-    //const loggedInUser = this.props.navigation.getParam('loggedInUser', 'Oops!');
-    //this.setState({ loading: true, currentLoggedInUser: loggedInUser});
-    //console.log('HOME SCREEN RECIEVED IN USER: ' + loggedInUser);
     await this.makeRemoteRequest();
-    //await this.renderListAccordingToFilters();
   }
 
   componentWillReceiveProps() {

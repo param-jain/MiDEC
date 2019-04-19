@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { Header, Icon } from 'react-native-elements';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import { Header, Icon, Card } from 'react-native-elements';
 import { DrawerActions } from 'react-navigation';
 
 class Notifications extends React.Component {
@@ -14,11 +14,39 @@ class Notifications extends React.Component {
           searchBarText: '',
           searchBarTextTouched: false,
           data:[],
-          error: '',
-          bookSelected:[],
         }
 
         this.arrayHolder = [];
+    }
+
+    componentDidMount() {
+      console.log('LoggedUser RefTX: ' + JSON.parse(global.isCurrentLoggedInUser).referenceTx);
+      const url = `http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/apts/aeNotifications/`+`${JSON.parse(global.isCurrentLoggedInUser).referenceTx}`;
+      
+      fetch(url, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic c2VydmljZXMtbWlkZWMtdWk6bWlkZWMtc2VydmljZXMtdWkyMDE4'
+        },
+        })
+        .then((response) => response.json())
+        .then(res => {
+          console.log("NOTIFICATIONSRESPONSE: "+ JSON.stringify(res));
+          this.setState({
+            loading: false,
+            data: res,
+            originalData: res,
+            refreshing: false,
+          });
+          this.arrayHolder = this.state.data;
+          console.log("NOTIFICATIONS Data: " + JSON.stringify(this.state.data))
+        })
+        .catch(error => {
+          this.setState({ error, loading: false });
+          console.log("NOTIFICATIONS Error: " + JSON.stringify(error))
+        });
     }
 
     renderHeader = () => {
@@ -70,7 +98,7 @@ class Notifications extends React.Component {
     searchIconFunctionality = () => {
         return (
           <View style={{marginLeft: 15, marginRight: 10, alignContent:'center'}}>
-            <Icon name='magnifying-glass' type='entypo' color='#FF8F00' onPress={() => this.focusTextInput()} />
+            <Icon name='magnifying-glass' type='entypo' color='#FF8F00' />
           </View>
         );
       }
@@ -84,6 +112,34 @@ class Notifications extends React.Component {
           );
         }
       //}
+
+
+      returnList = () => {
+        console.log("sdasdadda: "+ this.state.data)
+        let user = this.state.currentLoggedInUser;
+       return (
+          <ScrollView style={{flex: 1}}>
+          <View animation="slideInUp" iterationCount={1}>
+              <FlatList 
+              style={{flex: 1}}
+              data={this.state.data}
+              renderItem={({ item }) => (
+                <Card>
+                  <View style={{flexDirection:'column'}}>
+                    <View style={{flexDirection:'row', paddingBottom: 4, justifyContent: 'space-between'}}>
+                      <Text style={{fontSize: 12, flex: 3}}>{item.comments} - {item.appointmentId}</Text>
+                      <Text style={{fontSize: 12, flex: 1}}>{item.lastModifiedDate}</Text>
+                    </View>
+                    </View>
+                </Card>
+              )}
+              keyExtractor={item => item.appointmentId.toString()}
+            />
+            </View>
+            </ScrollView>
+          
+        );
+      }
     
     render() {
         return(
@@ -96,20 +152,20 @@ class Notifications extends React.Component {
                     {this.rightIconFunctionality()}
                 </View>
 
+                { this.returnList() }
 
+{/*
                 <View style={{justifyContent: 'center', alignContent: 'center', marginHorizontal: 20, marginVertical: 8}}>
                     <Text style={{color: '#666'}}>Reach out and start a conversation. Great things might happen.</Text>
                 </View>
 
                 <View style={{justifyContent: 'center', alignContent: 'center', flex: 1}}>
                     <View style={{paddingHorizontal:70, paddingLeft:85, paddingTop:0, marginVertical: 20}}>
-                        {/* <Button type="outline" title="Book an Appointment" buttonStyle={{borderColor: '#FF9800', borderRadius: 10}} titleStyle={{color: '#000'}}></Button> */}
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('home')} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
                             <Text style={{alignSelf: 'center', padding: 5, fontWeight: '500', color: '#FF6D00'}}>Explore your Opportunities</Text> 
                         </TouchableOpacity>
                     </View>
-                </View>
-
+                </View> */}
             </View>
         )
     }
