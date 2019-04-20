@@ -514,6 +514,12 @@ class SignupScreen extends Component {
                             {this.validatePassword(this.props.password)}
                             {this.validateVerifyPassword(this.props.verifyPassword)}
                             <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
+                            <TouchableOpacity 
+                                style={{flexDirection:'row', justifyContent: 'space-around', marginTop: 10 }} 
+                                onPress={() => {this.props.navigation.navigate('selection')}}
+                                >
+                                <Text style={{color: '#424242'}} >Go Back</Text>
+                            </TouchableOpacity>
                             {this.enableNextButton(this.props.email, this.props.password, this.props.verifyPassword)}
                             </Animatable.View>
                         </View>

@@ -6,8 +6,8 @@ class AdviseeEditContactDetails extends Component {
     constructor(props) {
         super(props)
         state = {
-            email: '',
-            phone: ''
+            email: JSON.parse(global.isCurrentLoggedInUser).userEmail,
+            phone: JSON.parse(global.isCurrentLoggedInUser).phoneNumber
         }
       }
 
@@ -37,13 +37,13 @@ class AdviseeEditContactDetails extends Component {
         <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
         {this.renderHeader()}
 
-        <Card>
+       {/* <Card> */}
 
             <Text style={styles.heading}> Email Id </Text>
-            <TextInput style={styles.textInput} onChangeText = {this.handleEmailId}/>
+            <TextInput style={styles.textInput} onChangeText = {this.handleEmailId} placeholder={JSON.parse(global.isCurrentLoggedInUser).userEmail}/>
 
             <Text style={styles.heading}> Phone Number </Text>
-            <TextInput style={styles.textInput} keyboardType='phone-pad' maxLength={10} onChangeText = {this.handlePhoneNumber}/>
+            <TextInput style={styles.textInput} keyboardType='phone-pad' maxLength={10} onChangeText = {this.handlePhoneNumber} placeholder={JSON.parse(global.isCurrentLoggedInUser).phoneNumber}/>
             
             <View style={{flexDirection: 'row', paddingTop:10,paddingBottom: 30, justifyContent:'space-evenly'}}>
                 <TouchableOpacity style={styles.customBtnBG} onPress={() => {this.props.navigation.navigate('adviseeProfile')}} >
@@ -51,7 +51,7 @@ class AdviseeEditContactDetails extends Component {
                 </TouchableOpacity>
             </View>
 
-        </Card>
+      {/*  </Card> */}
 
     </View>
     );

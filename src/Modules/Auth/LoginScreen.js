@@ -381,6 +381,12 @@ class LoginScreen extends Component {
                             >
                             <Text style={{color: '#424242'}} >Forgot Password?</Text>
                         </TouchableOpacity>
+                        <TouchableOpacity 
+                            style={{flexDirection:'row', justifyContent: 'space-around', marginTop: 10 }} 
+                            onPress={() => {this.props.navigation.navigate('selection')}}
+                            >
+                            <Text style={{color: '#424242'}} >Go Back</Text>
+                        </TouchableOpacity>
                         {/*
                         <View style={styles.rectangle} />
                         <Button

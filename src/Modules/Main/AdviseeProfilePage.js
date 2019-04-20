@@ -281,7 +281,9 @@ class AdviseeProfilePage extends Component {
               <Card>
                   <View style={{flexDirection:'row'}}>
                       <Text>Resume</Text>
-                      <Text style={{color: "#FF9800", marginLeft: 'auto'}}>Update CV</Text>
+                      <TouchableOpacity style={{marginLeft: 'auto'}} onPress={() => {this.props.navigation.navigate('updateCV')}}>
+                        <Text style={{color: "#FF9800", marginLeft: 'auto'}}>Update CV</Text>
+                      </TouchableOpacity>
                   </View>
     
     

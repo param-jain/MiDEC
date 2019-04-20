@@ -42,23 +42,20 @@ class AdviseeEditPersonalDetails extends Component {
       <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
         {this.renderHeader()}
 
-      <Card>
           <Text style={styles.heading}> First Name </Text>
-          <TextInput style={styles.textInput} onChangeText={this.handleFirstName}/>
+          <TextInput style={styles.textInput} onChangeText={this.handleFirstName} placeholder={JSON.parse(global.isCurrentLoggedInUser).firstName}/>
 
           <Text style={styles.heading}> Last Name </Text>
-          <TextInput style={styles.textInput} onChangeText={this.handleLastName}/>
+          <TextInput style={styles.textInput} onChangeText={this.handleLastName} placeholder={JSON.parse(global.isCurrentLoggedInUser).lastName}/>
 
           <Text style={styles.heading}> Mobile Number </Text>
-          <TextInput style={styles.textInput} keyboardType='phone-pad' maxLength={10} onChangeText={this.handleMobileNumber}/>
+          <TextInput style={styles.textInput} keyboardType='phone-pad' maxLength={10} onChangeText={this.handleMobileNumber} placeholder={JSON.parse(global.isCurrentLoggedInUser).phoneNumber}/>
           
           <View style={{flexDirection: 'row', paddingTop:10,paddingBottom: 30, justifyContent:'space-evenly'}}>
             <TouchableOpacity style={styles.customBtnBG} onPress={() => {this.props.navigation.navigate('adviseeProfile')}} >
                 <Text style={styles.customBtnText}>Save</Text>
             </TouchableOpacity>
           </View>
-
-        </Card>
       </View>
     );
   }

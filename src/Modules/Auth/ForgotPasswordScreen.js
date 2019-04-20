@@ -15,7 +15,7 @@ import {
   } from 'react-native'
   import * as Animatable from 'react-native-animatable';
 
-import { Icon } from 'react-native-elements';
+import { Icon, Header } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { connect } from 'react-redux'
 
@@ -241,13 +241,25 @@ class ForgotPasswordScreen extends Component {
         }
     }
 
+    renderHeader = () => {
+        return(
+            <Header
+              backgroundColor="#FF6D00"
+              outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
+              centerComponent={{ text: 'Forgot Password' , style: { color: '#fff',fontSize: 18, fontWeight: 'bold' }  }}
+              //rightComponent={ this.renderRightIcons() }
+              //leftComponent={{ icon: 'menu', color: '#fff', onPress: () => this.props.navigation.dispatch(DrawerActions.toggleDrawer()) }}
+            />
+          );
+        }
+
     render() {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
-                <ImageBackground source={require('../../../assets/forget-password-link.png')} style={{width: '100%', height: '100%'}}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
+                        {this.renderHeader()}
                         <Spinner visible={this.state.isAuthenticating} />
                         <View style={styles.loginFormView}>
                         <Animatable.View animation="slideInUp" iterationCount={1}>
@@ -255,11 +267,16 @@ class ForgotPasswordScreen extends Component {
                             {this.validateEmail(this.props.email)}
                             <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
                             {this.enableNextButton(this.props.email, this.props.password, this.props.verifyPassword)}
+                            <TouchableOpacity 
+                                style={{flexDirection:'row', justifyContent: 'space-around', marginTop: 10 }} 
+                                onPress={() => {this.props.navigation.navigate('selection')}}
+                                >
+                                <Text style={{color: '#424242'}} >Go Back</Text>
+                            </TouchableOpacity>
                             </Animatable.View>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                </ImageBackground>
             </KeyboardAvoidingView>
         );
     }

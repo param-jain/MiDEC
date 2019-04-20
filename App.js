@@ -33,6 +33,7 @@ import TimeSlots from './src/Modules/Main/TimeSlots';
 import PaymentScreen from './src/Modules/Main/Payment';
 import Test from './src/Modules/Main/HourScheduleReminder';
 import Feedback from './src/Modules/Main/Feedback';
+import UploadCV from './src/Modules/Main/UploadCV';
 
 
 const MenuImage = ({navigation}) => {
@@ -43,7 +44,7 @@ const MenuImage = ({navigation}) => {
   }
 }
 
-const selectionStacker = createStackNavigator({
+const selectionStacker = createBottomTabNavigator({
   selection: { screen: LoginSignupSelectionScreen },
   login_signup: { screen: createBottomTabNavigator({
     login: { screen:  LoginScreen, navigationOptions: { tabBarVisible: false } },
@@ -93,7 +94,8 @@ const MainNavigator = createDrawerNavigator({
   timeSlots: {screen: TimeSlots},
   confirmPayment: { screen: ConfirmPaymentScreen },
   payment: {screen: PaymentScreen },
-  feedback: { screen: Feedback}
+  feedback: { screen: Feedback},
+  updateCV: { screen: UploadCV }
 },{
   //initialRouteName: 'Home',
   contentComponent: DrawerScreen,
