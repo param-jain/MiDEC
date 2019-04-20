@@ -34,7 +34,7 @@ export default class CardDetail extends Component{
       
       return(
                 
-              <Card>
+              <Card containerStyle={{borderRadius: 15}}>
 
               <Text style={{fontWeight: '600', marginBottom: 10}}>{((adviserTitle).length > 45) ? (((adviserTitle).substring(0, 42)) + ' ...') : adviserTitle}</Text>
 

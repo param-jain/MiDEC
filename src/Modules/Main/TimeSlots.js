@@ -8,6 +8,7 @@ import {
   StyleSheet, 
   TouchableOpacity,
   ScrollView,
+  StatusBar,
   Picker
 } from 'react-native'
 import { Icon, Card, Header } from 'react-native-elements';
@@ -369,6 +370,7 @@ open_To = () =>{
 }
 
   loadBottomView = () => {
+    <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
     if (this.state.tabSelected === 'from') {
 
       return(
@@ -401,7 +403,7 @@ open_To = () =>{
 
         <Card>
 
-          <View style={{flexDirection: 'column', justifyContent: 'space-around',}}>
+          <View style={{flexDirection: 'column', justifyContent: 'space-around'}}>
 
             <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
               <TouchableOpacity style={this.state.seven_seventhirty? styles.timeslotButtonActive: styles.timeslotButtonInactive} activeOpacity= {.5} onPress={this.changeButton7_730} >
@@ -463,7 +465,7 @@ open_To = () =>{
         </Card>
 
 
-        <Text style={{fontSize: 10, paddingHorizontal:10, textAlign: 'center'}}>1. Please ensure you are available at the mentioned timeslots to take the phone call. 
+        <Text style={{fontSize: 10, paddingHorizontal:10, marginTop: 10, textAlign: 'center'}}>1. Please ensure you are available at the mentioned timeslots to take the phone call. 
         Missing an appointment could result in lowering of your rating, and even a permanent ban from MiDEC. 
         Please review our terms and conditions for more information.</Text>
 
@@ -516,7 +518,7 @@ open_To = () =>{
 
                 <Card>
 
-                  <View style={{flexDirection: 'column', justifyContent: 'space-around',}}>
+                  <View style={{flexDirection: 'column', justifyContent: 'space-around'}}>
                   
                   <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
                     <TouchableOpacity style={this.state.twelvethirty_thirteen? styles.timeslotButtonActive: styles.timeslotButtonInactive} activeOpacity= {.5} onPress={this.changeButton1230_13} >
@@ -577,7 +579,7 @@ open_To = () =>{
 
                 </Card>
 
-                          <Text style={{fontSize: 10, paddingHorizontal:10, textAlign: 'center'}}>1. Please ensure you are available at the mentioned timeslots to take the phone call. 
+                          <Text style={{fontSize: 10, paddingHorizontal:10, marginTop: 10, textAlign: 'center'}}>1. Please ensure you are available at the mentioned timeslots to take the phone call. 
                   Missing an appointment could result in lowering of your rating, and even a permanent ban from MiDEC. 
                   Please review our terms and conditions for more information.</Text>
 
@@ -600,6 +602,7 @@ open_To = () =>{
       </View>
       );
     }
+    <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
   }
 
   renderHeader = () => {
@@ -710,6 +713,8 @@ const styles = StyleSheet.create({
   borderRadius: 5,
   borderColor: '#FF9800', 
   borderWidth: 1,
+  marginLeft: 3,
+  marginRight: 3,
   paddingHorizontal: 10,
   paddingVertical: 15,
   marginBottom: 5,
@@ -718,6 +723,8 @@ const styles = StyleSheet.create({
   borderRadius: 5,
   borderColor: '#d3d3d3', 
   borderWidth: 1,
+  marginLeft: 3,
+  marginRight: 3,
   paddingHorizontal: 10,
   paddingVertical: 15,
   marginBottom: 5
