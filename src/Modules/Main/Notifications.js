@@ -118,7 +118,7 @@ class Notifications extends React.Component {
        // if (this.state.searchBarTextTouched) {
           return (
             <View style={{marginRight: 15, alignContent:'center'}}>
-              <Icon name='bell-o' type='font-awesome' color='#FF8F00' size={16} underlayColor={'#64b5f6'}/>
+              <Icon onPress={() => this.props.navigation.navigate('hourScheduleReminder')} name='bell-o' type='font-awesome' color='#FF8F00' size={16} underlayColor={'#64b5f6'}/>
             </View>
           );
         }

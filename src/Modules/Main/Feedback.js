@@ -14,6 +14,8 @@ import {
     StatusBar
   } from 'react-native'
 
+import { DrawerActions } from 'react-navigation';
+
 import { Header, Icon, Card } from 'react-native-elements';
 
 

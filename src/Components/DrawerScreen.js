@@ -169,30 +169,19 @@ class DrawerScreen extends Component {
 
             <View style={styles.menuItem}>
             <View style={{flex: 1}}>
+              <Icon name="feedback" type="material" size={16} color='#FFF' style={{marginRight: 10}}/>
+            </View>
+              <View style={{flex: 9}}>
+                <Text onPress={this.navigateToScreen('feedback')} style={{marginLeft: 10, color:'#FFF'}}>Feedback</Text>
+              </View>
+            </View>
+
+            <View style={styles.menuItem}>
+            <View style={{flex: 1}}>
               <Icon name="sign-out" type="font-awesome" size={16} color='#FFF' style={{marginRight: 10}}/>
             </View>
               <View style={{flex: 9}}>
                 <Text onPress={this.navigateToScreen('loginSignupSelection')} style={{marginLeft: 10, color:'#FFF'}}>Sign Out</Text>
-              </View>
-            </View>
-
-
-            <View style={styles.menuItem}>
-            <View style={{flex: 1}}>
-              <Icon name="sign-out" type="font-awesome" size={16} color='#FFF' style={{marginRight: 10}}/>
-            </View>
-              <View style={{flex: 9}}>
-                <Text onPress={this.navigateToScreen('test')} style={{marginLeft: 10, color:'#FFF'}}>Hour Schedule Reminder(test)</Text>
-              </View>
-            </View>
-
-
-            <View style={styles.menuItem}>
-            <View style={{flex: 1}}>
-              <Icon name="sign-out" type="font-awesome" size={16} color='#FFF' style={{marginRight: 10}}/>
-            </View>
-              <View style={{flex: 9}}>
-                <Text onPress={this.navigateToScreen('feedback')} style={{marginLeft: 10, color:'#FFF'}}>Feedback</Text>
               </View>
             </View>
             

@@ -322,21 +322,22 @@ static navigationOptions = (props) => {
       return(
         <View style={{ height: 80, backgroundColor: "#FF6D00", justifyContent: 'center', paddingHorizontal: 8, paddingTop: 15}}>
 
-        <Animatable.View animation="slideInRight" duration={500} style={{ height: 30, backgroundColor: 'white', flexDirection: 'row', marginTop: 10, alignItems: 'center' }}>
+        <Animatable.View animation="slideInRight" duration={500} style={{ height: 30, backgroundColor: 'white', flexDirection: 'row', marginTop: 10, alignItems: 'center', borderRadius: 20 }}>
           <Animatable.View animation={this.state.searchBarFocused ? "fadeInLeft" : "fadeInRight"} duration={400}>
           <TouchableOpacity onPress={this.onBackPress}>
-            <MyIcon name={this.state.searchBarFocused ? "md-arrow-back" : "ios-search"} style={{ fontSize: 24, marginLeft: 5}} />
+            <MyIcon name={this.state.searchBarFocused ? "md-arrow-back" : "ios-search"} style={{ fontSize: 24, marginLeft: 20}} />
           </TouchableOpacity>
           </Animatable.View>
           <TextInput
             ref="searchBarInput"
             autoCapitalize = 'none'
-           placeholder="Search" style={{ fontSize: 20, marginLeft: 15, flex: 1 }} 
-           onChangeText={(text) => this.renderListAccordingToSearchBar(text)}
-           value={this.state.searchText}
+            placeholder="Search" 
+            style={{ fontSize: 20, marginLeft: 15, flex: 1 }} 
+            onChangeText={(text) => this.renderListAccordingToSearchBar(text)}
+            value={this.state.searchText}
            />
            <TouchableOpacity onPress={this.onBackPress}>
-            <MyIcon name="md-close" style={{ fontSize: 24, marginRight: 5}} />
+            <MyIcon name="md-close" style={{ fontSize: 24, marginRight: 20}} />
           </TouchableOpacity>
         </Animatable.View>
 
@@ -350,6 +351,7 @@ static navigationOptions = (props) => {
         if (this.state.loading) {
           return (
             <View style={{flex:1, justifyContent: 'center' }}>
+            <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
               <ActivityIndicator animating={this.state.loading} size="large" />
             </View>
           );

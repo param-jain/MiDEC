@@ -86,7 +86,7 @@ const MainNavigator = createDrawerNavigator({
   adviseeEditEducationDetails: {screen: AdviseeEditEducationDetails },
   myAppointments: { screen: MyAppointments },
   bookmarks: { screen: Bookmarks },
-  test: { screen: Test},
+  hourScheduleReminder: { screen: Test},
   settings: { screen: Settings },
   homeFilter: { screen: HomeFilterPage },
   about_us: { screen: AboutUs },

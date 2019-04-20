@@ -468,8 +468,7 @@ class SignupScreen extends Component {
         } else {
             return (
                 <KeyboardAvoidingView style={styles.container} behavior="padding">
-                    <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
-                    <ImageBackground source={require('../../../assets/password-changes.png')} style={{width: '100%', height: '100%'}}>
+                    <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <View style={styles.container}>
 
@@ -483,10 +482,9 @@ class SignupScreen extends Component {
                                 {this.validatePassword(this.props.password)}
                                 {this.validateVerifyPassword(this.props.verifyPassword)}
                                 <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
-                                {this.enableNextButton(this.props.email, this.props.password, this.props.verifyPassword)}
 
                                 <View style={{flexDirection: 'column', alignSelf: 'center', marginTop: 10}}>
-                                <Text style={{textAlign: 'center'}}>Password should</Text>
+                                <Text style={{textAlign: 'left'}}>Password should</Text>
                                 <View style={{alignItems: 'center', marginLeft: 20}}>
                                 <View style={{alignContent: 'center'}}>
                                 <Text>{'\u2022'} have at least 8 characters</Text>
@@ -496,11 +494,12 @@ class SignupScreen extends Component {
                                 </View>
                                 </View>
                                 </View>
+
+                                {this.enableNextButton(this.props.email, this.props.password, this.props.verifyPassword)}
                             
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
-                    </ImageBackground>
                 </KeyboardAvoidingView>
             );
         }

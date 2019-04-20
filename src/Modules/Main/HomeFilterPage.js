@@ -1289,8 +1289,8 @@ applyFilters = () => {
 
     return (
       <View style={styles.container}>
-        <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
-        <View style={[ styles.toolbar, { backgroundColor: "#ff6600" }]}>
+        <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
+        <View style={[ styles.toolbar, { backgroundColor: "#ff6600", paddingTop: 12, height: 80 }]}>
 
             <View style={{flexDirection: 'row', justifyContent:'space-between', padding: 20}}>
 

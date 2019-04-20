@@ -466,7 +466,7 @@ class SignupScreen extends Component {
     render() {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
-                <StatusBar barStyle = "dark-content" hidden = {true} translucent = {true}/>
+                <StatusBar barStyle = "dark-content" hidden = {false} translucent = {true}/>
                 <ImageBackground source={require('../../../assets/bg-sign_in.png')} style={{width: '100%', height: '100%'}}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
