@@ -10,6 +10,7 @@ import {
     ActivityIndicator,
     StatusBar,
     TextInput,
+    Keyboard,
     Animated
   } from 'react-native'
  
@@ -22,6 +23,8 @@ import { connect } from 'react-redux'
 import CardDetail from '../../Components/CardDetail';
 import { DrawerActions } from 'react-navigation';
 import { loggedInUser } from '../../Actions/index';
+import MyIcon from 'react-native-vector-icons/Ionicons';
+import {SharedElement} from 'react-native-motion';
 
 const ROOT_URL = 'http://midec-dev.ap-south-1.elasticbeanstalk.com:8181/midec/'
 
@@ -55,7 +58,8 @@ static navigationOptions = (props) => {
         error: '',
         isSearchClicked: false,
         searchText: '',
-        currentLoggedInUser: []
+        currentLoggedInUser: [],
+        searchBarFocused: false
       }
   
     this.arrayHolder = [];
@@ -63,8 +67,30 @@ static navigationOptions = (props) => {
 
   async componentDidMount() {
     console.log("LOGGED IN STATUS: " + global.isLoggedIn);
+    this.keyboardDidShow = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
+    this.keyboardWillShow = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
+    this.keyboardDidHide = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+    this.keyboardWillHide = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
     await this.makeRemoteRequest();
   }
+  
+
+  keyboardDidShow = () => {
+    this.setState({ searchBarFocused: true });
+  }
+
+  keyboardWillShow = () => {
+    this.setState({ searchBarFocused: true });
+  }
+
+  keyboardDidHide = () => {
+    this.setState({searchBarFocused: false});
+  }
+
+  keyboardWillHide = () => {
+    this.setState({ searchBarFocused: false });
+  }
+
 
   componentWillReceiveProps() {
     this.makeRemoteRequest();
@@ -139,10 +165,9 @@ static navigationOptions = (props) => {
     console.log("sdasdadda: "+ this.state.data)
     let user = this.state.currentLoggedInUser;
    return (
-      <ScrollView style={{flex: 1}}>
+      <ScrollView style={{flex: 1 }}>
       <Animatable.View animation="slideInUp" iterationCount={1}>
           <FlatList 
-          style={{flex: 1}}
           data={this.state.data}
           renderItem={({ item }) => (
             <CardDetail key={item.adviserId.toString()} navigation={this.props.navigation} item={item} />
@@ -288,19 +313,36 @@ static navigationOptions = (props) => {
 
     }
 
+    onBackPress = () => {
+      this.setState({ isSearchClicked: false });
+      this.renderListAccordingToSearchBar('');
+    }
+
     renderSearchBarHeader = () => {
       return(
-        <Header
-          backgroundColor="#FF6D00"
-          outerContainerStyles={{borderBottomWidth: 0.5, borderColor: '#000000'}}
-          centerComponent={this.renderCenterSearchBar()}
-          rightComponent={{ icon: 'close', color: '#fff', onPress: () => {
-            this.setState({ isSearchClicked: false });
-            this.renderListAccordingToSearchBar('');
-            } 
-          }}
-          leftComponent={{ icon: 'search', type: 'font-awesome', color: '#fff', size:18 }}
-        />
+        <View style={{ height: 80, backgroundColor: "#FF6D00", justifyContent: 'center', paddingHorizontal: 8, paddingTop: 15}}>
+
+        <Animatable.View animation="slideInRight" duration={500} style={{ height: 30, backgroundColor: 'white', flexDirection: 'row', marginTop: 10, alignItems: 'center' }}>
+          <Animatable.View animation={this.state.searchBarFocused ? "fadeInLeft" : "fadeInRight"} duration={400}>
+          <TouchableOpacity onPress={this.onBackPress}>
+            <MyIcon name={this.state.searchBarFocused ? "md-arrow-back" : "ios-search"} style={{ fontSize: 24, marginLeft: 5}} />
+          </TouchableOpacity>
+          </Animatable.View>
+          <TextInput
+            ref="searchBarInput"
+            autoCapitalize = 'none'
+           placeholder="Search" style={{ fontSize: 20, marginLeft: 15, flex: 1 }} 
+           onChangeText={(text) => this.renderListAccordingToSearchBar(text)}
+           value={this.state.searchText}
+           />
+           <TouchableOpacity onPress={this.onBackPress}>
+            <MyIcon name="md-close" style={{ fontSize: 24, marginRight: 5}} />
+          </TouchableOpacity>
+        </Animatable.View>
+
+
+      </View>
+
       );
     }
 

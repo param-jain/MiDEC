@@ -4,6 +4,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import { createBottomTabNavigator, createDrawerNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import SharedElementRenderer from 'react-native-motion';
+
 
 import Reducers from './src/Reducers';
 import LoginSignupSelectionScreen from './src/Modules/Auth/LoginSignupSelectionScreen';
@@ -29,6 +31,9 @@ import ConfirmPaymentScreen from './src/Modules/Main/ConfirmPaymentScreen';
 import FeeAndBankDetails from './src/Modules/Main/FeeAndBankDetails';
 import TimeSlots from './src/Modules/Main/TimeSlots';
 import PaymentScreen from './src/Modules/Main/Payment';
+import Test from './src/Modules/Main/HourScheduleReminder';
+import Feedback from './src/Modules/Main/Feedback';
+
 
 const MenuImage = ({navigation}) => {
   if(!navigation.state.isDrawerOpen){
@@ -80,13 +85,15 @@ const MainNavigator = createDrawerNavigator({
   adviseeEditEducationDetails: {screen: AdviseeEditEducationDetails },
   myAppointments: { screen: MyAppointments },
   bookmarks: { screen: Bookmarks },
+  test: { screen: Test},
   settings: { screen: Settings },
   homeFilter: { screen: HomeFilterPage },
   about_us: { screen: AboutUs },
   feeAndBankDetails: {screen: FeeAndBankDetails},
   timeSlots: {screen: TimeSlots},
   confirmPayment: { screen: ConfirmPaymentScreen },
-  payment: {screen: PaymentScreen }
+  payment: {screen: PaymentScreen },
+  feedback: { screen: Feedback}
 },{
   //initialRouteName: 'Home',
   contentComponent: DrawerScreen,
@@ -102,15 +109,17 @@ class App extends React.Component {
     
     const store = createStore(Reducers, {}, applyMiddleware(ReduxThunk));
     return (
+     
       <Provider store={store}>
         <View style={styles.container}>
+        
           <AppContainer
             ref={nav => {
               this.navigator = nav;
             }}
-          />
+          />  
       </View>
-      </Provider>
+      </Provider> 
     );
   }
 }

@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { View, TextInput, TouchableOpacity, Text, Alert } from 'react-native';
 import { DrawerActions } from 'react-navigation';
-import { Header } from 'react-native-elements';
+import { Header, Card } from 'react-native-elements';
+//import StarRating from 'react-native-star-rating';
+
+
 
 const RAZORPAY_KEY = "rzp_live_nqbZ3Kcsswj6ul"
 
@@ -15,7 +18,8 @@ export default class ConfirmPaymentScreen extends Component {
             adviserSelected: [],
             advisee: '',
             agenda: '',
-            currentLoggedInUser: ''
+            currentLoggedInUser: '',
+            starCount: 4
           }
       
         this.arrayHolder = [];
@@ -26,7 +30,7 @@ export default class ConfirmPaymentScreen extends Component {
         const dateSelected = navigation.getParam('dateSelected', 'Oops');
         const slotSelected = navigation.getParam('slotSelected', 'Duh');
         const adviserSelected = navigation.getParam('adviserSelected', 'Hola');
-        console.log("Confirm Paymennt? Slot: " + slotSelected);
+
        this.setState({dateSelected, slotSelected, adviserSelected, currentLoggedInUser: global.isCurrentLoggedInUser,});
        console.log("Payment Screen: " + this.state.dateSelected + " " + this.state.slotSelected + " " + this.state.adviserSelected + " " + this.state.currentLoggedInUser);
 
@@ -43,7 +47,7 @@ export default class ConfirmPaymentScreen extends Component {
     openPaymentPage = () => {
         if (global.isLoggedIn === false) {
             Alert.alert(
-                'Please Login First!!!',
+                'Please Login First!',
                 '',
                 [
                     {text: 'Go to Login', onPress: () => this.props.navigation.navigate('loginSignupSelection')},
@@ -63,17 +67,17 @@ export default class ConfirmPaymentScreen extends Component {
 
     renderAgendaInput = () => {
         return (
-            <View style={{margin: 10, borderWidth: 1, borderColor: '#666', borderRadius: 5, padding: 10}}>  
+            <Card style={{margin: 10, borderWidth: 1, borderRadius: 5, padding: 10}}>  
                 <Text style={{marginLeft: 10}}>Agenda of Your Call: </Text>
                 <TextInput
-                    style={{height: 100, padding: 10, borderBottomColor:'red', borderBottomWidth:1, borderWidth:0, borderColor: 'gray', margin: 10}}
+                    style={{height: 100, padding: 10, borderBottomColor:'#FF9800', borderBottomWidth:1, borderWidth:0, borderColor: 'gray', margin: 10}}
                     onChangeText={(text) => this.setState({agenda: text})}
                     placeholder="State your call’s agenda here in < 500 chars. Make sure you mention key points to discuss with your adviser. If required,give a brief background about yourself here. This will be shared with your adviser"
                     value={this.state.agenda}
                     multiline={true}
                     maxLength={500}
                 />
-            </View>
+            </Card>
         )
     }
 
@@ -88,6 +92,13 @@ export default class ConfirmPaymentScreen extends Component {
           );
         }
 
+
+        onStarRatingPress(rating){
+            this.setState({
+                starCount: rating
+            });
+        }
+
     render(){
         return(
             <View style={styles.container}>
@@ -96,14 +107,37 @@ export default class ConfirmPaymentScreen extends Component {
                     {this.renderAgendaInput()}
                 </View>
 
-                <View style={{margin: 10, borderWidth: 1, borderColor: '#666', borderRadius: 5, padding: 10}}>  
-                    <Text style={{marginLeft: 10}}>Selected Date: {this.state.dateSelected}</Text>
-                    <Text style={{marginLeft: 10}}>Selected Slot: {this.state.slotSelected}</Text>
-                </View>
+
+                <Card style={{margin: 10, borderWidth: 1, borderRadius: 5, padding: 10}}>
+
+                <View style={{height: 35, width: 30, left: '25%'}}>
+                   {/* <StarRating 
+                    disabled={false}
+                    maxStars={5}
+                    emptyStar={require('../../../assets/starEmpty.png')}
+                    fullStar={require('../../../assets/starFull.png')}
+                    fullStarColor={'#FF9800'}
+                    rating={this.state.starCount}
+                    selectedStar={(rating) => this.onStarRatingPress(rating)}/>*/}
+                 </View>
+
+                </Card>
+
+                <Card style={{margin: 10, borderWidth: 1, borderRadius: 5, padding: 10}}>  
+                    <Text style={{marginLeft: 10, paddingBottom: 5}}>Selected Date: {this.state.dateSelected}</Text>
+                    <Text style={{marginLeft: 10, paddingBottom: 5}}>Selected Slot: {this.state.slotSelected}</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <Text style={{marginLeft: 10}}>Referral Code:</Text>
+                        <TextInput style={{borderColor: '#FF9800', width: 100, borderWidth: 1, borderRadius: 5, marginLeft: 10, paddingHorizontal: 5}}></TextInput>
+                        <TouchableOpacity onPress={() => {}} style={{backgroundColor: '#FF9800', paddingHorizontal: 30, marginLeft: 10, paddingVertical: 5, borderRadius: 5}}>
+                            <Text style={{alignSelf:'center', width: 80, color: 'white'}}>Apply Code</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Card>
 
                 <View style={{paddingHorizontal:70, paddingLeft:85, paddingTop:0, marginVertical: 20}}>
-                    <TouchableOpacity onPress={() => {this.openPaymentPage()}} style={{borderWidth: 1, borderColor: '#FF9800', padding: 2, borderRadius: 10, justifyContent: 'center', alignContent: 'center'}}> 
-                        <Text style={{alignSelf: 'center', padding: 5}}>Confirm Booking!</Text> 
+                    <TouchableOpacity onPress={() => {this.openPaymentPage()}} style={styles.customBtnBG}> 
+                        <Text style={styles.customBtnText}>Confirm Booking</Text> 
                     </TouchableOpacity>
                     </View>
                 </View>
@@ -117,4 +151,15 @@ let styles = {
         flex: 1,
         backgroundColor: 'transparent'
       },
+      customBtnBG: {
+        backgroundColor: "#FF9800",
+        paddingHorizontal: 30,
+        paddingVertical: 5,
+        borderRadius: 5
+    },
+    customBtnText: {
+        fontSize: 15,
+        alignSelf: 'center',
+        color: "#fff",
+    }
 }
